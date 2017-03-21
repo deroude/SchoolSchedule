@@ -11,18 +11,18 @@
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://bootswatch.com/4-alpha/simplex/bootstrap.min.css">
-  <link rel="stylesheet" href="prod/css/style.css">
+  <link rel="stylesheet" href="dist/css/style.css">
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
     crossorigin="anonymous"></script>
-
   <script src="https://use.fontawesome.com/341d5b2180.js"></script>
   <!-- Latest compiled and minified JavaScript -->
 
   <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
     crossorigin="anonymous"></script>
+
   <script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
   <script type="text/javascript" src="https://connect.facebook.net/en_US/sdk.js"></script>
   <!-- Polyfill(s) for older browsers -->
@@ -31,8 +31,9 @@
   <script src="node_modules/zone.js/dist/zone.js"></script>
   <script src="node_modules/reflect-metadata/Reflect.js"></script>
   <script src="node_modules/systemjs/dist/system.src.js"></script>
+  <script src="systemjs.config.js"></script>
   <script>
-    window.module = 'aot';
+    System.import('app').catch(function (err) { console.error(err); });
   </script>
 
 </head>
@@ -47,6 +48,5 @@
   </ld-app>
 
 </body>
-<script src="prod/build.js"></script>
 
 </html>
