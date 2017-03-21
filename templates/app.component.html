@@ -1,0 +1,32 @@
+<div class="container page-container">
+    <nav class="navbar navbar-toggleable-md fixed-top navbar-light bg-primary">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <a href="/" class="navbar-brand">School Scheduler</a>
+                <div class="nav navbar-nav mr-auto">
+                    <form class="form-inline" (ngSubmit)="doSearch()">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <input type="text" class="form-control form-control-xs" name="search" [(ngModel)]="search" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div class="nav navbar-nav ml-auto">
+                    <label class="custom-control custom-file">
+                        <input type="file" id="file" class="custom-file-input" (change)="fileChanged($event)">
+                        <span class="custom-file-control"><i class="fa fa-upload"></i> Upload config</span>
+                    </label>
+                    <!--<button (click)="save()" class="btn btn-secondary"><i class="fa fa-download"></i> Save current config</button>-->
+                    <a class="btn btn-secondary" [href]="configDownload" download="configuration.txt"><i class="fa fa-download"></i> Save current config</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <router-outlet></router-outlet>
+</div>

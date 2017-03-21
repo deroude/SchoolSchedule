@@ -1,0 +1,30 @@
+<article class="card mt-3" [class.ld-article-collapsed]="expanded['main']!==article.article.id">
+    <section class="card-block">
+        <div class="card-title">
+            <h4>{{article.currentVersion.title}}
+                <button (click)="toggleSection('main',article.article.id)" class="btn btn-primary float-sm-right">{{expanded['main']===article.article.id?'Collapse':'Expand'}}</button>
+            </h4>
+            <span class="font-weight-bold">{{article.article.agency}}</span>
+            <time pubdate="pubdate">{{article.currentVersion.publishDate| date: 'dd/MM/yyyy'}}</time>
+            <span class="font-italic">{{article.article.proposedBy}}</span>
+        </div>
+        <div class="card-text text-justify" innerHtml="{{article.currentVersion.text}}">
+        </div>
+    </section>
+</article>
+<div class="card-deck mt-2">
+    <section class="card" *ngFor="let p of ['YAY','NAY','ABSTAIN']">
+        <h5 class="card-header" *ngIf="responses[p]">
+            <span class="badge badge-default">{{responses[p].length}}</span>
+            <span *ngIf="p==='YAY'" class="badge badge-success"><i class="fa fa-thumbs-o-up"></i> Yay!</span>
+            <span *ngIf="p==='NAY'" class="badge badge-danger"><i class="fa fa-thumbs-o-down"></i> Nay!</span>
+            <span *ngIf="p==='ABSTAIN'" class="badge badge-info"><i class="fa fa-hand-rock-o"></i> I dunno ...</span>
+        </h5>
+        <article class="card-block" *ngFor="let r of responses[p]" [class.ld-article-collapsed]="expanded[p]!==r.id">
+            <h4 class="card-title pb-2 author-{{r.author.type}}">{{r.author.displayName}}
+                <button (click)="toggleSection(p,r.id)" class="btn btn-sm btn-primary float-sm-right">{{expanded[p]===r.id?'Collapse':'Expand'}}</button>
+            </h4>
+            <div class="card-text text-justify" innerHtml="{{r.text}}"></div>
+        </article>
+    </section>
+</div>
