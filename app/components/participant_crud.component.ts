@@ -14,18 +14,19 @@ export class ParticipantCrudComponent implements OnInit, StandardCrud<Participan
     constructor(private scheduleService: ScheduleService) { }
 
     ngOnInit() {
-        this.scheduleService.trigger.subscribe(conf => {
-            this.source = conf.participants || [];
-        })
+        this.source=this.scheduleService.config.participants;
+        this.scheduleService.trigger.subscribe(() => this.source = this.scheduleService.config.participants);
     }
 
+    search:string;
+    
     title: string = "Student groups";
 
     subtitle: string = "Edit the student groups of your school";
 
     selected: Participant = null;
 
-    source: Participant[] = this.scheduleService.getConfiguration().participants || [];
+    source: Participant[] ;
 
     cols: Column<any>[] = [
         {
@@ -47,7 +48,7 @@ export class ParticipantCrudComponent implements OnInit, StandardCrud<Participan
     }
 
     delete(participant: Participant) {
-        this.scheduleService.updateParticipants(this.source.filter(p => p.uuid !== participant.uuid));
+        this.source=this.source.filter(p => p.uuid !== participant.uuid);
     }
 
     save() {
@@ -57,12 +58,7 @@ export class ParticipantCrudComponent implements OnInit, StandardCrud<Participan
         } else {
             found = this.selected;
         }
-        this.scheduleService.updateParticipants(this.source);
         this.selected = null;
-    }
-
-    filter(s: string) {
-        this.source = this.scheduleService.getConfiguration().participants.filter(a => a.name.toLowerCase().indexOf(s.toLowerCase()) > -1);
     }
 
 }

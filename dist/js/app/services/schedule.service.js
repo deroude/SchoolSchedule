@@ -17,33 +17,6 @@ export var ScheduleService = (function () {
     }
     ScheduleService.prototype.generateSchedule = function () {
     };
-    ScheduleService.prototype.getConfiguration = function () {
-        return this.config;
-    };
-    ScheduleService.prototype.setConfiguration = function (nconfig) {
-        this.config = nconfig;
-        this.trigger.next(this.config);
-    };
-    ScheduleService.prototype.updateParticipants = function (p) {
-        this.config.participants = p;
-        this.trigger.next(this.config);
-    };
-    ScheduleService.prototype.updateHourSlots = function (p) {
-        this.config.hourSlots = p;
-        this.trigger.next(this.config);
-    };
-    ScheduleService.prototype.updateActivities = function (p) {
-        this.config.activities = p;
-        this.trigger.next(this.config);
-    };
-    ScheduleService.prototype.updateTeachers = function (p) {
-        this.config.teachers = p;
-        this.trigger.next(this.config);
-    };
-    ScheduleService.prototype.updateRooms = function (p) {
-        this.config.rooms = p;
-        this.trigger.next(this.config);
-    };
     ScheduleService = __decorate([
         Injectable(), 
         __metadata('design:paramtypes', [])

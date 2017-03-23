@@ -40,6 +40,8 @@ import * as import31 from '@angular/common/src/directives/ng_if';
 import * as import32 from '../../node_modules/@angular/forms/src/directives/ng_form.ngfactory';
 import * as import33 from '@angular/forms/src/directives/ng_form';
 import * as import34 from '@angular/forms/src/directives/control_container';
+import * as import35 from '../../../app/pipes/filter.pipe';
+import * as import36 from '../../../app/pipes/tostring.pipe';
 export class Wrapper_RoomCrudComponent {
   /*private*/ _eventHandler:Function;
   context:import0.RoomCrudComponent;
@@ -142,6 +144,7 @@ class View_RoomCrudComponent3 extends import1.AppView<any> {
   _text_1:any;
   /*private*/ _expr_2:any;
   /*private*/ _expr_3:any;
+  _pipe_tostring_1_0:any;
   constructor(viewUtils:import3.ViewUtils,parentView:import1.AppView<any>,parentIndex:number,parentElement:any,declaredViewContainer:import9.ViewContainer) {
     super(View_RoomCrudComponent3,renderType_RoomCrudComponent,import5.ViewType.EMBEDDED,viewUtils,parentView,parentIndex,parentElement,import6.ChangeDetectorStatus.CheckAlways,declaredViewContainer);
     this._expr_2 = import10.UNINITIALIZED;
@@ -150,6 +153,7 @@ class View_RoomCrudComponent3 extends import1.AppView<any> {
   createInternal(rootSelector:string):import7.ComponentRef<any> {
     this._el_0 = import3.createRenderElement(this.renderer,(null as any),'span',import3.EMPTY_INLINE_ARRAY,(null as any));
     this._text_1 = this.renderer.createText(this._el_0,'',(null as any));
+    this._pipe_tostring_1_0 = import3.pureProxy1((<View_RoomCrudComponent0>this.parentView.parentView)._pipe_tostring_1.transform.bind((<View_RoomCrudComponent0>this.parentView.parentView)._pipe_tostring_1));
     this.init(this._el_0,((<any>this.renderer).directRenderer? (null as any): [
       this._el_0,
       this._text_1
@@ -158,13 +162,15 @@ class View_RoomCrudComponent3 extends import1.AppView<any> {
     return (null as any);
   }
   detectChangesInternal(throwOnChange:boolean):void {
+    const valUnwrapper:any = new import10.ValueUnwrapper();
     const currVal_2:any = import3.inlineInterpolate(1,'col-sm-',this.context.$implicit.per10,'');
     if (import3.checkBinding(throwOnChange,this._expr_2,currVal_2)) {
       this.renderer.setElementProperty(this._el_0,'className',currVal_2);
       this._expr_2 = currVal_2;
     }
-    const currVal_3:any = import3.inlineInterpolate(1,'',this.parentView.parentView.context.value(this.parentView.context.$implicit,this.context.$implicit),'');
-    if (import3.checkBinding(throwOnChange,this._expr_3,currVal_3)) {
+    valUnwrapper.reset();
+    const currVal_3:any = import3.inlineInterpolate(1,'',valUnwrapper.unwrap(import3.castByValue(this._pipe_tostring_1_0,(<View_RoomCrudComponent0>this.parentView.parentView)._pipe_tostring_1.transform)(this.parentView.context.$implicit[this.context.$implicit.name])),'');
+    if ((valUnwrapper.hasWrappedValue || import3.checkBinding(throwOnChange,this._expr_3,currVal_3))) {
       this.renderer.setText(this._text_1,currVal_3);
       this._expr_3 = currVal_3;
     }
@@ -499,6 +505,7 @@ class View_RoomCrudComponent10 extends import1.AppView<any> {
   _NgSelectMultipleOption_0_4:import27.Wrapper_NgSelectMultipleOption;
   _text_1:any;
   /*private*/ _expr_4:any;
+  _pipe_tostring_1_1:any;
   constructor(viewUtils:import3.ViewUtils,parentView:import1.AppView<any>,parentIndex:number,parentElement:any,declaredViewContainer:import9.ViewContainer) {
     super(View_RoomCrudComponent10,renderType_RoomCrudComponent,import5.ViewType.EMBEDDED,viewUtils,parentView,parentIndex,parentElement,import6.ChangeDetectorStatus.CheckAlways,declaredViewContainer);
     this._expr_4 = import10.UNINITIALIZED;
@@ -508,6 +515,7 @@ class View_RoomCrudComponent10 extends import1.AppView<any> {
     this._NgSelectOption_0_3 = new import26.Wrapper_NgSelectOption(new import18.ElementRef(this._el_0),this.renderer,(null as any));
     this._NgSelectMultipleOption_0_4 = new import27.Wrapper_NgSelectMultipleOption(new import18.ElementRef(this._el_0),this.renderer,(<View_RoomCrudComponent9>this.parentView)._SelectMultipleControlValueAccessor_0_3.context);
     this._text_1 = this.renderer.createText(this._el_0,'',(null as any));
+    this._pipe_tostring_1_1 = import3.pureProxy1((<View_RoomCrudComponent0>this.parentView.parentView.parentView.parentView)._pipe_tostring_1.transform.bind((<View_RoomCrudComponent0>this.parentView.parentView.parentView.parentView)._pipe_tostring_1));
     this.init(this._el_0,((<any>this.renderer).directRenderer? (null as any): [
       this._el_0,
       this._text_1
@@ -521,14 +529,16 @@ class View_RoomCrudComponent10 extends import1.AppView<any> {
     return notFoundResult;
   }
   detectChangesInternal(throwOnChange:boolean):void {
-    const currVal_0_0_0:any = import3.inlineInterpolate(1,'',(this.parentView.parentView.context.$implicit.sourceId? this.context.$implicit[this.parentView.parentView.context.$implicit.sourceId]: this.context.$implicit),'');
-    this._NgSelectOption_0_3.check_value(currVal_0_0_0,throwOnChange,false);
+    const valUnwrapper:any = new import10.ValueUnwrapper();
+    const currVal_0_0_0:any = this.context.$implicit;
+    this._NgSelectOption_0_3.check_ngValue(currVal_0_0_0,throwOnChange,false);
     this._NgSelectOption_0_3.ngDoCheck(this,this._el_0,throwOnChange);
-    const currVal_0_1_0:any = import3.inlineInterpolate(1,'',(this.parentView.parentView.context.$implicit.sourceId? this.context.$implicit[this.parentView.parentView.context.$implicit.sourceId]: this.context.$implicit),'');
-    this._NgSelectMultipleOption_0_4.check_value(currVal_0_1_0,throwOnChange,false);
+    const currVal_0_1_0:any = this.context.$implicit;
+    this._NgSelectMultipleOption_0_4.check_ngValue(currVal_0_1_0,throwOnChange,false);
     this._NgSelectMultipleOption_0_4.ngDoCheck(this,this._el_0,throwOnChange);
-    const currVal_4:any = import3.inlineInterpolate(1,'',(this.parentView.parentView.context.$implicit.sourceLabel? this.context.$implicit[this.parentView.parentView.context.$implicit.sourceLabel]: this.context.$implicit),'');
-    if (import3.checkBinding(throwOnChange,this._expr_4,currVal_4)) {
+    valUnwrapper.reset();
+    const currVal_4:any = import3.inlineInterpolate(1,'',valUnwrapper.unwrap(import3.castByValue(this._pipe_tostring_1_1,(<View_RoomCrudComponent0>this.parentView.parentView.parentView.parentView)._pipe_tostring_1.transform)(this.context.$implicit)),'');
+    if ((valUnwrapper.hasWrappedValue || import3.checkBinding(throwOnChange,this._expr_4,currVal_4))) {
       this.renderer.setText(this._text_1,currVal_4);
       this._expr_4 = currVal_4;
     }
@@ -949,6 +959,11 @@ export class View_RoomCrudComponent0 extends import1.AppView<import0.RoomCrudCom
   _el_11:any;
   _text_12:any;
   _el_13:any;
+  _DefaultValueAccessor_13_3:import15.Wrapper_DefaultValueAccessor;
+  _NG_VALUE_ACCESSOR_13_4:any[];
+  _NgModel_13_5:import16.Wrapper_NgModel;
+  _NgControl_13_6:any;
+  _NgControlStatus_13_7:import17.Wrapper_NgControlStatus;
   _text_14:any;
   _el_15:any;
   _text_16:any;
@@ -975,12 +990,15 @@ export class View_RoomCrudComponent0 extends import1.AppView<import0.RoomCrudCom
   _TemplateRef_29_5:any;
   _NgIf_29_6:import30.Wrapper_NgIf;
   _text_30:any;
-  /*private*/ _expr_40:any;
-  /*private*/ _expr_41:any;
+  /*private*/ _expr_45:any;
+  /*private*/ _expr_46:any;
+  _pipe_filter_0:import35.FilterPipe;
+  _pipe_filter_0_0:any;
+  _pipe_tostring_1:import36.ToStringPipe;
   constructor(viewUtils:import3.ViewUtils,parentView:import1.AppView<any>,parentIndex:number,parentElement:any) {
     super(View_RoomCrudComponent0,renderType_RoomCrudComponent,import5.ViewType.COMPONENT,viewUtils,parentView,parentIndex,parentElement,import6.ChangeDetectorStatus.CheckAlways);
-    this._expr_40 = import10.UNINITIALIZED;
-    this._expr_41 = import10.UNINITIALIZED;
+    this._expr_45 = import10.UNINITIALIZED;
+    this._expr_46 = import10.UNINITIALIZED;
   }
   createInternal(rootSelector:string):import7.ComponentRef<any> {
     const parentRenderNode:any = this.renderer.createViewRoot(this.parentElement);
@@ -998,6 +1016,11 @@ export class View_RoomCrudComponent0 extends import1.AppView<import0.RoomCrudCom
     this._el_11 = import3.createRenderElement(this.renderer,this._el_0,'div',new import3.InlineArray2(2,'class','card-block'),(null as any));
     this._text_12 = this.renderer.createText(this._el_11,'\n        ',(null as any));
     this._el_13 = import3.createRenderElement(this.renderer,this._el_11,'input',new import3.InlineArray8(6,'class','form-control mb-2','placeholder','Search','type','text'),(null as any));
+    this._DefaultValueAccessor_13_3 = new import15.Wrapper_DefaultValueAccessor(this.renderer,new import18.ElementRef(this._el_13));
+    this._NG_VALUE_ACCESSOR_13_4 = [this._DefaultValueAccessor_13_3.context];
+    this._NgModel_13_5 = new import16.Wrapper_NgModel((null as any),(null as any),(null as any),this._NG_VALUE_ACCESSOR_13_4);
+    this._NgControl_13_6 = this._NgModel_13_5.context;
+    this._NgControlStatus_13_7 = new import17.Wrapper_NgControlStatus(this._NgControl_13_6);
     this._text_14 = this.renderer.createText(this._el_11,'\n        ',(null as any));
     this._el_15 = import3.createRenderElement(this.renderer,this._el_11,'div',new import3.InlineArray2(2,'class','row p-2 bg-faded border-bottom-2'),(null as any));
     this._text_16 = this.renderer.createText(this._el_15,'\n            ',(null as any));
@@ -1024,8 +1047,12 @@ export class View_RoomCrudComponent0 extends import1.AppView<import0.RoomCrudCom
     this._TemplateRef_29_5 = new import12.TemplateRef_(this,29,this._anchor_29);
     this._NgIf_29_6 = new import30.Wrapper_NgIf(this._vc_29.vcRef,this._TemplateRef_29_5);
     this._text_30 = this.renderer.createText(this._el_0,'\n',(null as any));
-    var disposable_0:Function = import3.subscribeToRenderElement(this,this._el_13,new import3.InlineArray2(2,'change',(null as any)),this.eventHandler(this.handleEvent_13));
+    var disposable_0:Function = import3.subscribeToRenderElement(this,this._el_13,new import3.InlineArray8(6,'ngModelChange',(null as any),'input',(null as any),'blur',(null as any)),this.eventHandler(this.handleEvent_13));
+    this._NgModel_13_5.subscribe(this,this.eventHandler(this.handleEvent_13),true);
     var disposable_1:Function = import3.subscribeToRenderElement(this,this._el_19,new import3.InlineArray2(2,'click',(null as any)),this.eventHandler(this.handleEvent_19));
+    this._pipe_filter_0 = new import35.FilterPipe();
+    this._pipe_filter_0_0 = import3.pureProxy2(this._pipe_filter_0.transform.bind(this._pipe_filter_0));
+    this._pipe_tostring_1 = new import36.ToStringPipe();
     this.init((null as any),((<any>this.renderer).directRenderer? (null as any): [
       this._el_0,
       this._text_1,
@@ -1067,6 +1094,11 @@ export class View_RoomCrudComponent0 extends import1.AppView<import0.RoomCrudCom
     return (null as any);
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
+    if (((token === import19.DefaultValueAccessor) && (13 === requestNodeIndex))) { return this._DefaultValueAccessor_13_3.context; }
+    if (((token === import20.NG_VALUE_ACCESSOR) && (13 === requestNodeIndex))) { return this._NG_VALUE_ACCESSOR_13_4; }
+    if (((token === import21.NgModel) && (13 === requestNodeIndex))) { return this._NgModel_13_5.context; }
+    if (((token === import22.NgControl) && (13 === requestNodeIndex))) { return this._NgControl_13_6; }
+    if (((token === import23.NgControlStatus) && (13 === requestNodeIndex))) { return this._NgControlStatus_13_7.context; }
     if (((token === import12.TemplateRef) && (17 === requestNodeIndex))) { return this._TemplateRef_17_5; }
     if (((token === import14.NgFor) && (17 === requestNodeIndex))) { return this._NgFor_17_6.context; }
     if (((token === import12.TemplateRef) && (25 === requestNodeIndex))) { return this._TemplateRef_25_5; }
@@ -1076,11 +1108,18 @@ export class View_RoomCrudComponent0 extends import1.AppView<import0.RoomCrudCom
     return notFoundResult;
   }
   detectChangesInternal(throwOnChange:boolean):void {
+    const valUnwrapper:any = new import10.ValueUnwrapper();
+    this._DefaultValueAccessor_13_3.ngDoCheck(this,this._el_13,throwOnChange);
+    const currVal_13_1_0:any = this.context.search;
+    this._NgModel_13_5.check_model(currVal_13_1_0,throwOnChange,false);
+    this._NgModel_13_5.ngDoCheck(this,this._el_13,throwOnChange);
+    this._NgControlStatus_13_7.ngDoCheck(this,this._el_13,throwOnChange);
     const currVal_17_0_0:any = this.context.cols;
     this._NgFor_17_6.check_ngForOf(currVal_17_0_0,throwOnChange,false);
     this._NgFor_17_6.ngDoCheck(this,this._anchor_17,throwOnChange);
-    const currVal_25_0_0:any = this.context.source;
-    this._NgFor_25_6.check_ngForOf(currVal_25_0_0,throwOnChange,false);
+    valUnwrapper.reset();
+    const currVal_25_0_0:any = valUnwrapper.unwrap(import3.castByValue(this._pipe_filter_0_0,this._pipe_filter_0.transform)(this.context.source,this.context.search));
+    this._NgFor_25_6.check_ngForOf(currVal_25_0_0,throwOnChange,valUnwrapper.hasWrappedValue);
     this._NgFor_25_6.ngDoCheck(this,this._anchor_25,throwOnChange);
     const currVal_29_0_0:any = (this.context.selected !== (null as any));
     this._NgIf_29_6.check_ngIf(currVal_29_0_0,throwOnChange,false);
@@ -1088,21 +1127,23 @@ export class View_RoomCrudComponent0 extends import1.AppView<import0.RoomCrudCom
     this._vc_17.detectChangesInNestedViews(throwOnChange);
     this._vc_25.detectChangesInNestedViews(throwOnChange);
     this._vc_29.detectChangesInNestedViews(throwOnChange);
-    const currVal_40:any = import3.inlineInterpolate(1,'',this.context.title,'');
-    if (import3.checkBinding(throwOnChange,this._expr_40,currVal_40)) {
-      this.renderer.setText(this._text_5,currVal_40);
-      this._expr_40 = currVal_40;
+    const currVal_45:any = import3.inlineInterpolate(1,'',this.context.title,'');
+    if (import3.checkBinding(throwOnChange,this._expr_45,currVal_45)) {
+      this.renderer.setText(this._text_5,currVal_45);
+      this._expr_45 = currVal_45;
     }
-    const currVal_41:any = import3.inlineInterpolate(1,'',this.context.subtitle,'');
-    if (import3.checkBinding(throwOnChange,this._expr_41,currVal_41)) {
-      this.renderer.setText(this._text_8,currVal_41);
-      this._expr_41 = currVal_41;
+    const currVal_46:any = import3.inlineInterpolate(1,'',this.context.subtitle,'');
+    if (import3.checkBinding(throwOnChange,this._expr_46,currVal_46)) {
+      this.renderer.setText(this._text_8,currVal_46);
+      this._expr_46 = currVal_46;
     }
+    this._NgControlStatus_13_7.checkHost(this,this,this._el_13,throwOnChange);
   }
   destroyInternal():void {
     this._vc_17.destroyNestedViews();
     this._vc_25.destroyNestedViews();
     this._vc_29.destroyNestedViews();
+    this._NgModel_13_5.ngOnDestroy();
   }
   createEmbeddedViewInternal(nodeIndex:number):import1.AppView<any> {
     if ((nodeIndex == 17)) { return new View_RoomCrudComponent1(this.viewUtils,this,17,this._anchor_17,this._vc_17); }
@@ -1113,8 +1154,9 @@ export class View_RoomCrudComponent0 extends import1.AppView<import0.RoomCrudCom
   handleEvent_13(eventName:string,$event:any):boolean {
     this.markPathToRootAsCheckOnce();
     var result:boolean = true;
-    if ((eventName == 'change')) {
-      const pd_sub_0:any = ((<any>this.context.filter(this._el_13.value)) !== false);
+    result = (this._DefaultValueAccessor_13_3.handleEvent(eventName,$event) && result);
+    if ((eventName == 'ngModelChange')) {
+      const pd_sub_0:any = ((<any>(this.context.search = $event)) !== false);
       result = (pd_sub_0 && result);
     }
     return result;

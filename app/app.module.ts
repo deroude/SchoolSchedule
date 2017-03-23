@@ -1,3 +1,5 @@
+import { FilterPipe } from './pipes/filter.pipe';
+import { ToStringPipe } from './pipes/tostring.pipe';
 import { RoomCrudComponent } from './components/room_crud.component';
 import { TeacherCrudComponent } from './components/teacher_crud.component';
 import { ActivityCrudComponent } from './components/activity_crud.component';
@@ -34,6 +36,8 @@ import { NotFoundComponent } from './components/not_found.component';
     ActivityCrudComponent,
     TeacherCrudComponent,
     RoomCrudComponent,
+    ToStringPipe,
+    FilterPipe,
     NotFoundComponent,
     EditorDirective
   ],

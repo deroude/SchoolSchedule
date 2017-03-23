@@ -32,11 +32,12 @@ export var AppComponent = (function () {
         fileReader.readAsText(file);
         //try to read file, this part does not work at all, need a solution
         fileReader.onloadend = function (e) {
-            _this.scheduleService.setConfiguration(JSON.parse(fileReader.result));
+            _this.scheduleService.config = (JSON.parse(fileReader.result));
+            _this.scheduleService.trigger.next();
         };
     };
     AppComponent.prototype.downloadConfig = function () {
-        var blob = new Blob([JSON.stringify(this.scheduleService.getConfiguration(), null, 1)], { "type": "text/plain;charset=utf-8" });
+        var blob = new Blob([JSON.stringify(this.scheduleService.config, null, 1)], { "type": "text/plain;charset=utf-8" });
         if (window.navigator.msSaveOrOpenBlob)
             window.navigator.msSaveBlob(blob, "config.json");
         else {

@@ -1,5 +1,6 @@
+import { IdName } from './idname.interface';
 import { Util } from './util';
-export class Participant{
+export class Participant implements IdName{
     uuid:string=Util.id();
     name:string;
 }

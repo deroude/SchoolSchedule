@@ -7,22 +7,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { ScheduleService } from './../services/schedule.service';
-import { Component } from '@angular/core';
-export var ScheduleComponent = (function () {
-    function ScheduleComponent(scheduleService) {
-        this.scheduleService = scheduleService;
+import { Pipe } from '@angular/core';
+/*
+ * Raise the value exponentially
+ * Takes an exponent argument that defaults to 1.
+ * Usage:
+ *   value | exponentialStrength:exponent
+ * Example:
+ *   {{ 2 |  exponentialStrength:10}}
+ *   formats to: 1024
+*/
+export var FilterPipe = (function () {
+    function FilterPipe() {
     }
-    ScheduleComponent.prototype.ngOnInit = function () {
-        this.source = this.scheduleService.config;
+    FilterPipe.prototype.transform = function (source, filter) {
+        if (!filter || filter.length === 0)
+            return source;
+        return source.filter(function (s) { return !s.name || s.name.toLowerCase().indexOf(filter.toLowerCase()) > -1; });
     };
-    ScheduleComponent = __decorate([
-        Component({
-            selector: 'sch-schedule',
-            templateUrl: '../../templates/schedule.component.html'
-        }), 
-        __metadata('design:paramtypes', [ScheduleService])
-    ], ScheduleComponent);
-    return ScheduleComponent;
+    FilterPipe = __decorate([
+        Pipe({ name: 'filter' }), 
+        __metadata('design:paramtypes', [])
+    ], FilterPipe);
+    return FilterPipe;
 }());
-//# sourceMappingURL=schedule.component.js.map
+//# sourceMappingURL=filter.pipe.js.map

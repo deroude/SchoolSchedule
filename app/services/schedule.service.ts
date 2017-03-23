@@ -10,9 +10,8 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class ScheduleService {
 
-    private config: Configuration = new Configuration();
-
-    trigger: Subject<Configuration> = new Subject<Configuration>();
+    config:Configuration=new Configuration();
+    trigger:Subject<void>=new Subject<void>();
 
     constructor() { }
 
@@ -20,37 +19,5 @@ export class ScheduleService {
 
     }
 
-    public getConfiguration(): Configuration {
-        return this.config;
-    }
-
-    public setConfiguration(nconfig: Configuration) {
-        this.config = nconfig;
-        this.trigger.next(this.config);
-    }
-
-    public updateParticipants(p: Participant[]) {
-        this.config.participants = p;
-        this.trigger.next(this.config);
-    }
-
-    public updateHourSlots(p: HourSlot[]) {
-        this.config.hourSlots = p;
-        this.trigger.next(this.config);
-    }
-
-    public updateActivities(p: Activity[]) {
-        this.config.activities = p;
-        this.trigger.next(this.config);
-    }
-
-    public updateTeachers(p: Teacher[]) {
-        this.config.teachers = p;
-        this.trigger.next(this.config);
-    }
-
-    public updateRooms(p: Room[]) {
-        this.config.rooms = p;
-        this.trigger.next(this.config);
-    }
+    
 }

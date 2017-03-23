@@ -1,1 +1,1 @@
-{"version":3,"file":"room.js","sourceRoot":"","sources":["../../../../app/domain/room.ts"],"names":[],"mappings":"OAAO,EAAE,IAAI,EAAE,MAAM,QAAQ;AAE7B;IAAA;QACI,SAAI,GAAQ,IAAI,CAAC,EAAE,EAAE,CAAC;IAG1B,CAAC;IAAD,WAAC;AAAD,CAAC,AAJD,IAIC"}
+{"version":3,"file":"room.js","sourceRoot":"","sources":["../../../../app/domain/room.ts"],"names":[],"mappings":"OACO,EAAE,IAAI,EAAE,MAAM,QAAQ;AAE7B;IAAA;QACI,SAAI,GAAQ,IAAI,CAAC,EAAE,EAAE,CAAC;IAG1B,CAAC;IAAD,WAAC;AAAD,CAAC,AAJD,IAIC"}

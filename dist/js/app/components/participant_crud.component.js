@@ -16,7 +16,6 @@ export var ParticipantCrudComponent = (function () {
         this.title = "Student groups";
         this.subtitle = "Edit the student groups of your school";
         this.selected = null;
-        this.source = this.scheduleService.getConfiguration().participants || [];
         this.cols = [
             {
                 name: "name",
@@ -30,9 +29,8 @@ export var ParticipantCrudComponent = (function () {
     }
     ParticipantCrudComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.scheduleService.trigger.subscribe(function (conf) {
-            _this.source = conf.participants || [];
-        });
+        this.source = this.scheduleService.config.participants;
+        this.scheduleService.trigger.subscribe(function () { return _this.source = _this.scheduleService.config.participants; });
     };
     ParticipantCrudComponent.prototype.add = function () {
         this.selected = new Participant();
@@ -41,7 +39,7 @@ export var ParticipantCrudComponent = (function () {
         this.selected = p;
     };
     ParticipantCrudComponent.prototype.delete = function (participant) {
-        this.scheduleService.updateParticipants(this.source.filter(function (p) { return p.uuid !== participant.uuid; }));
+        this.source = this.source.filter(function (p) { return p.uuid !== participant.uuid; });
     };
     ParticipantCrudComponent.prototype.save = function () {
         var _this = this;
@@ -52,11 +50,7 @@ export var ParticipantCrudComponent = (function () {
         else {
             found = this.selected;
         }
-        this.scheduleService.updateParticipants(this.source);
         this.selected = null;
-    };
-    ParticipantCrudComponent.prototype.filter = function (s) {
-        this.source = this.scheduleService.getConfiguration().participants.filter(function (a) { return a.name.toLowerCase().indexOf(s.toLowerCase()) > -1; });
     };
     ParticipantCrudComponent = __decorate([
         Component({

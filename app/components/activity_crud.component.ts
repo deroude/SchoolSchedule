@@ -8,14 +8,15 @@ import { Component, OnInit } from '@angular/core';
     selector: 'sch-activity',
     templateUrl: '../../templates/standard_crud.component.html'
 })
-export class ActivityCrudComponent implements OnInit,StandardCrud<Activity> {
+export class ActivityCrudComponent implements OnInit, StandardCrud<Activity> {
     constructor(private scheduleService: ScheduleService) { }
 
     ngOnInit() {
-        this.scheduleService.trigger.subscribe(conf => {
-            this.source = conf.activities||[];
-        })
+        this.source = this.scheduleService.config.activities;
+        this.scheduleService.trigger.subscribe(() => this.source = this.scheduleService.config.activities);
     }
+
+    search:string;
 
     title: string = "Activities";
 
@@ -23,7 +24,7 @@ export class ActivityCrudComponent implements OnInit,StandardCrud<Activity> {
 
     selected: Activity = null;
 
-    source: Activity[] = this.scheduleService.getConfiguration().activities||[];
+    source: Activity[];
 
     cols: Column<any>[] = [
         {
@@ -45,7 +46,7 @@ export class ActivityCrudComponent implements OnInit,StandardCrud<Activity> {
     }
 
     delete(item: Activity) {
-        this.scheduleService.updateActivities(this.source.filter(p => p.uuid !== item.uuid));
+        this.source = this.source.filter(p => p.uuid !== item.uuid);
     }
 
     save() {
@@ -55,11 +56,6 @@ export class ActivityCrudComponent implements OnInit,StandardCrud<Activity> {
         } else {
             found = this.selected;
         }
-        this.scheduleService.updateActivities(this.source);
         this.selected = null;
-    }
-
-    filter(s:string){
-        this.source=this.scheduleService.getConfiguration().activities.filter(a=>a.name.toLowerCase().indexOf(s.toLowerCase())>-1);
     }
 }

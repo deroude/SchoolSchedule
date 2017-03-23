@@ -11,14 +11,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ScheduleComponent implements OnInit {
 
-  source: Configuration=this.scheduleService.getConfiguration();
+  source: Configuration;
 
   constructor(private scheduleService: ScheduleService) {
 
   }
 
   public ngOnInit() {
-    this.scheduleService.trigger.subscribe(c => this.source = c);
+    this.source=this.scheduleService.config;
   }
 
 

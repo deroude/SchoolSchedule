@@ -4,14 +4,14 @@
         <h6 class="card-subtitle mb-2 text-muted">{{subtitle}}</h6>
     </div>
     <div class="card-block">
-        <input type="text" placeholder="Search" class="form-control mb-2" #search (change)="filter(search.value)">
+        <input type="text" placeholder="Search" class="form-control mb-2" [(ngModel)]="search">
         <div class="row p-2 bg-faded border-bottom-2">
             <span class="col-sm-{{col.per10}} font-weight-bold" *ngFor="let col of cols">{{col.title}}</span>
             <button class="btn btn-primary btn-sm mr-1" (click)="add()" data-toggle="modal" data-target="#editor"><i class="fa fa-plus"></i> Add...</button>
         </div>
         <!--<div class="scroll-area">-->
-        <div class="row p-2 border-bottom-1" *ngFor="let p of source">
-            <span class="col-sm-{{col.per10}}" *ngFor="let col of cols">{{value(p,col)}}</span>
+        <div class="row p-2 border-bottom-1" *ngFor="let p of source|filter:search">
+            <span class="col-sm-{{col.per10}}" *ngFor="let col of cols">{{p[col.name]|tostring}}</span>
             <button class="btn btn-primary btn-sm mr-1" (click)="edit(p)" data-toggle="modal" data-target="#editor"><i class="fa fa-edit"></i> Edit</button>
             <button class="btn btn-danger btn-sm mr-1" (click)="delete(p)"><i class="fa fa-trash"></i> Delete</button>
         </div>
@@ -37,7 +37,7 @@
                             [attr.required]="col.required?true:null">
                         <select multiple class="form-control " *ngIf="col.type==='multiselect'" [(ngModel)]="selected[col.name]" name="{{col.name}}"
                             [attr.autofocus]="col.autofocus?true:null" [attr.required]="col.required?true:null">
-                            <option *ngFor="let v of col.source" value="{{col.sourceId?v[col.sourceId]:v}}">{{col.sourceLabel?v[col.sourceLabel]:v}}</option>
+                            <option *ngFor="let v of col.source" [ngValue]="v">{{v|tostring}}</option>
                          </select>
                     </div>
                 </div>

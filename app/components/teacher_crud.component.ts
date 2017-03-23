@@ -15,11 +15,15 @@ export class TeacherCrudComponent implements OnInit, StandardCrud<Teacher> {
     constructor(private scheduleService: ScheduleService) { }
 
     ngOnInit() {
-        this.scheduleService.trigger.subscribe(conf => {
-            this.source = conf.teachers || [];
-            this.cols.find(c => c.name === "assignableFor").source = conf.activities;
-        })
+        this.source = this.scheduleService.config.teachers;
+        this.cols.find(c => c.name === "assignableFor").source = this.scheduleService.config.activities;
+        this.scheduleService.trigger.subscribe(() => {
+            this.source = this.scheduleService.config.teachers;
+            this.cols.find(c => c.name === "assignableFor").source = this.scheduleService.config.activities;
+        });
     }
+
+    search:string;
 
     title: string = "Teachers";
 
@@ -27,7 +31,7 @@ export class TeacherCrudComponent implements OnInit, StandardCrud<Teacher> {
 
     selected: Teacher = null;
 
-    source: Teacher[] = this.scheduleService.getConfiguration().teachers || [];
+    source: Teacher[];
 
     cols: Column<any>[] = [
         {
@@ -45,7 +49,7 @@ export class TeacherCrudComponent implements OnInit, StandardCrud<Teacher> {
             title: "Teaches subjects",
             type: "multiselect",
             per10: 6,
-            source: this.scheduleService.getConfiguration().activities || [],
+            source: [],
             sourceLabel: "name",
             sourceId: "uuid"
         }
@@ -60,7 +64,7 @@ export class TeacherCrudComponent implements OnInit, StandardCrud<Teacher> {
     }
 
     delete(participant: Teacher) {
-        this.scheduleService.updateTeachers(this.source.filter(p => p.uuid !== participant.uuid));
+        this.source = this.source.filter(p => p.uuid !== participant.uuid);
     }
 
     save() {
@@ -70,15 +74,10 @@ export class TeacherCrudComponent implements OnInit, StandardCrud<Teacher> {
         } else {
             found = this.selected;
         }
-        this.scheduleService.updateTeachers(this.source);
         this.selected = null;
     }
 
     value(p: Teacher, col: Column<any>): string {
         return col.sourceLabel ? p[col.name].map(t => col.source.find(s => s[col.sourceId] === t)[col.sourceLabel]).join(',') : p[col.name];
-    }
-
-    filter(s: string) {
-        this.source = this.scheduleService.getConfiguration().teachers.filter(a => a.name.toLowerCase().indexOf(s.toLowerCase()) > -1);
     }
 }

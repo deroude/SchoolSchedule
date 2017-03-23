@@ -16,7 +16,6 @@ export var RoomCrudComponent = (function () {
         this.title = "Rooms";
         this.subtitle = "Rooms available";
         this.selected = null;
-        this.source = this.scheduleService.getConfiguration().rooms || [];
         this.cols = [
             {
                 name: "name",
@@ -33,7 +32,7 @@ export var RoomCrudComponent = (function () {
                 title: "Restricted for",
                 type: "multiselect",
                 per10: 6,
-                source: this.scheduleService.getConfiguration().activities || [],
+                source: [],
                 sourceLabel: "name",
                 sourceId: "uuid"
             }
@@ -41,9 +40,11 @@ export var RoomCrudComponent = (function () {
     }
     RoomCrudComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.scheduleService.trigger.subscribe(function (conf) {
-            _this.source = conf.rooms || [];
-            _this.cols.find(function (c) { return c.name === "restrictedTo"; }).source = conf.activities;
+        this.source = this.scheduleService.config.rooms;
+        this.cols.find(function (c) { return c.name === "restrictedTo"; }).source = this.scheduleService.config.activities;
+        this.scheduleService.trigger.subscribe(function () {
+            _this.source = _this.scheduleService.config.rooms;
+            _this.cols.find(function (c) { return c.name === "restrictedTo"; }).source = _this.scheduleService.config.activities;
         });
     };
     RoomCrudComponent.prototype.add = function () {
@@ -53,7 +54,7 @@ export var RoomCrudComponent = (function () {
         this.selected = p;
     };
     RoomCrudComponent.prototype.delete = function (x) {
-        this.scheduleService.updateRooms(this.source.filter(function (p) { return p.uuid !== x.uuid; }));
+        this.source = this.source.filter(function (p) { return p.uuid !== x.uuid; });
     };
     RoomCrudComponent.prototype.save = function () {
         var _this = this;
@@ -64,14 +65,10 @@ export var RoomCrudComponent = (function () {
         else {
             found = this.selected;
         }
-        this.scheduleService.updateRooms(this.source);
         this.selected = null;
     };
     RoomCrudComponent.prototype.value = function (p, col) {
         return col.sourceLabel ? p[col.name] ? p[col.name].map(function (t) { return col.source.find(function (s) { return s[col.sourceId] === t; })[col.sourceLabel]; }).join(',') : '' : p[col.name];
-    };
-    RoomCrudComponent.prototype.filter = function (s) {
-        this.source = this.scheduleService.getConfiguration().rooms.filter(function (a) { return a.name.toLowerCase().indexOf(s.toLowerCase()) > -1; });
     };
     RoomCrudComponent = __decorate([
         Component({

@@ -16,7 +16,6 @@ export var TeacherCrudComponent = (function () {
         this.title = "Teachers";
         this.subtitle = "School's teaching personnel";
         this.selected = null;
-        this.source = this.scheduleService.getConfiguration().teachers || [];
         this.cols = [
             {
                 name: "name",
@@ -33,7 +32,7 @@ export var TeacherCrudComponent = (function () {
                 title: "Teaches subjects",
                 type: "multiselect",
                 per10: 6,
-                source: this.scheduleService.getConfiguration().activities || [],
+                source: [],
                 sourceLabel: "name",
                 sourceId: "uuid"
             }
@@ -41,9 +40,11 @@ export var TeacherCrudComponent = (function () {
     }
     TeacherCrudComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.scheduleService.trigger.subscribe(function (conf) {
-            _this.source = conf.teachers || [];
-            _this.cols.find(function (c) { return c.name === "assignableFor"; }).source = conf.activities;
+        this.source = this.scheduleService.config.teachers;
+        this.cols.find(function (c) { return c.name === "assignableFor"; }).source = this.scheduleService.config.activities;
+        this.scheduleService.trigger.subscribe(function () {
+            _this.source = _this.scheduleService.config.teachers;
+            _this.cols.find(function (c) { return c.name === "assignableFor"; }).source = _this.scheduleService.config.activities;
         });
     };
     TeacherCrudComponent.prototype.add = function () {
@@ -53,7 +54,7 @@ export var TeacherCrudComponent = (function () {
         this.selected = p;
     };
     TeacherCrudComponent.prototype.delete = function (participant) {
-        this.scheduleService.updateTeachers(this.source.filter(function (p) { return p.uuid !== participant.uuid; }));
+        this.source = this.source.filter(function (p) { return p.uuid !== participant.uuid; });
     };
     TeacherCrudComponent.prototype.save = function () {
         var _this = this;
@@ -64,14 +65,10 @@ export var TeacherCrudComponent = (function () {
         else {
             found = this.selected;
         }
-        this.scheduleService.updateTeachers(this.source);
         this.selected = null;
     };
     TeacherCrudComponent.prototype.value = function (p, col) {
         return col.sourceLabel ? p[col.name].map(function (t) { return col.source.find(function (s) { return s[col.sourceId] === t; })[col.sourceLabel]; }).join(',') : p[col.name];
-    };
-    TeacherCrudComponent.prototype.filter = function (s) {
-        this.source = this.scheduleService.getConfiguration().teachers.filter(function (a) { return a.name.toLowerCase().indexOf(s.toLowerCase()) > -1; });
     };
     TeacherCrudComponent = __decorate([
         Component({

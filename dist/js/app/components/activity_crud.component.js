@@ -16,7 +16,6 @@ export var ActivityCrudComponent = (function () {
         this.title = "Activities";
         this.subtitle = "Activities or subjects taught";
         this.selected = null;
-        this.source = this.scheduleService.getConfiguration().activities || [];
         this.cols = [
             {
                 name: "name",
@@ -30,9 +29,8 @@ export var ActivityCrudComponent = (function () {
     }
     ActivityCrudComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.scheduleService.trigger.subscribe(function (conf) {
-            _this.source = conf.activities || [];
-        });
+        this.source = this.scheduleService.config.activities;
+        this.scheduleService.trigger.subscribe(function () { return _this.source = _this.scheduleService.config.activities; });
     };
     ActivityCrudComponent.prototype.add = function () {
         this.selected = new Activity();
@@ -41,7 +39,7 @@ export var ActivityCrudComponent = (function () {
         this.selected = p;
     };
     ActivityCrudComponent.prototype.delete = function (item) {
-        this.scheduleService.updateActivities(this.source.filter(function (p) { return p.uuid !== item.uuid; }));
+        this.source = this.source.filter(function (p) { return p.uuid !== item.uuid; });
     };
     ActivityCrudComponent.prototype.save = function () {
         var _this = this;
@@ -52,11 +50,7 @@ export var ActivityCrudComponent = (function () {
         else {
             found = this.selected;
         }
-        this.scheduleService.updateActivities(this.source);
         this.selected = null;
-    };
-    ActivityCrudComponent.prototype.filter = function (s) {
-        this.source = this.scheduleService.getConfiguration().activities.filter(function (a) { return a.name.toLowerCase().indexOf(s.toLowerCase()) > -1; });
     };
     ActivityCrudComponent = __decorate([
         Component({

@@ -32,12 +32,13 @@ export class AppComponent {
     fileReader.readAsText(file);
     //try to read file, this part does not work at all, need a solution
     fileReader.onloadend = (e) => {
-      this.scheduleService.setConfiguration(JSON.parse(fileReader.result));
+      this.scheduleService.config=(JSON.parse(fileReader.result));
+      this.scheduleService.trigger.next();
     };
   }
 
   downloadConfig(): void {
-    var blob = new Blob([JSON.stringify(this.scheduleService.getConfiguration(), null, 1)], { "type": "text/plain;charset=utf-8" });
+    var blob = new Blob([JSON.stringify(this.scheduleService.config, null, 1)], { "type": "text/plain;charset=utf-8" });
     if (window.navigator.msSaveOrOpenBlob)  // IE hack; see http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx
       window.navigator.msSaveBlob(blob, "config.json");
     else {

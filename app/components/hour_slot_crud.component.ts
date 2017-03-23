@@ -12,18 +12,19 @@ export class HourSlotCrudComponent implements OnInit, StandardCrud<HourSlot> {
     constructor(private scheduleService: ScheduleService) { }
 
     ngOnInit() {
-        this.scheduleService.trigger.subscribe(conf => {
-            this.source = conf.hourSlots || [];
-        })
+        this.source=this.scheduleService.config.hourSlots;
+        this.scheduleService.trigger.subscribe(() => this.source = this.scheduleService.config.hourSlots);
     }
 
     title: string = "Hour slots";
+
+    search:string;
 
     subtitle: string = "Intervals where classes are held";
 
     selected: HourSlot = null;
 
-    source: HourSlot[] = this.scheduleService.getConfiguration().hourSlots || [];
+    source: HourSlot[] ;
 
     cols: Column<any>[] = [
         {
@@ -62,7 +63,7 @@ export class HourSlotCrudComponent implements OnInit, StandardCrud<HourSlot> {
     }
 
     delete(item: HourSlot) {
-        this.scheduleService.updateHourSlots(this.source.filter(p => p.uuid !== item.uuid));
+        this.source=this.source.filter(p => p.uuid !== item.uuid);
     }
 
     save() {
@@ -72,11 +73,7 @@ export class HourSlotCrudComponent implements OnInit, StandardCrud<HourSlot> {
         } else {
             found = this.selected;
         }
-        this.scheduleService.updateHourSlots(this.source);
         this.selected = null;
-    }
-
-    filter(s: string) {
     }
 
 }

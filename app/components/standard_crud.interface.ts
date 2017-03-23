@@ -19,5 +19,5 @@ export interface StandardCrud<T>{
     
     selected:T;
 
-    filter(s:string):void;
+    search:string;
 }

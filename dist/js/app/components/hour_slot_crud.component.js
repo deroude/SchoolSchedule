@@ -16,7 +16,6 @@ export var HourSlotCrudComponent = (function () {
         this.title = "Hour slots";
         this.subtitle = "Intervals where classes are held";
         this.selected = null;
-        this.source = this.scheduleService.getConfiguration().hourSlots || [];
         this.cols = [
             {
                 name: "start",
@@ -47,9 +46,8 @@ export var HourSlotCrudComponent = (function () {
     }
     HourSlotCrudComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.scheduleService.trigger.subscribe(function (conf) {
-            _this.source = conf.hourSlots || [];
-        });
+        this.source = this.scheduleService.config.hourSlots;
+        this.scheduleService.trigger.subscribe(function () { return _this.source = _this.scheduleService.config.hourSlots; });
     };
     HourSlotCrudComponent.prototype.add = function () {
         this.selected = new HourSlot();
@@ -58,7 +56,7 @@ export var HourSlotCrudComponent = (function () {
         this.selected = p;
     };
     HourSlotCrudComponent.prototype.delete = function (item) {
-        this.scheduleService.updateHourSlots(this.source.filter(function (p) { return p.uuid !== item.uuid; }));
+        this.source = this.source.filter(function (p) { return p.uuid !== item.uuid; });
     };
     HourSlotCrudComponent.prototype.save = function () {
         var _this = this;
@@ -69,10 +67,7 @@ export var HourSlotCrudComponent = (function () {
         else {
             found = this.selected;
         }
-        this.scheduleService.updateHourSlots(this.source);
         this.selected = null;
-    };
-    HourSlotCrudComponent.prototype.filter = function (s) {
     };
     HourSlotCrudComponent = __decorate([
         Component({

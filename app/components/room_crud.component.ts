@@ -16,11 +16,15 @@ export class RoomCrudComponent implements OnInit, StandardCrud<Room> {
     constructor(private scheduleService: ScheduleService) { }
 
     ngOnInit() {
-        this.scheduleService.trigger.subscribe(conf => {
-            this.source = conf.rooms || [];
-            this.cols.find(c => c.name === "restrictedTo").source = conf.activities;
-        })
+        this.source = this.scheduleService.config.rooms;
+        this.cols.find(c => c.name === "restrictedTo").source = this.scheduleService.config.activities;
+        this.scheduleService.trigger.subscribe(() => {
+            this.source = this.scheduleService.config.rooms;
+            this.cols.find(c => c.name === "restrictedTo").source = this.scheduleService.config.activities;
+        });
     }
+
+    search:string;
 
     title: string = "Rooms";
 
@@ -28,7 +32,7 @@ export class RoomCrudComponent implements OnInit, StandardCrud<Room> {
 
     selected: Room = null;
 
-    source: Room[] = this.scheduleService.getConfiguration().rooms || [];
+    source: Room[];
 
     cols: Column<any>[] = [
         {
@@ -46,7 +50,7 @@ export class RoomCrudComponent implements OnInit, StandardCrud<Room> {
             title: "Restricted for",
             type: "multiselect",
             per10: 6,
-            source: this.scheduleService.getConfiguration().activities || [],
+            source: [],
             sourceLabel: "name",
             sourceId: "uuid"
         }
@@ -61,7 +65,7 @@ export class RoomCrudComponent implements OnInit, StandardCrud<Room> {
     }
 
     delete(x: Room) {
-        this.scheduleService.updateRooms(this.source.filter(p => p.uuid !== x.uuid));
+        this.source = this.source.filter(p => p.uuid !== x.uuid);
     }
 
     save() {
@@ -71,7 +75,6 @@ export class RoomCrudComponent implements OnInit, StandardCrud<Room> {
         } else {
             found = this.selected;
         }
-        this.scheduleService.updateRooms(this.source);
         this.selected = null;
     }
 
@@ -79,7 +82,4 @@ export class RoomCrudComponent implements OnInit, StandardCrud<Room> {
         return col.sourceLabel ? p[col.name] ? p[col.name].map(t => col.source.find(s => s[col.sourceId] === t)[col.sourceLabel]).join(',') : '' : p[col.name];
     }
 
-    filter(s: string) {
-        this.source = this.scheduleService.getConfiguration().rooms.filter(a => a.name.toLowerCase().indexOf(s.toLowerCase()) > -1);
-    }
 }

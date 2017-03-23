@@ -1,1 +1,1 @@
-{"version":3,"file":"participant.js","sourceRoot":"","sources":["../../../../app/domain/participant.ts"],"names":[],"mappings":"OAAO,EAAE,IAAI,EAAE,MAAM,QAAQ;AAC7B;IAAA;QACI,SAAI,GAAQ,IAAI,CAAC,EAAE,EAAE,CAAC;IAE1B,CAAC;IAAD,kBAAC;AAAD,CAAC,AAHD,IAGC"}
+{"version":3,"file":"participant.js","sourceRoot":"","sources":["../../../../app/domain/participant.ts"],"names":[],"mappings":"OACO,EAAE,IAAI,EAAE,MAAM,QAAQ;AAC7B;IAAA;QACI,SAAI,GAAQ,IAAI,CAAC,EAAE,EAAE,CAAC;IAE1B,CAAC;IAAD,kBAAC;AAAD,CAAC,AAHD,IAGC"}
