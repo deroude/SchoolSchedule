@@ -14,7 +14,7 @@ export var NotFoundComponent = (function () {
     NotFoundComponent.prototype.ngOnInit = function () { };
     NotFoundComponent = __decorate([
         Component({
-            selector: 'ld-not-found',
+            selector: 'sch-not-found',
             templateUrl: '../../templates/not_found.component.html'
         }), 
         __metadata('design:paramtypes', [])

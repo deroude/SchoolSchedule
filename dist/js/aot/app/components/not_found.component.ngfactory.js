@@ -53,7 +53,7 @@ var View_NotFoundComponent_Host0 = (function (_super) {
         _super.call(this, View_NotFoundComponent_Host0, renderType_NotFoundComponent_Host, import5.ViewType.HOST, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways);
     }
     View_NotFoundComponent_Host0.prototype.createInternal = function (rootSelector) {
-        this._el_0 = import3.selectOrCreateRenderHostElement(this.renderer, 'ld-not-found', import3.EMPTY_INLINE_ARRAY, rootSelector, null);
+        this._el_0 = import3.selectOrCreateRenderHostElement(this.renderer, 'sch-not-found', import3.EMPTY_INLINE_ARRAY, rootSelector, null);
         this.compView_0 = new View_NotFoundComponent0(this.viewUtils, this, 0, this._el_0);
         this._NotFoundComponent_0_3 = new Wrapper_NotFoundComponent();
         this.compView_0.create(this._NotFoundComponent_0_3.context);
@@ -78,7 +78,7 @@ var View_NotFoundComponent_Host0 = (function (_super) {
     };
     return View_NotFoundComponent_Host0;
 }(import1.AppView));
-export var NotFoundComponentNgFactory = new import7.ComponentFactory('ld-not-found', View_NotFoundComponent_Host0, import0.NotFoundComponent);
+export var NotFoundComponentNgFactory = new import7.ComponentFactory('sch-not-found', View_NotFoundComponent_Host0, import0.NotFoundComponent);
 var styles_NotFoundComponent = [];
 var renderType_NotFoundComponent = import3.createRenderComponentType('', 0, import4.ViewEncapsulation.None, styles_NotFoundComponent, {});
 export var View_NotFoundComponent0 = (function (_super) {

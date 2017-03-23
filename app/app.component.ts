@@ -1,27 +1,26 @@
+import { ScheduleService } from './services/schedule.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, HostListener } from '@angular/core';
-import {DomSanitizer,SafeUrl} from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
-  selector: 'ld-app',
+  selector: 'sch-app',
   templateUrl: '../templates/app.component.html',
 })
 export class AppComponent {
   authError: boolean;
   search: string;
 
- configDownload:SafeUrl;
-
   constructor(private route: ActivatedRoute,
-    private router: Router, private sanitizer:DomSanitizer) { }
+    private router: Router,
+    private sanitizer: DomSanitizer,
+    private scheduleService: ScheduleService) { }
 
   @HostListener('window:beforeunload') beforeUnloadHander() {
     // return confirm("noo");
   }
 
-  doSearch(): void {
-    this.router.navigate(["/landing"], { queryParams: { 'search': this.search } });
-  }
+
   fileChanged($event): void {
     //get file
     //need to cast html tag
@@ -32,9 +31,23 @@ export class AppComponent {
     let fileReader = new FileReader();
     fileReader.readAsText(file);
     //try to read file, this part does not work at all, need a solution
-    fileReader.onloadend = (e) => {      
-      console.log(fileReader.result);
-      this.configDownload = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(new Blob([fileReader.result],{"type":"text/plain;charset=utf-8"})));
+    fileReader.onloadend = (e) => {
+      this.scheduleService.setConfiguration(JSON.parse(fileReader.result));
     };
   }
+
+  downloadConfig(): void {
+    var blob = new Blob([JSON.stringify(this.scheduleService.getConfiguration(), null, 1)], { "type": "text/plain;charset=utf-8" });
+    if (window.navigator.msSaveOrOpenBlob)  // IE hack; see http://msdn.microsoft.com/en-us/library/ie/hh779016.aspx
+      window.navigator.msSaveBlob(blob, "config.json");
+    else {
+      var a = window.document.createElement("a");
+      a.href = window.URL.createObjectURL(blob);
+      a.download = "config.json";
+      document.body.appendChild(a);
+      a.click();  // IE: "Access is denied"; see: https://connect.microsoft.com/IE/feedback/details/797361/ie-10-treats-blob-url-as-cross-origin-and-denies-access
+      document.body.removeChild(a);
+    }
+  }
 }
+

@@ -7,20 +7,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+import { ScheduleService } from './services/schedule.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, HostListener } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 export var AppComponent = (function () {
-    function AppComponent(route, router, sanitizer) {
+    function AppComponent(route, router, sanitizer, scheduleService) {
         this.route = route;
         this.router = router;
         this.sanitizer = sanitizer;
+        this.scheduleService = scheduleService;
     }
     AppComponent.prototype.beforeUnloadHander = function () {
         // return confirm("noo");
-    };
-    AppComponent.prototype.doSearch = function () {
-        this.router.navigate(["/landing"], { queryParams: { 'search': this.search } });
     };
     AppComponent.prototype.fileChanged = function ($event) {
         var _this = this;
@@ -33,9 +32,21 @@ export var AppComponent = (function () {
         fileReader.readAsText(file);
         //try to read file, this part does not work at all, need a solution
         fileReader.onloadend = function (e) {
-            console.log(fileReader.result);
-            _this.configDownload = _this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(new Blob([fileReader.result], { "type": "text/plain;charset=utf-8" })));
+            _this.scheduleService.setConfiguration(JSON.parse(fileReader.result));
         };
+    };
+    AppComponent.prototype.downloadConfig = function () {
+        var blob = new Blob([JSON.stringify(this.scheduleService.getConfiguration(), null, 1)], { "type": "text/plain;charset=utf-8" });
+        if (window.navigator.msSaveOrOpenBlob)
+            window.navigator.msSaveBlob(blob, "config.json");
+        else {
+            var a = window.document.createElement("a");
+            a.href = window.URL.createObjectURL(blob);
+            a.download = "config.json";
+            document.body.appendChild(a);
+            a.click(); // IE: "Access is denied"; see: https://connect.microsoft.com/IE/feedback/details/797361/ie-10-treats-blob-url-as-cross-origin-and-denies-access
+            document.body.removeChild(a);
+        }
     };
     __decorate([
         HostListener('window:beforeunload'), 
@@ -45,10 +56,10 @@ export var AppComponent = (function () {
     ], AppComponent.prototype, "beforeUnloadHander", null);
     AppComponent = __decorate([
         Component({
-            selector: 'ld-app',
+            selector: 'sch-app',
             templateUrl: '../templates/app.component.html',
         }), 
-        __metadata('design:paramtypes', [ActivatedRoute, Router, DomSanitizer])
+        __metadata('design:paramtypes', [ActivatedRoute, Router, DomSanitizer, ScheduleService])
     ], AppComponent);
     return AppComponent;
 }());

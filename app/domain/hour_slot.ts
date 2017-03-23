@@ -1,4 +1,7 @@
+import { Util } from './util';
 export class HourSlot{
-    start:number;
-    end:number;
+    uuid:string=Util.id();
+    start:string;
+    end:string;
+    days:string[];
 }

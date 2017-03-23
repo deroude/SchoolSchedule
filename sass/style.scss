@@ -1,6 +1,40 @@
   body {
-    padding-top: 60px;
-    padding-bottom: 42px;
+    padding-top: 5.5rem;
+    padding-bottom: 2rem;
+  }
+  
+  .border-bottom-1 {
+    border-bottom: 1px solid darkgray;
+  }
+  
+  .border-bottom-2 {
+    border-bottom: 2px solid darkgray;
+  }
+  
+  .scroll-area {
+    max-height: 22rem;
+    margin-right: -1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  .custom-file-control:before {
+    content: "Browse";
+  }
+  
+  .custom-file,
+  .custom-file-input {
+    height: 1.5rem;
+  }
+  
+  .sch-overlay {
+    position: absolute;
+    top: 5.5rem;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: white;
+    opacity: 0.95;
   }
   
   #loader-wrapper {
@@ -123,7 +157,7 @@
   }
   
   .author-MP {
-    border-bottom:2px solid #9b59b6;
+    border-bottom: 2px solid #9b59b6;
   }
   
   .author-LAW_OFFICER {

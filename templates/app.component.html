@@ -1,32 +1,33 @@
-<div class="container page-container">
-    <nav class="navbar navbar-toggleable-md fixed-top navbar-light bg-primary">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
-            aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-        <div class="container">
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <a href="/" class="navbar-brand">School Scheduler</a>
-                <div class="nav navbar-nav mr-auto">
-                    <form class="form-inline" (ngSubmit)="doSearch()">
-                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <input type="text" class="form-control form-control-xs" name="search" [(ngModel)]="search" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i></button>
-                            </span>
-                        </div>
-                    </form>
-                </div>
-                <div class="nav navbar-nav ml-auto">
-                    <label class="custom-control custom-file">
-                        <input type="file" id="file" class="custom-file-input" (change)="fileChanged($event)">
-                        <span class="custom-file-control"><i class="fa fa-upload"></i> Upload config</span>
-                    </label>
-                    <!--<button (click)="save()" class="btn btn-secondary"><i class="fa fa-download"></i> Save current config</button>-->
-                    <a class="btn btn-secondary" [href]="configDownload" download="configuration.txt"><i class="fa fa-download"></i> Save current config</a>
-                </div>
+<nav class="navbar navbar-toggleable-md fixed-top navbar-light bg-faded">
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+        <a href="/" class="navbar-brand">School Scheduler</a>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav mt-1">
+                <li class="nav-item" routerLinkActive="active">
+                    <a routerLink="/schedule" class="nav-link">Schedule</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="schoolDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">School configuration</a>
+                    <div class="dropdown-menu" aria-labelledby="schoolDropdown">
+                        <a class="dropdown-item" routerLink="/school/activity">Activities</a>
+                        <a class="dropdown-item" routerLink="/school/hourSlot">Hour slots</a>
+                        <a class="dropdown-item" routerLink="/school/teacher">Teachers</a>
+                        <a class="dropdown-item" routerLink="/school/room">Rooms</a>
+                        <a class="dropdown-item" routerLink="/school/participant">Student groups</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="navbar-nav ml-auto">
+                <label class="btn btn-outline-primary btn-file ml-2 mt-2">
+                    <i class="fa fa-upload"></i> Upload config <input type="file" id="file" hidden (change)="fileChanged($event)">
+                </label>
+                <button class="btn btn-outline-primary ml-2 mt-2 mb-2" (click)="downloadConfig()"><i class="fa fa-download"></i> Save current config</button>
             </div>
         </div>
-    </nav>
-    <router-outlet></router-outlet>
-</div>
+    </div>
+</nav>
+<router-outlet></router-outlet>

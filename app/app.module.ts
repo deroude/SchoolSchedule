@@ -1,5 +1,11 @@
-import { ActivityService } from './services/activity.service';
-import { HourSlotService } from './services/hour_slot.service';
+import { RoomCrudComponent } from './components/room_crud.component';
+import { TeacherCrudComponent } from './components/teacher_crud.component';
+import { ActivityCrudComponent } from './components/activity_crud.component';
+import { HourSlotCrudComponent } from './components/hour_slot_crud.component';
+import { ParticipantCrudComponent } from './components/participant_crud.component';
+import { SchoolConfigComponent } from './components/school_config.component';
+import { ScheduleComponent } from './components/schedule.component';
+import { ScheduleService } from './services/schedule.service';
 import { EditorDirective } from './directives/editor.directive';
 import { LipsumService } from './services/lipsum.service';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
@@ -12,7 +18,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 import { NotFoundComponent } from './components/not_found.component';
-import { LandingComponent } from './components/landing.component';
 
 @NgModule({
   imports: [BrowserModule,
@@ -22,14 +27,19 @@ import { LandingComponent } from './components/landing.component';
     ReactiveFormsModule
   ],
   declarations: [AppComponent,
-    LandingComponent,
+    ScheduleComponent,
+    SchoolConfigComponent,
+    ParticipantCrudComponent,
+    HourSlotCrudComponent,
+    ActivityCrudComponent,
+    TeacherCrudComponent,
+    RoomCrudComponent,
     NotFoundComponent,
     EditorDirective
   ],
   providers: [
     LipsumService,
-    ActivityService,
-    HourSlotService
+    ScheduleService
   ],
   bootstrap: [AppComponent]
 })

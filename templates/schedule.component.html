@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+      <table class="table table-responsive">
+        <thead>
+          <tr>
+            <th>Student group</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of source.participants">
+            <td>{{p.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-10">
+      <table class="table table-responsive">
+        <thead>
+          <tr>
+            <th><em>Time</em></th>
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let hourSlot of source.hourSlots">
+            <th scope="row">{{hourSlot.start}}-{{hourSlot.end}}</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

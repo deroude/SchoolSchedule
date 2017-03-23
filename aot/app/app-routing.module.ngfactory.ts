@@ -14,22 +14,34 @@ import * as import5 from '@angular/router/src/router_outlet_map';
 import * as import6 from '@angular/core/src/linker/system_js_ng_module_factory_loader';
 import * as import7 from '@angular/router/src/router_preloader';
 import * as import8 from '@angular/core/src/di/injector';
-import * as import9 from './components/landing.component.ngfactory';
-import * as import10 from './components/not_found.component.ngfactory';
-import * as import11 from '@angular/common/src/location/platform_location';
-import * as import12 from '@angular/common/src/location/location_strategy';
-import * as import13 from '@angular/core/src/linker/compiler';
-import * as import14 from '../../app/components/landing.component';
-import * as import15 from '../../app/components/not_found.component';
-import * as import16 from '@angular/core/src/application_ref';
-import * as import17 from '@angular/router/src/url_handling_strategy';
-import * as import18 from '@angular/router/src/route_reuse_strategy';
-import * as import19 from '@angular/router/src/router';
-import * as import20 from '@angular/core/src/linker/ng_module_factory_loader';
-import * as import21 from '@angular/router/src/router_config_loader';
-import * as import22 from '@angular/router/src/router_state';
-import * as import23 from '@angular/core/src/application_init';
-import * as import24 from '@angular/core/src/application_tokens';
+import * as import9 from './components/schedule.component.ngfactory';
+import * as import10 from './components/school_config.component.ngfactory';
+import * as import11 from './components/participant_crud.component.ngfactory';
+import * as import12 from './components/hour_slot_crud.component.ngfactory';
+import * as import13 from './components/activity_crud.component.ngfactory';
+import * as import14 from './components/teacher_crud.component.ngfactory';
+import * as import15 from './components/room_crud.component.ngfactory';
+import * as import16 from './components/not_found.component.ngfactory';
+import * as import17 from '@angular/common/src/location/platform_location';
+import * as import18 from '@angular/common/src/location/location_strategy';
+import * as import19 from '@angular/core/src/linker/compiler';
+import * as import20 from '../../app/components/schedule.component';
+import * as import21 from '../../app/components/school_config.component';
+import * as import22 from '../../app/components/participant_crud.component';
+import * as import23 from '../../app/components/hour_slot_crud.component';
+import * as import24 from '../../app/components/activity_crud.component';
+import * as import25 from '../../app/components/teacher_crud.component';
+import * as import26 from '../../app/components/room_crud.component';
+import * as import27 from '../../app/components/not_found.component';
+import * as import28 from '@angular/core/src/application_ref';
+import * as import29 from '@angular/router/src/url_handling_strategy';
+import * as import30 from '@angular/router/src/route_reuse_strategy';
+import * as import31 from '@angular/router/src/router';
+import * as import32 from '@angular/core/src/linker/ng_module_factory_loader';
+import * as import33 from '@angular/router/src/router_config_loader';
+import * as import34 from '@angular/router/src/router_state';
+import * as import35 from '@angular/core/src/application_init';
+import * as import36 from '@angular/core/src/application_tokens';
 class AppRoutingModuleInjector extends import0.NgModuleInjector<import1.AppRoutingModule> {
   _ROUTER_FORROOT_GUARD_0:any;
   _RouterModule_1:import2.RouterModule;
@@ -54,8 +66,14 @@ class AppRoutingModuleInjector extends import0.NgModuleInjector<import1.AppRouti
   __APP_BOOTSTRAP_LISTENER_20:any[];
   constructor(parent:import8.Injector) {
     super(parent,[
-      import9.LandingComponentNgFactory,
-      import10.NotFoundComponentNgFactory
+      import9.ScheduleComponentNgFactory,
+      import10.SchoolConfigComponentNgFactory,
+      import11.ParticipantCrudComponentNgFactory,
+      import12.HourSlotCrudComponentNgFactory,
+      import13.ActivityCrudComponentNgFactory,
+      import14.TeacherCrudComponentNgFactory,
+      import15.RoomCrudComponentNgFactory,
+      import16.NotFoundComponentNgFactory
     ]
     ,([] as any[]));
   }
@@ -64,7 +82,7 @@ class AppRoutingModuleInjector extends import0.NgModuleInjector<import1.AppRouti
     return this.__ROUTER_CONFIGURATION_3;
   }
   get _LocationStrategy_4():any {
-    if ((this.__LocationStrategy_4 == null)) { (this.__LocationStrategy_4 = import2.provideLocationStrategy(this.parent.get(import11.PlatformLocation),this.parent.get(import12.APP_BASE_HREF,(null as any)),this._ROUTER_CONFIGURATION_3)); }
+    if ((this.__LocationStrategy_4 == null)) { (this.__LocationStrategy_4 = import2.provideLocationStrategy(this.parent.get(import17.PlatformLocation),this.parent.get(import18.APP_BASE_HREF,(null as any)),this._ROUTER_CONFIGURATION_3)); }
     return this.__LocationStrategy_4;
   }
   get _Location_5():import3.Location {
@@ -80,25 +98,58 @@ class AppRoutingModuleInjector extends import0.NgModuleInjector<import1.AppRouti
     return this.__RouterOutletMap_7;
   }
   get _NgModuleFactoryLoader_8():import6.SystemJsNgModuleLoader {
-    if ((this.__NgModuleFactoryLoader_8 == null)) { (this.__NgModuleFactoryLoader_8 = new import6.SystemJsNgModuleLoader(this.parent.get(import13.Compiler),this.parent.get(import6.SystemJsNgModuleLoaderConfig,(null as any)))); }
+    if ((this.__NgModuleFactoryLoader_8 == null)) { (this.__NgModuleFactoryLoader_8 = new import6.SystemJsNgModuleLoader(this.parent.get(import19.Compiler),this.parent.get(import6.SystemJsNgModuleLoaderConfig,(null as any)))); }
     return this.__NgModuleFactoryLoader_8;
   }
   get _ROUTES_9():any[] {
       if ((this.__ROUTES_9 == null)) { (this.__ROUTES_9 = [[
         {
           path: '',
-          redirectTo: '/landing',
+          redirectTo: '/school',
           pathMatch: 'full'
         }
         ,
         {
-          path: 'landing',
-          component: import14.LandingComponent
+          path: 'schedule',
+          component: import20.ScheduleComponent
+        }
+        ,
+        {
+          path: 'school',
+          component: import21.SchoolConfigComponent,
+          children: [
+            {
+              path: 'participant',
+              component: import22.ParticipantCrudComponent
+            }
+            ,
+            {
+              path: 'hourSlot',
+              component: import23.HourSlotCrudComponent
+            }
+            ,
+            {
+              path: 'activity',
+              component: import24.ActivityCrudComponent
+            }
+            ,
+            {
+              path: 'teacher',
+              component: import25.TeacherCrudComponent
+            }
+            ,
+            {
+              path: 'room',
+              component: import26.RoomCrudComponent
+            }
+
+          ]
+
         }
         ,
         {
           path: '**',
-          component: import15.NotFoundComponent
+          component: import27.NotFoundComponent
         }
 
       ]
@@ -106,7 +157,7 @@ class AppRoutingModuleInjector extends import0.NgModuleInjector<import1.AppRouti
     return this.__ROUTES_9;
   }
   get _Router_10():any {
-    if ((this.__Router_10 == null)) { (this.__Router_10 = import2.setupRouter(this.parent.get(import16.ApplicationRef),this._UrlSerializer_6,this._RouterOutletMap_7,this._Location_5,this,this._NgModuleFactoryLoader_8,this.parent.get(import13.Compiler),this._ROUTES_9,this._ROUTER_CONFIGURATION_3,this.parent.get(import17.UrlHandlingStrategy,(null as any)),this.parent.get(import18.RouteReuseStrategy,(null as any)))); }
+    if ((this.__Router_10 == null)) { (this.__Router_10 = import2.setupRouter(this.parent.get(import28.ApplicationRef),this._UrlSerializer_6,this._RouterOutletMap_7,this._Location_5,this,this._NgModuleFactoryLoader_8,this.parent.get(import19.Compiler),this._ROUTES_9,this._ROUTER_CONFIGURATION_3,this.parent.get(import29.UrlHandlingStrategy,(null as any)),this.parent.get(import30.RouteReuseStrategy,(null as any)))); }
     return this.__Router_10;
   }
   get _ActivatedRoute_11():any {
@@ -138,12 +189,12 @@ class AppRoutingModuleInjector extends import0.NgModuleInjector<import1.AppRouti
     return this.__APP_BOOTSTRAP_LISTENER_20;
   }
   createInternal():import1.AppRoutingModule {
-    this._ROUTER_FORROOT_GUARD_0 = import2.provideForRootGuard(this.parent.get(import19.Router,(null as any)));
+    this._ROUTER_FORROOT_GUARD_0 = import2.provideForRootGuard(this.parent.get(import31.Router,(null as any)));
     this._RouterModule_1 = new import2.RouterModule(this._ROUTER_FORROOT_GUARD_0);
     this._AppRoutingModule_2 = new import1.AppRoutingModule();
     this._NoPreloading_12 = new import7.NoPreloading();
     this._PreloadingStrategy_13 = this._NoPreloading_12;
-    this._RouterPreloader_14 = new import7.RouterPreloader(this._Router_10,this._NgModuleFactoryLoader_8,this.parent.get(import13.Compiler),this,this._PreloadingStrategy_13);
+    this._RouterPreloader_14 = new import7.RouterPreloader(this._Router_10,this._NgModuleFactoryLoader_8,this.parent.get(import19.Compiler),this,this._PreloadingStrategy_13);
     return this._AppRoutingModule_2;
   }
   getInternal(token:any,notFoundResult:any):any {
@@ -151,23 +202,23 @@ class AppRoutingModuleInjector extends import0.NgModuleInjector<import1.AppRouti
     if ((token === import2.RouterModule)) { return this._RouterModule_1; }
     if ((token === import1.AppRoutingModule)) { return this._AppRoutingModule_2; }
     if ((token === import2.ROUTER_CONFIGURATION)) { return this._ROUTER_CONFIGURATION_3; }
-    if ((token === import12.LocationStrategy)) { return this._LocationStrategy_4; }
+    if ((token === import18.LocationStrategy)) { return this._LocationStrategy_4; }
     if ((token === import3.Location)) { return this._Location_5; }
     if ((token === import4.UrlSerializer)) { return this._UrlSerializer_6; }
     if ((token === import5.RouterOutletMap)) { return this._RouterOutletMap_7; }
-    if ((token === import20.NgModuleFactoryLoader)) { return this._NgModuleFactoryLoader_8; }
-    if ((token === import21.ROUTES)) { return this._ROUTES_9; }
-    if ((token === import19.Router)) { return this._Router_10; }
-    if ((token === import22.ActivatedRoute)) { return this._ActivatedRoute_11; }
+    if ((token === import32.NgModuleFactoryLoader)) { return this._NgModuleFactoryLoader_8; }
+    if ((token === import33.ROUTES)) { return this._ROUTES_9; }
+    if ((token === import31.Router)) { return this._Router_10; }
+    if ((token === import34.ActivatedRoute)) { return this._ActivatedRoute_11; }
     if ((token === import7.NoPreloading)) { return this._NoPreloading_12; }
     if ((token === import7.PreloadingStrategy)) { return this._PreloadingStrategy_13; }
     if ((token === import7.RouterPreloader)) { return this._RouterPreloader_14; }
     if ((token === import7.PreloadAllModules)) { return this._PreloadAllModules_15; }
-    if ((token === import16.NgProbeToken)) { return this._NgProbeToken_16; }
+    if ((token === import28.NgProbeToken)) { return this._NgProbeToken_16; }
     if ((token === import2.RouterInitializer)) { return this._RouterInitializer_17; }
-    if ((token === import23.APP_INITIALIZER)) { return this._APP_INITIALIZER_18; }
+    if ((token === import35.APP_INITIALIZER)) { return this._APP_INITIALIZER_18; }
     if ((token === import2.ROUTER_INITIALIZER)) { return this._ROUTER_INITIALIZER_19; }
-    if ((token === import24.APP_BOOTSTRAP_LISTENER)) { return this._APP_BOOTSTRAP_LISTENER_20; }
+    if ((token === import36.APP_BOOTSTRAP_LISTENER)) { return this._APP_BOOTSTRAP_LISTENER_20; }
     return notFoundResult;
   }
   destroyInternal():void {

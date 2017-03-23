@@ -1,0 +1,50 @@
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">{{title}}</h4>
+        <h6 class="card-subtitle mb-2 text-muted">{{subtitle}}</h6>
+    </div>
+    <div class="card-block">
+        <input type="text" placeholder="Search" class="form-control mb-2" #search (change)="filter(search.value)">
+        <div class="row p-2 bg-faded border-bottom-2">
+            <span class="col-sm-{{col.per10}} font-weight-bold" *ngFor="let col of cols">{{col.title}}</span>
+            <button class="btn btn-primary btn-sm mr-1" (click)="add()" data-toggle="modal" data-target="#editor"><i class="fa fa-plus"></i> Add...</button>
+        </div>
+        <!--<div class="scroll-area">-->
+        <div class="row p-2 border-bottom-1" *ngFor="let p of source">
+            <span class="col-sm-{{col.per10}}" *ngFor="let col of cols">{{value(p,col)}}</span>
+            <button class="btn btn-primary btn-sm mr-1" (click)="edit(p)" data-toggle="modal" data-target="#editor"><i class="fa fa-edit"></i> Edit</button>
+            <button class="btn btn-danger btn-sm mr-1" (click)="delete(p)"><i class="fa fa-trash"></i> Delete</button>
+        </div>
+        <!--</div>-->
+    </div>
+    <div class="modal fade" *ngIf="selected!==null" data-backdrop="" id="editor">
+        <div class="modal-dialog" role="document">
+            <form class="modal-content" (ngSubmit)="save()">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+            </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" *ngFor="let col of cols">
+                        <label for="{{col.name}}">{{col.title}}</label>
+                        <input type="text" class="form-control" *ngIf="col.type==='text'" [(ngModel)]="selected[col.name]" name="{{col.name}}" [attr.autofocus]="col.autofocus?true:null"
+                            [attr.required]="col.required?true:null">
+                        <input type="number" class="form-control" *ngIf="col.type==='number'" [(ngModel)]="selected[col.name]" name="{{col.name}}"
+                            [attr.autofocus]="col.autofocus?true:null" [attr.required]="col.required?true:null">
+                        <input type="time" class="form-control" *ngIf="col.type==='time'" [(ngModel)]="selected[col.name]" name="{{col.name}}" [attr.autofocus]="col.autofocus?true:null"
+                            [attr.required]="col.required?true:null">
+                        <select multiple class="form-control " *ngIf="col.type==='multiselect'" [(ngModel)]="selected[col.name]" name="{{col.name}}"
+                            [attr.autofocus]="col.autofocus?true:null" [attr.required]="col.required?true:null">
+                            <option *ngFor="let v of col.source" value="{{col.sourceId?v[col.sourceId]:v}}">{{col.sourceLabel?v[col.sourceLabel]:v}}</option>
+                         </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
