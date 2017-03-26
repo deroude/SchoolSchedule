@@ -7,7 +7,7 @@
     "start":"concurrently \"tsc -w\" \"node-sass --output-style compressed -wo dist/css sass\" \"lite-server\"",
     "prebuild":"rimraf dist && rimraf prod && rimraf aot && npm run rename-prod",
     "sass":"node-sass --output-style compressed sass/style.scss prod/css/style.css",
-    "build": "npm run aot && npm run rollup && npm run sass && lite-server",
+    "build": "npm run aot && npm run rollup && npm run sass",
     "rename-dev":"renamer --find \"index.html\" --replace \"index.prod.html\" * && renamer --find \"index.dev.html\" --replace \"index.html\" * && renamer --find \"main.ts\" --replace \"main.prod\" app/* && renamer --find \"main.dev\" --replace \"main.ts\" app/*",
     "rename-prod":"renamer --find \"index.html\" --replace \"index.dev.html\" * && renamer --find \"index.prod.html\" --replace \"index.html\" * && renamer --find \"main.ts\" --replace \"main.dev\" app/* && renamer --find \"main.prod\" --replace \"main.ts\" app/*",
     "aot":"ngc -p tsconfig-aot.json",
