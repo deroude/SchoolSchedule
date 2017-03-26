@@ -1,3 +1,5 @@
+import { ScheduleSlotCrudComponent } from './components/schedule_slot_crud.component';
+import { CurriculumCrudComponent } from './components/curriculum_crud.component';
 import { RoomCrudComponent } from './components/room_crud.component';
 import { TeacherCrudComponent } from './components/teacher_crud.component';
 import { ActivityCrudComponent } from './components/activity_crud.component';
@@ -19,7 +21,9 @@ const routes: Routes = [
             { path: "hourSlot", component: HourSlotCrudComponent },
             { path: "activity", component: ActivityCrudComponent },
             { path: "teacher", component: TeacherCrudComponent },
-            { path: "room", component: RoomCrudComponent }
+            { path: "room", component: RoomCrudComponent },
+            { path: "curriculum", component: CurriculumCrudComponent },
+            { path: "scheduleTemplate", component: ScheduleSlotCrudComponent }
         ]
     },
     { path: '**', component: NotFoundComponent }

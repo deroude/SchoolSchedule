@@ -8,4 +8,5 @@ export interface Column<T>{
     source?:T[];
     sourceLabel?:string;
     sourceId?:string;
+    sourceCompare?:(t1:T,t2:T)=>boolean
 }

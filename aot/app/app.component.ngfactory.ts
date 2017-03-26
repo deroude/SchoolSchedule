@@ -155,29 +155,37 @@ export class View_AppComponent0 extends import1.AppView<import0.AppComponent> {
   _RouterLinkWithHref_41_3:import14.Wrapper_RouterLinkWithHref;
   _text_42:any;
   _text_43:any;
-  _text_44:any;
+  _el_44:any;
+  _RouterLinkWithHref_44_3:import14.Wrapper_RouterLinkWithHref;
   _text_45:any;
   _text_46:any;
   _el_47:any;
+  _RouterLinkWithHref_47_3:import14.Wrapper_RouterLinkWithHref;
   _text_48:any;
-  _el_49:any;
+  _text_49:any;
   _text_50:any;
-  _el_51:any;
+  _text_51:any;
   _text_52:any;
   _el_53:any;
   _text_54:any;
-  _text_55:any;
-  _el_56:any;
+  _el_55:any;
+  _text_56:any;
   _el_57:any;
   _text_58:any;
-  _text_59:any;
+  _el_59:any;
   _text_60:any;
   _text_61:any;
-  _text_62:any;
-  _text_63:any;
-  _el_64:any;
-  /*private*/ _vc_64:import15.ViewContainer;
-  _RouterOutlet_64_5:import16.Wrapper_RouterOutlet;
+  _el_62:any;
+  _el_63:any;
+  _text_64:any;
+  _text_65:any;
+  _text_66:any;
+  _text_67:any;
+  _text_68:any;
+  _text_69:any;
+  _el_70:any;
+  /*private*/ _vc_70:import15.ViewContainer;
+  _RouterOutlet_70_5:import16.Wrapper_RouterOutlet;
   constructor(viewUtils:import3.ViewUtils,parentView:import1.AppView<any>,parentIndex:number,parentElement:any) {
     super(View_AppComponent0,renderType_AppComponent,import5.ViewType.COMPONENT,viewUtils,parentView,parentIndex,parentElement,import6.ChangeDetectorStatus.CheckAlways);
   }
@@ -235,38 +243,48 @@ export class View_AppComponent0 extends import1.AppView<import0.AppComponent> {
     this._el_41 = import3.createRenderElement(this.renderer,this._el_27,'a',new import3.InlineArray4(4,'class','dropdown-item','routerLink','/school/participant'),(null as any));
     this._RouterLinkWithHref_41_3 = new import14.Wrapper_RouterLinkWithHref(this.parentView.injectorGet(import9.Router,this.parentIndex),this.parentView.injectorGet(import8.ActivatedRoute,this.parentIndex),this.parentView.injectorGet(import18.LocationStrategy,this.parentIndex));
     this._text_42 = this.renderer.createText(this._el_41,'Student groups',(null as any));
-    this._text_43 = this.renderer.createText(this._el_27,'\n                    ',(null as any));
-    this._text_44 = this.renderer.createText(this._el_22,'\n                ',(null as any));
-    this._text_45 = this.renderer.createText(this._el_14,'\n            ',(null as any));
-    this._text_46 = this.renderer.createText(this._el_12,'\n            ',(null as any));
-    this._el_47 = import3.createRenderElement(this.renderer,this._el_12,'div',new import3.InlineArray2(2,'class','navbar-nav ml-auto'),(null as any));
-    this._text_48 = this.renderer.createText(this._el_47,'\n                ',(null as any));
-    this._el_49 = import3.createRenderElement(this.renderer,this._el_47,'label',new import3.InlineArray2(2,'class','btn btn-outline-primary btn-file ml-2 mt-2'),(null as any));
-    this._text_50 = this.renderer.createText(this._el_49,'\n                    ',(null as any));
-    this._el_51 = import3.createRenderElement(this.renderer,this._el_49,'i',new import3.InlineArray2(2,'class','fa fa-upload'),(null as any));
-    this._text_52 = this.renderer.createText(this._el_49,' Upload config ',(null as any));
-    this._el_53 = import3.createRenderElement(this.renderer,this._el_49,'input',new import3.InlineArray8(6,'hidden','','id','file','type','file'),(null as any));
-    this._text_54 = this.renderer.createText(this._el_49,'\n                ',(null as any));
-    this._text_55 = this.renderer.createText(this._el_47,'\n                ',(null as any));
-    this._el_56 = import3.createRenderElement(this.renderer,this._el_47,'button',new import3.InlineArray2(2,'class','btn btn-outline-primary ml-2 mt-2 mb-2'),(null as any));
-    this._el_57 = import3.createRenderElement(this.renderer,this._el_56,'i',new import3.InlineArray2(2,'class','fa fa-download'),(null as any));
-    this._text_58 = this.renderer.createText(this._el_56,' Save current config',(null as any));
-    this._text_59 = this.renderer.createText(this._el_47,'\n            ',(null as any));
-    this._text_60 = this.renderer.createText(this._el_12,'\n        ',(null as any));
-    this._text_61 = this.renderer.createText(this._el_2,'\n    ',(null as any));
-    this._text_62 = this.renderer.createText(this._el_0,'\n',(null as any));
-    this._text_63 = this.renderer.createText(parentRenderNode,'\n',(null as any));
-    this._el_64 = import3.createRenderElement(this.renderer,parentRenderNode,'router-outlet',import3.EMPTY_INLINE_ARRAY,(null as any));
-    this._vc_64 = new import15.ViewContainer(64,(null as any),this,this._el_64);
-    this._RouterOutlet_64_5 = new import16.Wrapper_RouterOutlet(this.parentView.injectorGet(import19.RouterOutletMap,this.parentIndex),this._vc_64.vcRef,this.parentView.injectorGet(import20.ComponentFactoryResolver,this.parentIndex),(null as any));
+    this._text_43 = this.renderer.createText(this._el_27,'\n                        ',(null as any));
+    this._el_44 = import3.createRenderElement(this.renderer,this._el_27,'a',new import3.InlineArray4(4,'class','dropdown-item','routerLink','/school/curriculum'),(null as any));
+    this._RouterLinkWithHref_44_3 = new import14.Wrapper_RouterLinkWithHref(this.parentView.injectorGet(import9.Router,this.parentIndex),this.parentView.injectorGet(import8.ActivatedRoute,this.parentIndex),this.parentView.injectorGet(import18.LocationStrategy,this.parentIndex));
+    this._text_45 = this.renderer.createText(this._el_44,'Curriculum',(null as any));
+    this._text_46 = this.renderer.createText(this._el_27,'\n                        ',(null as any));
+    this._el_47 = import3.createRenderElement(this.renderer,this._el_27,'a',new import3.InlineArray4(4,'class','dropdown-item','routerLink','/school/scheduleTemplate'),(null as any));
+    this._RouterLinkWithHref_47_3 = new import14.Wrapper_RouterLinkWithHref(this.parentView.injectorGet(import9.Router,this.parentIndex),this.parentView.injectorGet(import8.ActivatedRoute,this.parentIndex),this.parentView.injectorGet(import18.LocationStrategy,this.parentIndex));
+    this._text_48 = this.renderer.createText(this._el_47,'Schedule template',(null as any));
+    this._text_49 = this.renderer.createText(this._el_27,'\n                    ',(null as any));
+    this._text_50 = this.renderer.createText(this._el_22,'\n                ',(null as any));
+    this._text_51 = this.renderer.createText(this._el_14,'\n            ',(null as any));
+    this._text_52 = this.renderer.createText(this._el_12,'\n            ',(null as any));
+    this._el_53 = import3.createRenderElement(this.renderer,this._el_12,'div',new import3.InlineArray2(2,'class','navbar-nav ml-auto'),(null as any));
+    this._text_54 = this.renderer.createText(this._el_53,'\n                ',(null as any));
+    this._el_55 = import3.createRenderElement(this.renderer,this._el_53,'label',new import3.InlineArray2(2,'class','btn btn-outline-primary btn-file ml-2 mt-2'),(null as any));
+    this._text_56 = this.renderer.createText(this._el_55,'\n                    ',(null as any));
+    this._el_57 = import3.createRenderElement(this.renderer,this._el_55,'i',new import3.InlineArray2(2,'class','fa fa-upload'),(null as any));
+    this._text_58 = this.renderer.createText(this._el_55,' Upload config ',(null as any));
+    this._el_59 = import3.createRenderElement(this.renderer,this._el_55,'input',new import3.InlineArray8(6,'hidden','','id','file','type','file'),(null as any));
+    this._text_60 = this.renderer.createText(this._el_55,'\n                ',(null as any));
+    this._text_61 = this.renderer.createText(this._el_53,'\n                ',(null as any));
+    this._el_62 = import3.createRenderElement(this.renderer,this._el_53,'button',new import3.InlineArray2(2,'class','btn btn-outline-primary ml-2 mt-2 mb-2'),(null as any));
+    this._el_63 = import3.createRenderElement(this.renderer,this._el_62,'i',new import3.InlineArray2(2,'class','fa fa-download'),(null as any));
+    this._text_64 = this.renderer.createText(this._el_62,' Save current config',(null as any));
+    this._text_65 = this.renderer.createText(this._el_53,'\n            ',(null as any));
+    this._text_66 = this.renderer.createText(this._el_12,'\n        ',(null as any));
+    this._text_67 = this.renderer.createText(this._el_2,'\n    ',(null as any));
+    this._text_68 = this.renderer.createText(this._el_0,'\n',(null as any));
+    this._text_69 = this.renderer.createText(parentRenderNode,'\n',(null as any));
+    this._el_70 = import3.createRenderElement(this.renderer,parentRenderNode,'router-outlet',import3.EMPTY_INLINE_ARRAY,(null as any));
+    this._vc_70 = new import15.ViewContainer(70,(null as any),this,this._el_70);
+    this._RouterOutlet_70_5 = new import16.Wrapper_RouterOutlet(this.parentView.injectorGet(import19.RouterOutletMap,this.parentIndex),this._vc_70.vcRef,this.parentView.injectorGet(import20.ComponentFactoryResolver,this.parentIndex),(null as any));
     var disposable_0:Function = import3.subscribeToRenderElement(this,this._el_18,new import3.InlineArray2(2,'click',(null as any)),this.eventHandler(this.handleEvent_18));
     var disposable_1:Function = import3.subscribeToRenderElement(this,this._el_29,new import3.InlineArray2(2,'click',(null as any)),this.eventHandler(this.handleEvent_29));
     var disposable_2:Function = import3.subscribeToRenderElement(this,this._el_32,new import3.InlineArray2(2,'click',(null as any)),this.eventHandler(this.handleEvent_32));
     var disposable_3:Function = import3.subscribeToRenderElement(this,this._el_35,new import3.InlineArray2(2,'click',(null as any)),this.eventHandler(this.handleEvent_35));
     var disposable_4:Function = import3.subscribeToRenderElement(this,this._el_38,new import3.InlineArray2(2,'click',(null as any)),this.eventHandler(this.handleEvent_38));
     var disposable_5:Function = import3.subscribeToRenderElement(this,this._el_41,new import3.InlineArray2(2,'click',(null as any)),this.eventHandler(this.handleEvent_41));
-    var disposable_6:Function = import3.subscribeToRenderElement(this,this._el_53,new import3.InlineArray2(2,'change',(null as any)),this.eventHandler(this.handleEvent_53));
-    var disposable_7:Function = import3.subscribeToRenderElement(this,this._el_56,new import3.InlineArray2(2,'click',(null as any)),this.eventHandler(this.handleEvent_56));
+    var disposable_6:Function = import3.subscribeToRenderElement(this,this._el_44,new import3.InlineArray2(2,'click',(null as any)),this.eventHandler(this.handleEvent_44));
+    var disposable_7:Function = import3.subscribeToRenderElement(this,this._el_47,new import3.InlineArray2(2,'click',(null as any)),this.eventHandler(this.handleEvent_47));
+    var disposable_8:Function = import3.subscribeToRenderElement(this,this._el_59,new import3.InlineArray2(2,'change',(null as any)),this.eventHandler(this.handleEvent_59));
+    var disposable_9:Function = import3.subscribeToRenderElement(this,this._el_62,new import3.InlineArray2(2,'click',(null as any)),this.eventHandler(this.handleEvent_62));
     this.init((null as any),((<any>this.renderer).directRenderer? (null as any): [
       this._el_0,
       this._text_1,
@@ -312,27 +330,33 @@ export class View_AppComponent0 extends import1.AppView<import0.AppComponent> {
       this._el_41,
       this._text_42,
       this._text_43,
-      this._text_44,
+      this._el_44,
       this._text_45,
       this._text_46,
       this._el_47,
       this._text_48,
-      this._el_49,
+      this._text_49,
       this._text_50,
-      this._el_51,
+      this._text_51,
       this._text_52,
       this._el_53,
       this._text_54,
-      this._text_55,
-      this._el_56,
+      this._el_55,
+      this._text_56,
       this._el_57,
       this._text_58,
-      this._text_59,
+      this._el_59,
       this._text_60,
       this._text_61,
-      this._text_62,
-      this._text_63,
-      this._el_64
+      this._el_62,
+      this._el_63,
+      this._text_64,
+      this._text_65,
+      this._text_66,
+      this._text_67,
+      this._text_68,
+      this._text_69,
+      this._el_70
     ]
     ),[
       disposable_0,
@@ -342,7 +366,9 @@ export class View_AppComponent0 extends import1.AppView<import0.AppComponent> {
       disposable_4,
       disposable_5,
       disposable_6,
-      disposable_7
+      disposable_7,
+      disposable_8,
+      disposable_9
     ]
     );
     return (null as any);
@@ -355,7 +381,9 @@ export class View_AppComponent0 extends import1.AppView<import0.AppComponent> {
     if (((token === import21.RouterLinkWithHref) && ((35 <= requestNodeIndex) && (requestNodeIndex <= 36)))) { return this._RouterLinkWithHref_35_3.context; }
     if (((token === import21.RouterLinkWithHref) && ((38 <= requestNodeIndex) && (requestNodeIndex <= 39)))) { return this._RouterLinkWithHref_38_3.context; }
     if (((token === import21.RouterLinkWithHref) && ((41 <= requestNodeIndex) && (requestNodeIndex <= 42)))) { return this._RouterLinkWithHref_41_3.context; }
-    if (((token === import23.RouterOutlet) && (64 === requestNodeIndex))) { return this._RouterOutlet_64_5.context; }
+    if (((token === import21.RouterLinkWithHref) && ((44 <= requestNodeIndex) && (requestNodeIndex <= 45)))) { return this._RouterLinkWithHref_44_3.context; }
+    if (((token === import21.RouterLinkWithHref) && ((47 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return this._RouterLinkWithHref_47_3.context; }
+    if (((token === import23.RouterOutlet) && (70 === requestNodeIndex))) { return this._RouterOutlet_70_5.context; }
     return notFoundResult;
   }
   detectChangesInternal(throwOnChange:boolean):void {
@@ -380,8 +408,14 @@ export class View_AppComponent0 extends import1.AppView<import0.AppComponent> {
     const currVal_41_0_0:any = '/school/participant';
     this._RouterLinkWithHref_41_3.check_routerLink(currVal_41_0_0,throwOnChange,false);
     this._RouterLinkWithHref_41_3.ngDoCheck(this,this._el_41,throwOnChange);
-    this._RouterOutlet_64_5.ngDoCheck(this,this._el_64,throwOnChange);
-    this._vc_64.detectChangesInNestedViews(throwOnChange);
+    const currVal_44_0_0:any = '/school/curriculum';
+    this._RouterLinkWithHref_44_3.check_routerLink(currVal_44_0_0,throwOnChange,false);
+    this._RouterLinkWithHref_44_3.ngDoCheck(this,this._el_44,throwOnChange);
+    const currVal_47_0_0:any = '/school/scheduleTemplate';
+    this._RouterLinkWithHref_47_3.check_routerLink(currVal_47_0_0,throwOnChange,false);
+    this._RouterLinkWithHref_47_3.ngDoCheck(this,this._el_47,throwOnChange);
+    this._RouterOutlet_70_5.ngDoCheck(this,this._el_70,throwOnChange);
+    this._vc_70.detectChangesInNestedViews(throwOnChange);
     if (!throwOnChange) {
       if (this._query_RouterLink_16_0.dirty) {
         this._query_RouterLink_16_0.reset(([] as any[]));
@@ -401,9 +435,11 @@ export class View_AppComponent0 extends import1.AppView<import0.AppComponent> {
     this._RouterLinkWithHref_35_3.checkHost(this,this,this._el_35,throwOnChange);
     this._RouterLinkWithHref_38_3.checkHost(this,this,this._el_38,throwOnChange);
     this._RouterLinkWithHref_41_3.checkHost(this,this,this._el_41,throwOnChange);
+    this._RouterLinkWithHref_44_3.checkHost(this,this,this._el_44,throwOnChange);
+    this._RouterLinkWithHref_47_3.checkHost(this,this,this._el_47,throwOnChange);
   }
   destroyInternal():void {
-    this._vc_64.destroyNestedViews();
+    this._vc_70.destroyNestedViews();
     this._RouterLinkWithHref_18_3.ngOnDestroy();
     this._RouterLinkActive_16_3.ngOnDestroy();
     this._RouterLinkWithHref_29_3.ngOnDestroy();
@@ -411,7 +447,9 @@ export class View_AppComponent0 extends import1.AppView<import0.AppComponent> {
     this._RouterLinkWithHref_35_3.ngOnDestroy();
     this._RouterLinkWithHref_38_3.ngOnDestroy();
     this._RouterLinkWithHref_41_3.ngOnDestroy();
-    this._RouterOutlet_64_5.ngOnDestroy();
+    this._RouterLinkWithHref_44_3.ngOnDestroy();
+    this._RouterLinkWithHref_47_3.ngOnDestroy();
+    this._RouterOutlet_70_5.ngOnDestroy();
   }
   handleEvent_18(eventName:string,$event:any):boolean {
     this.markPathToRootAsCheckOnce();
@@ -449,7 +487,19 @@ export class View_AppComponent0 extends import1.AppView<import0.AppComponent> {
     result = (this._RouterLinkWithHref_41_3.handleEvent(eventName,$event) && result);
     return result;
   }
-  handleEvent_53(eventName:string,$event:any):boolean {
+  handleEvent_44(eventName:string,$event:any):boolean {
+    this.markPathToRootAsCheckOnce();
+    var result:boolean = true;
+    result = (this._RouterLinkWithHref_44_3.handleEvent(eventName,$event) && result);
+    return result;
+  }
+  handleEvent_47(eventName:string,$event:any):boolean {
+    this.markPathToRootAsCheckOnce();
+    var result:boolean = true;
+    result = (this._RouterLinkWithHref_47_3.handleEvent(eventName,$event) && result);
+    return result;
+  }
+  handleEvent_59(eventName:string,$event:any):boolean {
     this.markPathToRootAsCheckOnce();
     var result:boolean = true;
     if ((eventName == 'change')) {
@@ -458,7 +508,7 @@ export class View_AppComponent0 extends import1.AppView<import0.AppComponent> {
     }
     return result;
   }
-  handleEvent_56(eventName:string,$event:any):boolean {
+  handleEvent_62(eventName:string,$event:any):boolean {
     this.markPathToRootAsCheckOnce();
     var result:boolean = true;
     if ((eventName == 'click')) {

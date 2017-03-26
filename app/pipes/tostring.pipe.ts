@@ -9,16 +9,16 @@ import { Pipe, PipeTransform } from '@angular/core';
  *   {{ 2 |  exponentialStrength:10}}
  *   formats to: 1024
 */
-@Pipe({name: 'tostring'})
+@Pipe({ name: 'tostring' })
 export class ToStringPipe implements PipeTransform {
-  transform(object:any): string {
-      if(!object) return "";
-      if(typeof object.map == 'function'){
-          return object.map(o=>o.name?o.name:o).join(",");
-      }
-      if(object.name){
-          return object.name;
-      }
-      return object;
-  }
+    transform(object: any): string {
+        if (!object) return "";
+        if (typeof object.map == 'function') {
+            return object.map(o => o.name ? o.name : o).join(",");
+        }
+        if (object.name) {
+            return object.name;
+        }
+        return object;
+    }
 }

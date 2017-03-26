@@ -8,7 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { ScheduleService } from './../services/schedule.service';
-import { HourSlot } from './../domain/hour_slot';
+import { HourSlotFactory } from './../domain/hour_slot';
 import { Component } from '@angular/core';
 export var HourSlotCrudComponent = (function () {
     function HourSlotCrudComponent(scheduleService) {
@@ -34,11 +34,11 @@ export var HourSlotCrudComponent = (function () {
                 per10: 2
             },
             {
-                name: "days",
+                name: "day",
                 required: true,
                 autofocus: false,
-                title: "Days",
-                type: "multiselect",
+                title: "Day",
+                type: "select",
                 per10: 6,
                 source: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
             }
@@ -50,7 +50,7 @@ export var HourSlotCrudComponent = (function () {
         this.scheduleService.trigger.subscribe(function () { return _this.source = _this.scheduleService.config.hourSlots; });
     };
     HourSlotCrudComponent.prototype.add = function () {
-        this.selected = new HourSlot();
+        this.selected = HourSlotFactory.make("8:00", "9:00", "Monday");
     };
     HourSlotCrudComponent.prototype.edit = function (p) {
         this.selected = p;

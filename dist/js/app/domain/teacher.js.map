@@ -1,1 +1,1 @@
-{"version":3,"file":"teacher.js","sourceRoot":"","sources":["../../../../app/domain/teacher.ts"],"names":[],"mappings":"OACO,EAAE,IAAI,EAAE,MAAM,QAAQ;AAE7B;IAAA;QACI,SAAI,GAAQ,IAAI,CAAC,EAAE,EAAE,CAAC;IAG1B,CAAC;IAAD,cAAC;AAAD,CAAC,AAJD,IAIC"}
+{"version":3,"file":"teacher.js","sourceRoot":"","sources":["../../../../app/domain/teacher.ts"],"names":[],"mappings":"OACO,EAAE,IAAI,EAAE,MAAM,QAAQ;AAE7B;IAAA;QACI,SAAI,GAAQ,IAAI,CAAC,EAAE,EAAE,CAAC;QAEtB,kBAAa,GAAY,EAAE,CAAC;IAChC,CAAC;IAAD,cAAC;AAAD,CAAC,AAJD,IAIC"}

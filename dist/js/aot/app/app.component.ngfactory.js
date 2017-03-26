@@ -162,38 +162,48 @@ export var View_AppComponent0 = (function (_super) {
         this._el_41 = import3.createRenderElement(this.renderer, this._el_27, 'a', new import3.InlineArray4(4, 'class', 'dropdown-item', 'routerLink', '/school/participant'), null);
         this._RouterLinkWithHref_41_3 = new import14.Wrapper_RouterLinkWithHref(this.parentView.injectorGet(import9.Router, this.parentIndex), this.parentView.injectorGet(import8.ActivatedRoute, this.parentIndex), this.parentView.injectorGet(import18.LocationStrategy, this.parentIndex));
         this._text_42 = this.renderer.createText(this._el_41, 'Student groups', null);
-        this._text_43 = this.renderer.createText(this._el_27, '\n                    ', null);
-        this._text_44 = this.renderer.createText(this._el_22, '\n                ', null);
-        this._text_45 = this.renderer.createText(this._el_14, '\n            ', null);
-        this._text_46 = this.renderer.createText(this._el_12, '\n            ', null);
-        this._el_47 = import3.createRenderElement(this.renderer, this._el_12, 'div', new import3.InlineArray2(2, 'class', 'navbar-nav ml-auto'), null);
-        this._text_48 = this.renderer.createText(this._el_47, '\n                ', null);
-        this._el_49 = import3.createRenderElement(this.renderer, this._el_47, 'label', new import3.InlineArray2(2, 'class', 'btn btn-outline-primary btn-file ml-2 mt-2'), null);
-        this._text_50 = this.renderer.createText(this._el_49, '\n                    ', null);
-        this._el_51 = import3.createRenderElement(this.renderer, this._el_49, 'i', new import3.InlineArray2(2, 'class', 'fa fa-upload'), null);
-        this._text_52 = this.renderer.createText(this._el_49, ' Upload config ', null);
-        this._el_53 = import3.createRenderElement(this.renderer, this._el_49, 'input', new import3.InlineArray8(6, 'hidden', '', 'id', 'file', 'type', 'file'), null);
-        this._text_54 = this.renderer.createText(this._el_49, '\n                ', null);
-        this._text_55 = this.renderer.createText(this._el_47, '\n                ', null);
-        this._el_56 = import3.createRenderElement(this.renderer, this._el_47, 'button', new import3.InlineArray2(2, 'class', 'btn btn-outline-primary ml-2 mt-2 mb-2'), null);
-        this._el_57 = import3.createRenderElement(this.renderer, this._el_56, 'i', new import3.InlineArray2(2, 'class', 'fa fa-download'), null);
-        this._text_58 = this.renderer.createText(this._el_56, ' Save current config', null);
-        this._text_59 = this.renderer.createText(this._el_47, '\n            ', null);
-        this._text_60 = this.renderer.createText(this._el_12, '\n        ', null);
-        this._text_61 = this.renderer.createText(this._el_2, '\n    ', null);
-        this._text_62 = this.renderer.createText(this._el_0, '\n', null);
-        this._text_63 = this.renderer.createText(parentRenderNode, '\n', null);
-        this._el_64 = import3.createRenderElement(this.renderer, parentRenderNode, 'router-outlet', import3.EMPTY_INLINE_ARRAY, null);
-        this._vc_64 = new import15.ViewContainer(64, null, this, this._el_64);
-        this._RouterOutlet_64_5 = new import16.Wrapper_RouterOutlet(this.parentView.injectorGet(import19.RouterOutletMap, this.parentIndex), this._vc_64.vcRef, this.parentView.injectorGet(import20.ComponentFactoryResolver, this.parentIndex), null);
+        this._text_43 = this.renderer.createText(this._el_27, '\n                        ', null);
+        this._el_44 = import3.createRenderElement(this.renderer, this._el_27, 'a', new import3.InlineArray4(4, 'class', 'dropdown-item', 'routerLink', '/school/curriculum'), null);
+        this._RouterLinkWithHref_44_3 = new import14.Wrapper_RouterLinkWithHref(this.parentView.injectorGet(import9.Router, this.parentIndex), this.parentView.injectorGet(import8.ActivatedRoute, this.parentIndex), this.parentView.injectorGet(import18.LocationStrategy, this.parentIndex));
+        this._text_45 = this.renderer.createText(this._el_44, 'Curriculum', null);
+        this._text_46 = this.renderer.createText(this._el_27, '\n                        ', null);
+        this._el_47 = import3.createRenderElement(this.renderer, this._el_27, 'a', new import3.InlineArray4(4, 'class', 'dropdown-item', 'routerLink', '/school/scheduleTemplate'), null);
+        this._RouterLinkWithHref_47_3 = new import14.Wrapper_RouterLinkWithHref(this.parentView.injectorGet(import9.Router, this.parentIndex), this.parentView.injectorGet(import8.ActivatedRoute, this.parentIndex), this.parentView.injectorGet(import18.LocationStrategy, this.parentIndex));
+        this._text_48 = this.renderer.createText(this._el_47, 'Schedule template', null);
+        this._text_49 = this.renderer.createText(this._el_27, '\n                    ', null);
+        this._text_50 = this.renderer.createText(this._el_22, '\n                ', null);
+        this._text_51 = this.renderer.createText(this._el_14, '\n            ', null);
+        this._text_52 = this.renderer.createText(this._el_12, '\n            ', null);
+        this._el_53 = import3.createRenderElement(this.renderer, this._el_12, 'div', new import3.InlineArray2(2, 'class', 'navbar-nav ml-auto'), null);
+        this._text_54 = this.renderer.createText(this._el_53, '\n                ', null);
+        this._el_55 = import3.createRenderElement(this.renderer, this._el_53, 'label', new import3.InlineArray2(2, 'class', 'btn btn-outline-primary btn-file ml-2 mt-2'), null);
+        this._text_56 = this.renderer.createText(this._el_55, '\n                    ', null);
+        this._el_57 = import3.createRenderElement(this.renderer, this._el_55, 'i', new import3.InlineArray2(2, 'class', 'fa fa-upload'), null);
+        this._text_58 = this.renderer.createText(this._el_55, ' Upload config ', null);
+        this._el_59 = import3.createRenderElement(this.renderer, this._el_55, 'input', new import3.InlineArray8(6, 'hidden', '', 'id', 'file', 'type', 'file'), null);
+        this._text_60 = this.renderer.createText(this._el_55, '\n                ', null);
+        this._text_61 = this.renderer.createText(this._el_53, '\n                ', null);
+        this._el_62 = import3.createRenderElement(this.renderer, this._el_53, 'button', new import3.InlineArray2(2, 'class', 'btn btn-outline-primary ml-2 mt-2 mb-2'), null);
+        this._el_63 = import3.createRenderElement(this.renderer, this._el_62, 'i', new import3.InlineArray2(2, 'class', 'fa fa-download'), null);
+        this._text_64 = this.renderer.createText(this._el_62, ' Save current config', null);
+        this._text_65 = this.renderer.createText(this._el_53, '\n            ', null);
+        this._text_66 = this.renderer.createText(this._el_12, '\n        ', null);
+        this._text_67 = this.renderer.createText(this._el_2, '\n    ', null);
+        this._text_68 = this.renderer.createText(this._el_0, '\n', null);
+        this._text_69 = this.renderer.createText(parentRenderNode, '\n', null);
+        this._el_70 = import3.createRenderElement(this.renderer, parentRenderNode, 'router-outlet', import3.EMPTY_INLINE_ARRAY, null);
+        this._vc_70 = new import15.ViewContainer(70, null, this, this._el_70);
+        this._RouterOutlet_70_5 = new import16.Wrapper_RouterOutlet(this.parentView.injectorGet(import19.RouterOutletMap, this.parentIndex), this._vc_70.vcRef, this.parentView.injectorGet(import20.ComponentFactoryResolver, this.parentIndex), null);
         var disposable_0 = import3.subscribeToRenderElement(this, this._el_18, new import3.InlineArray2(2, 'click', null), this.eventHandler(this.handleEvent_18));
         var disposable_1 = import3.subscribeToRenderElement(this, this._el_29, new import3.InlineArray2(2, 'click', null), this.eventHandler(this.handleEvent_29));
         var disposable_2 = import3.subscribeToRenderElement(this, this._el_32, new import3.InlineArray2(2, 'click', null), this.eventHandler(this.handleEvent_32));
         var disposable_3 = import3.subscribeToRenderElement(this, this._el_35, new import3.InlineArray2(2, 'click', null), this.eventHandler(this.handleEvent_35));
         var disposable_4 = import3.subscribeToRenderElement(this, this._el_38, new import3.InlineArray2(2, 'click', null), this.eventHandler(this.handleEvent_38));
         var disposable_5 = import3.subscribeToRenderElement(this, this._el_41, new import3.InlineArray2(2, 'click', null), this.eventHandler(this.handleEvent_41));
-        var disposable_6 = import3.subscribeToRenderElement(this, this._el_53, new import3.InlineArray2(2, 'change', null), this.eventHandler(this.handleEvent_53));
-        var disposable_7 = import3.subscribeToRenderElement(this, this._el_56, new import3.InlineArray2(2, 'click', null), this.eventHandler(this.handleEvent_56));
+        var disposable_6 = import3.subscribeToRenderElement(this, this._el_44, new import3.InlineArray2(2, 'click', null), this.eventHandler(this.handleEvent_44));
+        var disposable_7 = import3.subscribeToRenderElement(this, this._el_47, new import3.InlineArray2(2, 'click', null), this.eventHandler(this.handleEvent_47));
+        var disposable_8 = import3.subscribeToRenderElement(this, this._el_59, new import3.InlineArray2(2, 'change', null), this.eventHandler(this.handleEvent_59));
+        var disposable_9 = import3.subscribeToRenderElement(this, this._el_62, new import3.InlineArray2(2, 'click', null), this.eventHandler(this.handleEvent_62));
         this.init(null, (this.renderer.directRenderer ? null : [
             this._el_0,
             this._text_1,
@@ -239,27 +249,33 @@ export var View_AppComponent0 = (function (_super) {
             this._el_41,
             this._text_42,
             this._text_43,
-            this._text_44,
+            this._el_44,
             this._text_45,
             this._text_46,
             this._el_47,
             this._text_48,
-            this._el_49,
+            this._text_49,
             this._text_50,
-            this._el_51,
+            this._text_51,
             this._text_52,
             this._el_53,
             this._text_54,
-            this._text_55,
-            this._el_56,
+            this._el_55,
+            this._text_56,
             this._el_57,
             this._text_58,
-            this._text_59,
+            this._el_59,
             this._text_60,
             this._text_61,
-            this._text_62,
-            this._text_63,
-            this._el_64
+            this._el_62,
+            this._el_63,
+            this._text_64,
+            this._text_65,
+            this._text_66,
+            this._text_67,
+            this._text_68,
+            this._text_69,
+            this._el_70
         ]), [
             disposable_0,
             disposable_1,
@@ -268,7 +284,9 @@ export var View_AppComponent0 = (function (_super) {
             disposable_4,
             disposable_5,
             disposable_6,
-            disposable_7
+            disposable_7,
+            disposable_8,
+            disposable_9
         ]);
         return null;
     };
@@ -294,8 +312,14 @@ export var View_AppComponent0 = (function (_super) {
         if (((token === import21.RouterLinkWithHref) && ((41 <= requestNodeIndex) && (requestNodeIndex <= 42)))) {
             return this._RouterLinkWithHref_41_3.context;
         }
-        if (((token === import23.RouterOutlet) && (64 === requestNodeIndex))) {
-            return this._RouterOutlet_64_5.context;
+        if (((token === import21.RouterLinkWithHref) && ((44 <= requestNodeIndex) && (requestNodeIndex <= 45)))) {
+            return this._RouterLinkWithHref_44_3.context;
+        }
+        if (((token === import21.RouterLinkWithHref) && ((47 <= requestNodeIndex) && (requestNodeIndex <= 48)))) {
+            return this._RouterLinkWithHref_47_3.context;
+        }
+        if (((token === import23.RouterOutlet) && (70 === requestNodeIndex))) {
+            return this._RouterOutlet_70_5.context;
         }
         return notFoundResult;
     };
@@ -321,8 +345,14 @@ export var View_AppComponent0 = (function (_super) {
         var currVal_41_0_0 = '/school/participant';
         this._RouterLinkWithHref_41_3.check_routerLink(currVal_41_0_0, throwOnChange, false);
         this._RouterLinkWithHref_41_3.ngDoCheck(this, this._el_41, throwOnChange);
-        this._RouterOutlet_64_5.ngDoCheck(this, this._el_64, throwOnChange);
-        this._vc_64.detectChangesInNestedViews(throwOnChange);
+        var currVal_44_0_0 = '/school/curriculum';
+        this._RouterLinkWithHref_44_3.check_routerLink(currVal_44_0_0, throwOnChange, false);
+        this._RouterLinkWithHref_44_3.ngDoCheck(this, this._el_44, throwOnChange);
+        var currVal_47_0_0 = '/school/scheduleTemplate';
+        this._RouterLinkWithHref_47_3.check_routerLink(currVal_47_0_0, throwOnChange, false);
+        this._RouterLinkWithHref_47_3.ngDoCheck(this, this._el_47, throwOnChange);
+        this._RouterOutlet_70_5.ngDoCheck(this, this._el_70, throwOnChange);
+        this._vc_70.detectChangesInNestedViews(throwOnChange);
         if (!throwOnChange) {
             if (this._query_RouterLink_16_0.dirty) {
                 this._query_RouterLink_16_0.reset([]);
@@ -344,9 +374,11 @@ export var View_AppComponent0 = (function (_super) {
         this._RouterLinkWithHref_35_3.checkHost(this, this, this._el_35, throwOnChange);
         this._RouterLinkWithHref_38_3.checkHost(this, this, this._el_38, throwOnChange);
         this._RouterLinkWithHref_41_3.checkHost(this, this, this._el_41, throwOnChange);
+        this._RouterLinkWithHref_44_3.checkHost(this, this, this._el_44, throwOnChange);
+        this._RouterLinkWithHref_47_3.checkHost(this, this, this._el_47, throwOnChange);
     };
     View_AppComponent0.prototype.destroyInternal = function () {
-        this._vc_64.destroyNestedViews();
+        this._vc_70.destroyNestedViews();
         this._RouterLinkWithHref_18_3.ngOnDestroy();
         this._RouterLinkActive_16_3.ngOnDestroy();
         this._RouterLinkWithHref_29_3.ngOnDestroy();
@@ -354,7 +386,9 @@ export var View_AppComponent0 = (function (_super) {
         this._RouterLinkWithHref_35_3.ngOnDestroy();
         this._RouterLinkWithHref_38_3.ngOnDestroy();
         this._RouterLinkWithHref_41_3.ngOnDestroy();
-        this._RouterOutlet_64_5.ngOnDestroy();
+        this._RouterLinkWithHref_44_3.ngOnDestroy();
+        this._RouterLinkWithHref_47_3.ngOnDestroy();
+        this._RouterOutlet_70_5.ngOnDestroy();
     };
     View_AppComponent0.prototype.handleEvent_18 = function (eventName, $event) {
         this.markPathToRootAsCheckOnce();
@@ -392,7 +426,19 @@ export var View_AppComponent0 = (function (_super) {
         result = (this._RouterLinkWithHref_41_3.handleEvent(eventName, $event) && result);
         return result;
     };
-    View_AppComponent0.prototype.handleEvent_53 = function (eventName, $event) {
+    View_AppComponent0.prototype.handleEvent_44 = function (eventName, $event) {
+        this.markPathToRootAsCheckOnce();
+        var result = true;
+        result = (this._RouterLinkWithHref_44_3.handleEvent(eventName, $event) && result);
+        return result;
+    };
+    View_AppComponent0.prototype.handleEvent_47 = function (eventName, $event) {
+        this.markPathToRootAsCheckOnce();
+        var result = true;
+        result = (this._RouterLinkWithHref_47_3.handleEvent(eventName, $event) && result);
+        return result;
+    };
+    View_AppComponent0.prototype.handleEvent_59 = function (eventName, $event) {
         this.markPathToRootAsCheckOnce();
         var result = true;
         if ((eventName == 'change')) {
@@ -401,7 +447,7 @@ export var View_AppComponent0 = (function (_super) {
         }
         return result;
     };
-    View_AppComponent0.prototype.handleEvent_56 = function (eventName, $event) {
+    View_AppComponent0.prototype.handleEvent_62 = function (eventName, $event) {
         this.markPathToRootAsCheckOnce();
         var result = true;
         if ((eventName == 'click')) {

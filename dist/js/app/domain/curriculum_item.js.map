@@ -1,1 +1,1 @@
-{"version":3,"file":"curriculum_item.js","sourceRoot":"","sources":["../../../../app/domain/curriculum_item.ts"],"names":[],"mappings":"OAAO,EAAE,IAAI,EAAE,MAAM,QAAQ;AAG7B;IAAA;QACI,SAAI,GAAQ,IAAI,CAAC,EAAE,EAAE,CAAC;IAI1B,CAAC;IAAD,qBAAC;AAAD,CAAC,AALD,IAKC"}
+{"version":3,"file":"curriculum_item.js","sourceRoot":"","sources":["../../../../app/domain/curriculum_item.ts"],"names":[],"mappings":"OACO,EAAE,IAAI,EAAE,MAAM,QAAQ;AAG7B;IAAA;QACI,SAAI,GAAQ,IAAI,CAAC,EAAE,EAAE,CAAC;IAK1B,CAAC;IAAD,qBAAC;AAAD,CAAC,AAND,IAMC"}

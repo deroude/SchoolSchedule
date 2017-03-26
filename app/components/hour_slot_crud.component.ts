@@ -1,6 +1,6 @@
 import { Column } from './../domain/column';
 import { ScheduleService } from './../services/schedule.service';
-import { HourSlot } from './../domain/hour_slot';
+import { HourSlot, HourSlotFactory } from './../domain/hour_slot';
 import { StandardCrud } from './standard_crud.interface';
 import { Component, OnInit } from '@angular/core';
 
@@ -12,19 +12,19 @@ export class HourSlotCrudComponent implements OnInit, StandardCrud<HourSlot> {
     constructor(private scheduleService: ScheduleService) { }
 
     ngOnInit() {
-        this.source=this.scheduleService.config.hourSlots;
+        this.source = this.scheduleService.config.hourSlots;
         this.scheduleService.trigger.subscribe(() => this.source = this.scheduleService.config.hourSlots);
     }
 
     title: string = "Hour slots";
 
-    search:string;
+    search: string;
 
     subtitle: string = "Intervals where classes are held";
 
     selected: HourSlot = null;
 
-    source: HourSlot[] ;
+    source: HourSlot[];
 
     cols: Column<any>[] = [
         {
@@ -44,18 +44,18 @@ export class HourSlotCrudComponent implements OnInit, StandardCrud<HourSlot> {
             per10: 2
         },
         {
-            name: "days",
+            name: "day",
             required: true,
             autofocus: false,
-            title: "Days",
-            type: "multiselect",
+            title: "Day",
+            type: "select",
             per10: 6,
             source: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
         }
     ];
 
     add(): void {
-        this.selected = new HourSlot();
+        this.selected = HourSlotFactory.make("8:00", "9:00", "Monday");
     }
 
     edit(p: HourSlot) {
@@ -63,7 +63,7 @@ export class HourSlotCrudComponent implements OnInit, StandardCrud<HourSlot> {
     }
 
     delete(item: HourSlot) {
-        this.source=this.source.filter(p => p.uuid !== item.uuid);
+        this.source = this.source.filter(p => p.uuid !== item.uuid);
     }
 
     save() {

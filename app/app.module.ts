@@ -1,3 +1,5 @@
+import { ScheduleSlotCrudComponent } from './components/schedule_slot_crud.component';
+import { CurriculumCrudComponent } from './components/curriculum_crud.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ToStringPipe } from './pipes/tostring.pipe';
 import { RoomCrudComponent } from './components/room_crud.component';
@@ -36,6 +38,8 @@ import { NotFoundComponent } from './components/not_found.component';
     ActivityCrudComponent,
     TeacherCrudComponent,
     RoomCrudComponent,
+    CurriculumCrudComponent,
+    ScheduleSlotCrudComponent,
     ToStringPipe,
     FilterPipe,
     NotFoundComponent,

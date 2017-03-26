@@ -7,6 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+import { ScheduleSlotCrudComponent } from './components/schedule_slot_crud.component';
+import { CurriculumCrudComponent } from './components/curriculum_crud.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ToStringPipe } from './pipes/tostring.pipe';
 import { RoomCrudComponent } from './components/room_crud.component';
@@ -45,6 +47,8 @@ export var AppModule = (function () {
                 ActivityCrudComponent,
                 TeacherCrudComponent,
                 RoomCrudComponent,
+                CurriculumCrudComponent,
+                ScheduleSlotCrudComponent,
                 ToStringPipe,
                 FilterPipe,
                 NotFoundComponent,

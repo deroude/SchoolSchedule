@@ -8,22 +8,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Pipe } from '@angular/core';
-/*
- * Raise the value exponentially
- * Takes an exponent argument that defaults to 1.
- * Usage:
- *   value | exponentialStrength:exponent
- * Example:
- *   {{ 2 |  exponentialStrength:10}}
- *   formats to: 1024
-*/
 export var FilterPipe = (function () {
     function FilterPipe() {
     }
     FilterPipe.prototype.transform = function (source, filter) {
         if (!filter || filter.length === 0)
             return source;
-        return source.filter(function (s) { return !s.name || s.name.toLowerCase().indexOf(filter.toLowerCase()) > -1; });
+        return source.filter(function (s) {
+            if (s.name) {
+                return s.name.toLowerCase().indexOf(filter.toLowerCase()) > -1;
+            }
+            var re = false;
+            var canSearch = false;
+            for (var property in s) {
+                if (s.hasOwnProperty(property) && s[property]["name"]) {
+                    re = re || (s[property]["name"].toLowerCase().indexOf(filter.toLowerCase()) > -1);
+                    canSearch = true;
+                }
+            }
+            return !canSearch || re;
+        });
     };
     FilterPipe = __decorate([
         Pipe({ name: 'filter' }), 

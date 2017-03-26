@@ -1,4 +1,8 @@
 <div class="container">
+  <div class="row mb-2">
+    <button type="button" class="btn btn-outline-info" (click)="generateSchedule()"><i class="fa fa-calendar"></i> Generate schedule</button>
+    <button type="button" class="btn btn-outline-info ml-2" (click)="clearSchedule()"><i class="fa fa-calendar-o"></i> Clear schedule</button>
+  </div>
   <div class="row">
     <div class="col-sm-2">
       <table class="table table-responsive">
@@ -9,36 +13,47 @@
         </thead>
         <tbody>
           <tr *ngFor="let p of source.participants">
-            <td>{{p.name}}</td>
+            <td (click)="display(p.uuid,'participant')" [class.table-info]="selectedParticipant && p.uuid===selectedParticipant.uuid">{{p.name}}</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="col-sm-10">
+    <div class="col-sm-8">
       <table class="table table-responsive">
         <thead>
           <tr>
             <th><em>Time</em></th>
-            <th>Sunday</th>
             <th>Monday</th>
             <th>Tuesday</th>
             <th>Wednesday</th>
             <th>Thursday</th>
             <th>Friday</th>
-            <th>Saturday</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let hourSlot of source.hourSlots">
-            <th scope="row">{{hourSlot.start}}-{{hourSlot.end}}</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr *ngFor="let ditem of displaySchedule">
+            <th scope="row">{{ditem[0]}}</th>
+            <td>{{ditem[1]}}</td>
+            <td>{{ditem[2]}}</td>
+            <td>{{ditem[3]}}</td>
+            <td>{{ditem[4]}}</td>
+            <td>{{ditem[5]}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-2">
+      <table class="table table-responsive">
+        <thead>
+          <tr>
+            <th>Teachers</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let t of source.teachers">
+            <td (click)="display(t.uuid,'teacher')" [class.table-info]="selectedTeacher && t.uuid===selectedTeacher.uuid">{{t.name}}</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-</div>

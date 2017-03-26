@@ -655,12 +655,166 @@ var View_HourSlotCrudComponent9 = (function (_super) {
     };
     return View_HourSlotCrudComponent9;
 }(import1.AppView));
+var View_HourSlotCrudComponent12 = (function (_super) {
+    __extends(View_HourSlotCrudComponent12, _super);
+    function View_HourSlotCrudComponent12(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
+        _super.call(this, View_HourSlotCrudComponent12, renderType_HourSlotCrudComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
+        this._expr_4 = import10.UNINITIALIZED;
+    }
+    View_HourSlotCrudComponent12.prototype.createInternal = function (rootSelector) {
+        this._el_0 = import3.createRenderElement(this.renderer, null, 'option', import3.EMPTY_INLINE_ARRAY, null);
+        this._NgSelectOption_0_3 = new import26.Wrapper_NgSelectOption(new import18.ElementRef(this._el_0), this.renderer, this.parentView._SelectControlValueAccessor_0_3.context);
+        this._NgSelectMultipleOption_0_4 = new import27.Wrapper_NgSelectMultipleOption(new import18.ElementRef(this._el_0), this.renderer, null);
+        this._text_1 = this.renderer.createText(this._el_0, '', null);
+        this._pipe_tostring_1_2 = import3.pureProxy1(this.parentView.parentView.parentView.parentView._pipe_tostring_1.transform.bind(this.parentView.parentView.parentView.parentView._pipe_tostring_1));
+        this.init(this._el_0, (this.renderer.directRenderer ? null : [
+            this._el_0,
+            this._text_1
+        ]), null);
+        return null;
+    };
+    View_HourSlotCrudComponent12.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
+        if (((token === import28.NgSelectOption) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) {
+            return this._NgSelectOption_0_3.context;
+        }
+        if (((token === import29.NgSelectMultipleOption) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) {
+            return this._NgSelectMultipleOption_0_4.context;
+        }
+        return notFoundResult;
+    };
+    View_HourSlotCrudComponent12.prototype.detectChangesInternal = function (throwOnChange) {
+        var valUnwrapper = new import10.ValueUnwrapper();
+        var currVal_0_0_0 = this.context.$implicit;
+        this._NgSelectOption_0_3.check_ngValue(currVal_0_0_0, throwOnChange, false);
+        this._NgSelectOption_0_3.ngDoCheck(this, this._el_0, throwOnChange);
+        var currVal_0_1_0 = this.context.$implicit;
+        this._NgSelectMultipleOption_0_4.check_ngValue(currVal_0_1_0, throwOnChange, false);
+        this._NgSelectMultipleOption_0_4.ngDoCheck(this, this._el_0, throwOnChange);
+        valUnwrapper.reset();
+        var currVal_4 = import3.inlineInterpolate(1, '', valUnwrapper.unwrap(import3.castByValue(this._pipe_tostring_1_2, this.parentView.parentView.parentView.parentView._pipe_tostring_1.transform)(this.context.$implicit)), '');
+        if ((valUnwrapper.hasWrappedValue || import3.checkBinding(throwOnChange, this._expr_4, currVal_4))) {
+            this.renderer.setText(this._text_1, currVal_4);
+            this._expr_4 = currVal_4;
+        }
+    };
+    View_HourSlotCrudComponent12.prototype.destroyInternal = function () {
+        this._NgSelectOption_0_3.ngOnDestroy();
+        this._NgSelectMultipleOption_0_4.ngOnDestroy();
+    };
+    View_HourSlotCrudComponent12.prototype.visitRootNodesInternal = function (cb, ctx) {
+        cb(this._el_0, ctx);
+    };
+    return View_HourSlotCrudComponent12;
+}(import1.AppView));
+var View_HourSlotCrudComponent11 = (function (_super) {
+    __extends(View_HourSlotCrudComponent11, _super);
+    function View_HourSlotCrudComponent11(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
+        _super.call(this, View_HourSlotCrudComponent11, renderType_HourSlotCrudComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
+        this._expr_12 = import10.UNINITIALIZED;
+        this._expr_13 = import10.UNINITIALIZED;
+    }
+    View_HourSlotCrudComponent11.prototype.createInternal = function (rootSelector) {
+        this._el_0 = import3.createRenderElement(this.renderer, null, 'select', new import3.InlineArray2(2, 'class', 'form-control '), null);
+        this._SelectControlValueAccessor_0_3 = new import26.Wrapper_SelectControlValueAccessor(this.renderer, new import18.ElementRef(this._el_0));
+        this._NG_VALUE_ACCESSOR_0_4 = [this._SelectControlValueAccessor_0_3.context];
+        this._NgModel_0_5 = new import16.Wrapper_NgModel(this.parentView.parentView._ControlContainer_4_4, null, null, this._NG_VALUE_ACCESSOR_0_4);
+        this._NgControl_0_6 = this._NgModel_0_5.context;
+        this._NgControlStatus_0_7 = new import17.Wrapper_NgControlStatus(this._NgControl_0_6);
+        this._text_1 = this.renderer.createText(this._el_0, '\n                            ', null);
+        this._anchor_2 = this.renderer.createTemplateAnchor(this._el_0, null);
+        this._vc_2 = new import9.ViewContainer(2, 0, this, this._anchor_2);
+        this._TemplateRef_2_5 = new import12.TemplateRef_(this, 2, this._anchor_2);
+        this._NgFor_2_6 = new import11.Wrapper_NgFor(this._vc_2.vcRef, this._TemplateRef_2_5, this.parentView.parentView.parentView.parentView.injectorGet(import13.IterableDiffers, this.parentView.parentView.parentView.parentIndex), this.parentView.parentView.parentView.ref);
+        this._text_3 = this.renderer.createText(this._el_0, '\n                         ', null);
+        var disposable_0 = import3.subscribeToRenderElement(this, this._el_0, new import3.InlineArray8(6, 'ngModelChange', null, 'change', null, 'blur', null), this.eventHandler(this.handleEvent_0));
+        this._NgModel_0_5.subscribe(this, this.eventHandler(this.handleEvent_0), true);
+        this.init(this._el_0, (this.renderer.directRenderer ? null : [
+            this._el_0,
+            this._text_1,
+            this._anchor_2,
+            this._text_3
+        ]), [disposable_0]);
+        return null;
+    };
+    View_HourSlotCrudComponent11.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
+        if (((token === import12.TemplateRef) && (2 === requestNodeIndex))) {
+            return this._TemplateRef_2_5;
+        }
+        if (((token === import14.NgFor) && (2 === requestNodeIndex))) {
+            return this._NgFor_2_6.context;
+        }
+        if (((token === import28.SelectControlValueAccessor) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 3)))) {
+            return this._SelectControlValueAccessor_0_3.context;
+        }
+        if (((token === import20.NG_VALUE_ACCESSOR) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 3)))) {
+            return this._NG_VALUE_ACCESSOR_0_4;
+        }
+        if (((token === import21.NgModel) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 3)))) {
+            return this._NgModel_0_5.context;
+        }
+        if (((token === import22.NgControl) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 3)))) {
+            return this._NgControl_0_6;
+        }
+        if (((token === import23.NgControlStatus) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 3)))) {
+            return this._NgControlStatus_0_7.context;
+        }
+        return notFoundResult;
+    };
+    View_HourSlotCrudComponent11.prototype.detectChangesInternal = function (throwOnChange) {
+        this._SelectControlValueAccessor_0_3.ngDoCheck(this, this._el_0, throwOnChange);
+        var currVal_0_1_0 = import3.inlineInterpolate(1, '', this.parentView.context.$implicit.name, '');
+        this._NgModel_0_5.check_name(currVal_0_1_0, throwOnChange, false);
+        var currVal_0_1_1 = this.parentView.parentView.parentView.context.selected[this.parentView.context.$implicit.name];
+        this._NgModel_0_5.check_model(currVal_0_1_1, throwOnChange, false);
+        this._NgModel_0_5.ngDoCheck(this, this._el_0, throwOnChange);
+        this._NgControlStatus_0_7.ngDoCheck(this, this._el_0, throwOnChange);
+        var currVal_2_0_0 = this.parentView.context.$implicit.source;
+        this._NgFor_2_6.check_ngForOf(currVal_2_0_0, throwOnChange, false);
+        this._NgFor_2_6.ngDoCheck(this, this._anchor_2, throwOnChange);
+        this._vc_2.detectChangesInNestedViews(throwOnChange);
+        var currVal_12 = (this.parentView.context.$implicit.autofocus ? true : null);
+        if (import3.checkBinding(throwOnChange, this._expr_12, currVal_12)) {
+            this.renderer.setElementAttribute(this._el_0, 'autofocus', ((currVal_12 == null) ? null : currVal_12.toString()));
+            this._expr_12 = currVal_12;
+        }
+        var currVal_13 = (this.parentView.context.$implicit.required ? true : null);
+        if (import3.checkBinding(throwOnChange, this._expr_13, currVal_13)) {
+            this.renderer.setElementAttribute(this._el_0, 'required', ((currVal_13 == null) ? null : currVal_13.toString()));
+            this._expr_13 = currVal_13;
+        }
+        this._NgControlStatus_0_7.checkHost(this, this, this._el_0, throwOnChange);
+    };
+    View_HourSlotCrudComponent11.prototype.destroyInternal = function () {
+        this._vc_2.destroyNestedViews();
+        this._NgModel_0_5.ngOnDestroy();
+    };
+    View_HourSlotCrudComponent11.prototype.visitRootNodesInternal = function (cb, ctx) {
+        cb(this._el_0, ctx);
+    };
+    View_HourSlotCrudComponent11.prototype.createEmbeddedViewInternal = function (nodeIndex) {
+        if ((nodeIndex == 2)) {
+            return new View_HourSlotCrudComponent12(this.viewUtils, this, 2, this._anchor_2, this._vc_2);
+        }
+        return null;
+    };
+    View_HourSlotCrudComponent11.prototype.handleEvent_0 = function (eventName, $event) {
+        this.markPathToRootAsCheckOnce();
+        var result = true;
+        result = (this._SelectControlValueAccessor_0_3.handleEvent(eventName, $event) && result);
+        if ((eventName == 'ngModelChange')) {
+            var pd_sub_0 = ((this.parentView.parentView.parentView.context.selected[this.parentView.context.$implicit.name] = $event) !== false);
+            result = (pd_sub_0 && result);
+        }
+        return result;
+    };
+    return View_HourSlotCrudComponent11;
+}(import1.AppView));
 var View_HourSlotCrudComponent5 = (function (_super) {
     __extends(View_HourSlotCrudComponent5, _super);
     function View_HourSlotCrudComponent5(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
         _super.call(this, View_HourSlotCrudComponent5, renderType_HourSlotCrudComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
-        this._expr_25 = import10.UNINITIALIZED;
-        this._expr_26 = import10.UNINITIALIZED;
+        this._expr_30 = import10.UNINITIALIZED;
+        this._expr_31 = import10.UNINITIALIZED;
     }
     View_HourSlotCrudComponent5.prototype.createInternal = function (rootSelector) {
         this._el_0 = import3.createRenderElement(this.renderer, null, 'div', new import3.InlineArray2(2, 'class', 'form-group'), null);
@@ -687,7 +841,12 @@ var View_HourSlotCrudComponent5 = (function (_super) {
         this._vc_11 = new import9.ViewContainer(11, 0, this, this._anchor_11);
         this._TemplateRef_11_5 = new import12.TemplateRef_(this, 11, this._anchor_11);
         this._NgIf_11_6 = new import30.Wrapper_NgIf(this._vc_11.vcRef, this._TemplateRef_11_5);
-        this._text_12 = this.renderer.createText(this._el_0, '\n                    ', null);
+        this._text_12 = this.renderer.createText(this._el_0, '\n                        ', null);
+        this._anchor_13 = this.renderer.createTemplateAnchor(this._el_0, null);
+        this._vc_13 = new import9.ViewContainer(13, 0, this, this._anchor_13);
+        this._TemplateRef_13_5 = new import12.TemplateRef_(this, 13, this._anchor_13);
+        this._NgIf_13_6 = new import30.Wrapper_NgIf(this._vc_13.vcRef, this._TemplateRef_13_5);
+        this._text_14 = this.renderer.createText(this._el_0, '\n                    ', null);
         this.init(this._el_0, (this.renderer.directRenderer ? null : [
             this._el_0,
             this._text_1,
@@ -701,7 +860,9 @@ var View_HourSlotCrudComponent5 = (function (_super) {
             this._anchor_9,
             this._text_10,
             this._anchor_11,
-            this._text_12
+            this._text_12,
+            this._anchor_13,
+            this._text_14
         ]), null);
         return null;
     };
@@ -730,6 +891,12 @@ var View_HourSlotCrudComponent5 = (function (_super) {
         if (((token === import31.NgIf) && (11 === requestNodeIndex))) {
             return this._NgIf_11_6.context;
         }
+        if (((token === import12.TemplateRef) && (13 === requestNodeIndex))) {
+            return this._TemplateRef_13_5;
+        }
+        if (((token === import31.NgIf) && (13 === requestNodeIndex))) {
+            return this._NgIf_13_6.context;
+        }
         return notFoundResult;
     };
     View_HourSlotCrudComponent5.prototype.detectChangesInternal = function (throwOnChange) {
@@ -745,19 +912,23 @@ var View_HourSlotCrudComponent5 = (function (_super) {
         var currVal_11_0_0 = (this.context.$implicit.type === 'multiselect');
         this._NgIf_11_6.check_ngIf(currVal_11_0_0, throwOnChange, false);
         this._NgIf_11_6.ngDoCheck(this, this._anchor_11, throwOnChange);
+        var currVal_13_0_0 = (this.context.$implicit.type === 'select');
+        this._NgIf_13_6.check_ngIf(currVal_13_0_0, throwOnChange, false);
+        this._NgIf_13_6.ngDoCheck(this, this._anchor_13, throwOnChange);
         this._vc_5.detectChangesInNestedViews(throwOnChange);
         this._vc_7.detectChangesInNestedViews(throwOnChange);
         this._vc_9.detectChangesInNestedViews(throwOnChange);
         this._vc_11.detectChangesInNestedViews(throwOnChange);
-        var currVal_25 = import3.inlineInterpolate(1, '', this.context.$implicit.name, '');
-        if (import3.checkBinding(throwOnChange, this._expr_25, currVal_25)) {
-            this.renderer.setElementProperty(this._el_2, 'htmlFor', currVal_25);
-            this._expr_25 = currVal_25;
+        this._vc_13.detectChangesInNestedViews(throwOnChange);
+        var currVal_30 = import3.inlineInterpolate(1, '', this.context.$implicit.name, '');
+        if (import3.checkBinding(throwOnChange, this._expr_30, currVal_30)) {
+            this.renderer.setElementProperty(this._el_2, 'htmlFor', currVal_30);
+            this._expr_30 = currVal_30;
         }
-        var currVal_26 = import3.inlineInterpolate(1, '', this.context.$implicit.title, '');
-        if (import3.checkBinding(throwOnChange, this._expr_26, currVal_26)) {
-            this.renderer.setText(this._text_3, currVal_26);
-            this._expr_26 = currVal_26;
+        var currVal_31 = import3.inlineInterpolate(1, '', this.context.$implicit.title, '');
+        if (import3.checkBinding(throwOnChange, this._expr_31, currVal_31)) {
+            this.renderer.setText(this._text_3, currVal_31);
+            this._expr_31 = currVal_31;
         }
     };
     View_HourSlotCrudComponent5.prototype.destroyInternal = function () {
@@ -765,6 +936,7 @@ var View_HourSlotCrudComponent5 = (function (_super) {
         this._vc_7.destroyNestedViews();
         this._vc_9.destroyNestedViews();
         this._vc_11.destroyNestedViews();
+        this._vc_13.destroyNestedViews();
     };
     View_HourSlotCrudComponent5.prototype.visitRootNodesInternal = function (cb, ctx) {
         cb(this._el_0, ctx);
@@ -781,6 +953,9 @@ var View_HourSlotCrudComponent5 = (function (_super) {
         }
         if ((nodeIndex == 11)) {
             return new View_HourSlotCrudComponent9(this.viewUtils, this, 11, this._anchor_11, this._vc_11);
+        }
+        if ((nodeIndex == 13)) {
+            return new View_HourSlotCrudComponent11(this.viewUtils, this, 13, this._anchor_13, this._vc_13);
         }
         return null;
     };

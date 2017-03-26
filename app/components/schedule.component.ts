@@ -1,6 +1,9 @@
+import { ScheduleItem } from './../domain/schedule_item';
+import { Participant } from './../domain/participant';
+import { Teacher } from './../domain/teacher';
 import { Configuration } from './../domain/configuration';
 import { ScheduleService } from './../services/schedule.service';
-import { HourSlot } from './../domain/hour_slot';
+import { HourSlot, DAYS } from './../domain/hour_slot';
 import { LipsumService } from './../services/lipsum.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -13,13 +16,69 @@ export class ScheduleComponent implements OnInit {
 
   source: Configuration;
 
+  selectedTeacher: Teacher;
+  selectedParticipant: Participant;
+
+  displaySchedule: string[][] = [];
+
   constructor(private scheduleService: ScheduleService) {
 
   }
 
   public ngOnInit() {
-    this.source=this.scheduleService.config;
+    this.source = this.scheduleService.config;
+    this.scheduleService.trigger.subscribe(() => this.source = this.scheduleService.config);
   }
 
+  public generateSchedule() {
+    this.scheduleService.generateSchedule();
+    this._display();
+  }
+
+  public clearSchedule() {
+    this.scheduleService.clearSchedule();
+    this.displaySchedule = [];
+  }
+
+
+  public hourSlots(): HourSlot[] {
+    var re: HourSlot[] = [];
+    this.source.hourSlots.forEach(h => {
+      if (!re.find(hx => hx.name === h.name)) {
+        re.push(h);
+      }
+    });
+    return re;
+  }
+
+  display(id: string, pt: string): void {
+    switch (pt) {
+      case "participant":
+        this.selectedParticipant = this.source.participants.find(p => p.uuid === id);
+        this.selectedTeacher = null;
+        break;
+      case "teacher":
+        this.selectedTeacher = this.source.teachers.find(t => t.uuid === id);
+        this.selectedParticipant = null;
+        break;
+    }
+    this._display();
+  }
+
+  private _display() {
+    if (!this.selectedParticipant && !this.selectedTeacher) return;
+    this.displaySchedule = [];
+    this.hourSlots().forEach(hst => {
+      var row: string[] = [hst.name];
+      DAYS.forEach(d => {
+        var it: ScheduleItem = this.source.schedule.find(s => (!this.selectedTeacher || s.teacher.uuid === this.selectedTeacher.uuid)
+          && (!this.selectedParticipant || s.slot.participant.uuid === this.selectedParticipant.uuid)
+          && s.slot.hourSlot.day === d && s.slot.hourSlot.name === hst.name);
+        if (it)
+          row.push(it.activity.name + " / " + (this.selectedParticipant ? it.teacher.name : it.slot.participant.name) + "[" + it.room.name + "]");
+      });
+      this.displaySchedule.push(row);
+    });
+  }
 
 }

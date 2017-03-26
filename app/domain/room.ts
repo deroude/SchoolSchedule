@@ -4,5 +4,5 @@ import { Activity } from './activity';
 export class Room implements IdName{
     uuid:string=Util.id();
     name:string;
-    restrictedTo:Activity[];
+    restrictedTo:Activity[]=[];
 }
