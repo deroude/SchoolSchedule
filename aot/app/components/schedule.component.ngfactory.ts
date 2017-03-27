@@ -431,7 +431,7 @@ export class View_ScheduleComponent0 extends import1.AppView<import0.ScheduleCom
     this._text_12 = this.renderer.createText(this._el_0,'\n  ',(null as any));
     this._el_13 = import3.createRenderElement(this.renderer,this._el_0,'div',new import3.InlineArray2(2,'class','row'),(null as any));
     this._text_14 = this.renderer.createText(this._el_13,'\n    ',(null as any));
-    this._el_15 = import3.createRenderElement(this.renderer,this._el_13,'div',new import3.InlineArray2(2,'class','col-sm-2'),(null as any));
+    this._el_15 = import3.createRenderElement(this.renderer,this._el_13,'div',new import3.InlineArray2(2,'class','col-sm-1'),(null as any));
     this._text_16 = this.renderer.createText(this._el_15,'\n      ',(null as any));
     this._el_17 = import3.createRenderElement(this.renderer,this._el_15,'table',new import3.InlineArray2(2,'class','table table-responsive'),(null as any));
     this._text_18 = this.renderer.createText(this._el_17,'\n        ',(null as any));
@@ -454,7 +454,7 @@ export class View_ScheduleComponent0 extends import1.AppView<import0.ScheduleCom
     this._text_32 = this.renderer.createText(this._el_17,'\n      ',(null as any));
     this._text_33 = this.renderer.createText(this._el_15,'\n    ',(null as any));
     this._text_34 = this.renderer.createText(this._el_13,'\n    ',(null as any));
-    this._el_35 = import3.createRenderElement(this.renderer,this._el_13,'div',new import3.InlineArray2(2,'class','col-sm-8'),(null as any));
+    this._el_35 = import3.createRenderElement(this.renderer,this._el_13,'div',new import3.InlineArray2(2,'class','col-sm-9'),(null as any));
     this._text_36 = this.renderer.createText(this._el_35,'\n      ',(null as any));
     this._el_37 = import3.createRenderElement(this.renderer,this._el_35,'table',new import3.InlineArray2(2,'class','table table-responsive'),(null as any));
     this._text_38 = this.renderer.createText(this._el_37,'\n        ',(null as any));
