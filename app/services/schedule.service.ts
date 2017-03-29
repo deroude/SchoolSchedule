@@ -20,6 +20,7 @@ import { Subject } from 'rxjs/Subject';
 const GENERATIONS: number = 10;
 const GENERATION_SIZE: number = 20;
 const INHERITANCE_PERCENT: number = 20;
+const SURVIVORS:number=5;
 
 @Injectable()
 export class ScheduleService {
@@ -166,7 +167,7 @@ export class ScheduleService {
                 progress.current = 0;
             }
             else {
-                oldgen = newgen.slice(0, 5);
+                oldgen = newgen.slice(0, SURVIVORS);
                 newgen = [];
             }
         }, 200);
