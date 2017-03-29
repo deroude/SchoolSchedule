@@ -19,8 +19,9 @@ import { Subject } from 'rxjs/Subject';
 
 const GENERATIONS: number = 10;
 const GENERATION_SIZE: number = 20;
-const INHERITANCE_PERCENT: number = 20;
-const SURVIVORS:number=5;
+const INHERITANCE_PERCENT: number = 30;
+const SURVIVORS: number = 5;
+const PATRIARCHS: number = 1;
 
 @Injectable()
 export class ScheduleService {
@@ -135,17 +136,18 @@ export class ScheduleService {
                 var gc: ScheduleCandidate = new ScheduleCandidate();
                 if (oldgen.length > 0) {
                     var mom = oldgen[Math.floor(Math.random() * oldgen.length)];
-                    var dad = oldgen[Math.floor(Math.random() * oldgen.length)];
-                    var momShuffle = this.shuffleSeed(mom.schedule.length);
-                    var dadShuffle = this.shuffleSeed(dad.schedule.length);
-                    for (var adn: number = 0; adn < INHERITANCE_PERCENT * Math.min(mom.schedule.length, dad.schedule.length) / 100; adn++) {
-                        this.tryAddGene(gc, constraints, mom.schedule[momShuffle[adn]]);
-                        this.tryAddGene(gc, constraints, dad.schedule[dadShuffle[adn]]);
-                    }
                 }
                 this.config.curriculum.forEach(ci => {
                     for (var i: number = 0; i < ci.weeklyCount; i++) {
-                        this.tryAdd(gc, constraints, ci, this.config.scheduleTemplate);
+                        if (mom && Math.random() < INHERITANCE_PERCENT / 100) {
+                            var momsGene: ScheduleItem = mom.schedule.find(m => m.activity.uuid === ci.activity.uuid
+                                && m.teacher.uuid === ci.teacher.uuid && m.slot.participant.uuid === ci.participant.uuid);
+                            if (!momsGene || !this.tryAddGene(gc, constraints, momsGene)) {
+                                this.tryAdd(gc, constraints, ci, this.config.scheduleTemplate);
+                            }
+                        } else {
+                            this.tryAdd(gc, constraints, ci, this.config.scheduleTemplate);
+                        }
                     }
                 });
                 if (gc.unschedulable.length === 0) {
@@ -168,7 +170,7 @@ export class ScheduleService {
             }
             else {
                 oldgen = newgen.slice(0, SURVIVORS);
-                newgen = [];
+                newgen = newgen.slice(0,PATRIARCHS);
             }
         }, 200);
     }

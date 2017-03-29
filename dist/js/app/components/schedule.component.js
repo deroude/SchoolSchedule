@@ -58,13 +58,14 @@ export var ScheduleComponent = (function () {
             return;
         this.displaySchedule = [];
         this.hourSlots().forEach(function (hst) {
-            var row = [hst.name];
+            var row = [];
             DAYS.forEach(function (d) {
                 var it = _this.source.schedule.find(function (s) { return (!_this.selectedTeacher || s.teacher.uuid === _this.selectedTeacher.uuid)
                     && (!_this.selectedParticipant || s.slot.participant.uuid === _this.selectedParticipant.uuid)
                     && s.slot.hourSlot.day === d && s.slot.hourSlot.name === hst.name; });
                 if (it)
-                    row.push(it.activity.name + " / " + (_this.selectedParticipant ? it.teacher.name : it.slot.participant.name) + "[" + it.room.name + "]");
+                    row.push(it);
+                // row.push(it.activity.name + " / " + (this.selectedParticipant ? it.teacher.name : it.slot.participant.name) + "[" + it.room.name + "]");
             });
             _this.displaySchedule.push(row);
         });
@@ -74,6 +75,9 @@ export var ScheduleComponent = (function () {
     };
     ScheduleComponent.prototype.getProblemsForTeacher = function (p) {
         return this.source.noSolutionFor.filter(function (c) { return c.teacher.uuid === p.uuid; });
+    };
+    ScheduleComponent.prototype.lock = function (s) {
+        s.locked = !s.locked;
     };
     ScheduleComponent = __decorate([
         Component({

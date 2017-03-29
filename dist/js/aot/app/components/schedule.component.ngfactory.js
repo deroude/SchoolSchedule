@@ -19,12 +19,12 @@ import * as import7 from '@angular/core/src/linker/component_factory';
 import * as import8 from '../../../app/services/schedule.service';
 import * as import9 from '@angular/core/src/linker/view_container';
 import * as import10 from '@angular/core/src/change_detection/change_detection_util';
-import * as import11 from '../../node_modules/@angular/common/src/directives/ng_for.ngfactory';
+import * as import11 from '../../node_modules/@angular/common/src/directives/ng_if.ngfactory';
 import * as import12 from '@angular/core/src/linker/template_ref';
-import * as import13 from '@angular/core/src/change_detection/differs/iterable_differs';
-import * as import14 from '@angular/common/src/directives/ng_for';
-import * as import15 from '../../node_modules/@angular/common/src/directives/ng_if.ngfactory';
-import * as import16 from '@angular/common/src/directives/ng_if';
+import * as import13 from '@angular/common/src/directives/ng_if';
+import * as import14 from '../../node_modules/@angular/common/src/directives/ng_for.ngfactory';
+import * as import15 from '@angular/core/src/change_detection/differs/iterable_differs';
+import * as import16 from '@angular/common/src/directives/ng_for';
 import * as import17 from '@angular/core/src/security';
 export var Wrapper_ScheduleComponent = (function () {
     function Wrapper_ScheduleComponent(p0) {
@@ -145,107 +145,299 @@ var View_ScheduleComponent1 = (function (_super) {
     };
     return View_ScheduleComponent1;
 }(import1.AppView));
-var View_ScheduleComponent2 = (function (_super) {
-    __extends(View_ScheduleComponent2, _super);
-    function View_ScheduleComponent2(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
-        _super.call(this, View_ScheduleComponent2, renderType_ScheduleComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
-        this._expr_20 = import10.UNINITIALIZED;
-        this._expr_21 = import10.UNINITIALIZED;
-        this._expr_22 = import10.UNINITIALIZED;
-        this._expr_23 = import10.UNINITIALIZED;
-        this._expr_24 = import10.UNINITIALIZED;
-        this._expr_25 = import10.UNINITIALIZED;
+var View_ScheduleComponent3 = (function (_super) {
+    __extends(View_ScheduleComponent3, _super);
+    function View_ScheduleComponent3(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
+        _super.call(this, View_ScheduleComponent3, renderType_ScheduleComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
+        this._expr_2 = import10.UNINITIALIZED;
     }
-    View_ScheduleComponent2.prototype.createInternal = function (rootSelector) {
-        this._el_0 = import3.createRenderElement(this.renderer, null, 'tr', import3.EMPTY_INLINE_ARRAY, null);
-        this._text_1 = this.renderer.createText(this._el_0, '\n              ', null);
-        this._el_2 = import3.createRenderElement(this.renderer, this._el_0, 'th', new import3.InlineArray2(2, 'scope', 'row'), null);
+    View_ScheduleComponent3.prototype.createInternal = function (rootSelector) {
+        this._el_0 = import3.createRenderElement(this.renderer, null, 'th', new import3.InlineArray2(2, 'scope', 'row'), null);
+        this._text_1 = this.renderer.createText(this._el_0, '', null);
+        this.init(this._el_0, (this.renderer.directRenderer ? null : [
+            this._el_0,
+            this._text_1
+        ]), null);
+        return null;
+    };
+    View_ScheduleComponent3.prototype.detectChangesInternal = function (throwOnChange) {
+        var currVal_2 = import3.inlineInterpolate(1, '', this.parentView.context.$implicit[0].slot.hourSlot.name, '');
+        if (import3.checkBinding(throwOnChange, this._expr_2, currVal_2)) {
+            this.renderer.setText(this._text_1, currVal_2);
+            this._expr_2 = currVal_2;
+        }
+    };
+    View_ScheduleComponent3.prototype.visitRootNodesInternal = function (cb, ctx) {
+        cb(this._el_0, ctx);
+    };
+    return View_ScheduleComponent3;
+}(import1.AppView));
+var View_ScheduleComponent6 = (function (_super) {
+    __extends(View_ScheduleComponent6, _super);
+    function View_ScheduleComponent6(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
+        _super.call(this, View_ScheduleComponent6, renderType_ScheduleComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
+    }
+    View_ScheduleComponent6.prototype.createInternal = function (rootSelector) {
+        this._el_0 = import3.createRenderElement(this.renderer, null, 'span', new import3.InlineArray2(2, 'class', 'tag'), null);
+        this._el_1 = import3.createRenderElement(this.renderer, this._el_0, 'i', new import3.InlineArray2(2, 'class', 'fa fa-lock'), null);
+        this.init(this._el_0, (this.renderer.directRenderer ? null : [
+            this._el_0,
+            this._el_1
+        ]), null);
+        return null;
+    };
+    View_ScheduleComponent6.prototype.visitRootNodesInternal = function (cb, ctx) {
+        cb(this._el_0, ctx);
+    };
+    return View_ScheduleComponent6;
+}(import1.AppView));
+var View_ScheduleComponent7 = (function (_super) {
+    __extends(View_ScheduleComponent7, _super);
+    function View_ScheduleComponent7(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
+        _super.call(this, View_ScheduleComponent7, renderType_ScheduleComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
+    }
+    View_ScheduleComponent7.prototype.createInternal = function (rootSelector) {
+        this._el_0 = import3.createRenderElement(this.renderer, null, 'span', new import3.InlineArray2(2, 'class', 'tag'), null);
+        this._el_1 = import3.createRenderElement(this.renderer, this._el_0, 'i', new import3.InlineArray2(2, 'class', 'fa fa-unlock'), null);
+        this.init(this._el_0, (this.renderer.directRenderer ? null : [
+            this._el_0,
+            this._el_1
+        ]), null);
+        return null;
+    };
+    View_ScheduleComponent7.prototype.visitRootNodesInternal = function (cb, ctx) {
+        cb(this._el_0, ctx);
+    };
+    return View_ScheduleComponent7;
+}(import1.AppView));
+var View_ScheduleComponent5 = (function (_super) {
+    __extends(View_ScheduleComponent5, _super);
+    function View_ScheduleComponent5(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
+        _super.call(this, View_ScheduleComponent5, renderType_ScheduleComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
+        this._expr_15 = import10.UNINITIALIZED;
+    }
+    View_ScheduleComponent5.prototype.createInternal = function (rootSelector) {
+        this._el_0 = import3.createRenderElement(this.renderer, null, 'div', import3.EMPTY_INLINE_ARRAY, null);
+        this._text_1 = this.renderer.createText(this._el_0, '\n                  ', null);
+        this._el_2 = import3.createRenderElement(this.renderer, this._el_0, 'span', import3.EMPTY_INLINE_ARRAY, null);
         this._text_3 = this.renderer.createText(this._el_2, '', null);
-        this._text_4 = this.renderer.createText(this._el_0, '\n              ', null);
-        this._el_5 = import3.createRenderElement(this.renderer, this._el_0, 'td', import3.EMPTY_INLINE_ARRAY, null);
-        this._text_6 = this.renderer.createText(this._el_5, '', null);
-        this._text_7 = this.renderer.createText(this._el_0, '\n              ', null);
-        this._el_8 = import3.createRenderElement(this.renderer, this._el_0, 'td', import3.EMPTY_INLINE_ARRAY, null);
-        this._text_9 = this.renderer.createText(this._el_8, '', null);
-        this._text_10 = this.renderer.createText(this._el_0, '\n              ', null);
-        this._el_11 = import3.createRenderElement(this.renderer, this._el_0, 'td', import3.EMPTY_INLINE_ARRAY, null);
-        this._text_12 = this.renderer.createText(this._el_11, '', null);
-        this._text_13 = this.renderer.createText(this._el_0, '\n              ', null);
-        this._el_14 = import3.createRenderElement(this.renderer, this._el_0, 'td', import3.EMPTY_INLINE_ARRAY, null);
-        this._text_15 = this.renderer.createText(this._el_14, '', null);
-        this._text_16 = this.renderer.createText(this._el_0, '\n              ', null);
-        this._el_17 = import3.createRenderElement(this.renderer, this._el_0, 'td', import3.EMPTY_INLINE_ARRAY, null);
-        this._text_18 = this.renderer.createText(this._el_17, '', null);
-        this._text_19 = this.renderer.createText(this._el_0, '\n            ', null);
+        this._text_4 = this.renderer.createText(this._el_0, '\n                  ', null);
+        this._anchor_5 = this.renderer.createTemplateAnchor(this._el_0, null);
+        this._vc_5 = new import9.ViewContainer(5, 0, this, this._anchor_5);
+        this._TemplateRef_5_5 = new import12.TemplateRef_(this, 5, this._anchor_5);
+        this._NgIf_5_6 = new import11.Wrapper_NgIf(this._vc_5.vcRef, this._TemplateRef_5_5);
+        this._text_6 = this.renderer.createText(this._el_0, '\n                  ', null);
+        this._anchor_7 = this.renderer.createTemplateAnchor(this._el_0, null);
+        this._vc_7 = new import9.ViewContainer(7, 0, this, this._anchor_7);
+        this._TemplateRef_7_5 = new import12.TemplateRef_(this, 7, this._anchor_7);
+        this._NgIf_7_6 = new import11.Wrapper_NgIf(this._vc_7.vcRef, this._TemplateRef_7_5);
+        this._text_8 = this.renderer.createText(this._el_0, '\n                ', null);
         this.init(this._el_0, (this.renderer.directRenderer ? null : [
             this._el_0,
             this._text_1,
             this._el_2,
             this._text_3,
             this._text_4,
-            this._el_5,
+            this._anchor_5,
             this._text_6,
-            this._text_7,
-            this._el_8,
-            this._text_9,
-            this._text_10,
-            this._el_11,
-            this._text_12,
-            this._text_13,
-            this._el_14,
-            this._text_15,
-            this._text_16,
-            this._el_17,
-            this._text_18,
-            this._text_19
+            this._anchor_7,
+            this._text_8
         ]), null);
         return null;
     };
-    View_ScheduleComponent2.prototype.detectChangesInternal = function (throwOnChange) {
-        var currVal_20 = import3.inlineInterpolate(1, '', this.context.$implicit[0], '');
-        if (import3.checkBinding(throwOnChange, this._expr_20, currVal_20)) {
-            this.renderer.setText(this._text_3, currVal_20);
-            this._expr_20 = currVal_20;
+    View_ScheduleComponent5.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
+        if (((token === import12.TemplateRef) && (5 === requestNodeIndex))) {
+            return this._TemplateRef_5_5;
         }
-        var currVal_21 = import3.inlineInterpolate(1, '', this.context.$implicit[1], '');
-        if (import3.checkBinding(throwOnChange, this._expr_21, currVal_21)) {
-            this.renderer.setText(this._text_6, currVal_21);
-            this._expr_21 = currVal_21;
+        if (((token === import13.NgIf) && (5 === requestNodeIndex))) {
+            return this._NgIf_5_6.context;
         }
-        var currVal_22 = import3.inlineInterpolate(1, '', this.context.$implicit[2], '');
-        if (import3.checkBinding(throwOnChange, this._expr_22, currVal_22)) {
-            this.renderer.setText(this._text_9, currVal_22);
-            this._expr_22 = currVal_22;
+        if (((token === import12.TemplateRef) && (7 === requestNodeIndex))) {
+            return this._TemplateRef_7_5;
         }
-        var currVal_23 = import3.inlineInterpolate(1, '', this.context.$implicit[3], '');
-        if (import3.checkBinding(throwOnChange, this._expr_23, currVal_23)) {
-            this.renderer.setText(this._text_12, currVal_23);
-            this._expr_23 = currVal_23;
+        if (((token === import13.NgIf) && (7 === requestNodeIndex))) {
+            return this._NgIf_7_6.context;
         }
-        var currVal_24 = import3.inlineInterpolate(1, '', this.context.$implicit[4], '');
-        if (import3.checkBinding(throwOnChange, this._expr_24, currVal_24)) {
-            this.renderer.setText(this._text_15, currVal_24);
-            this._expr_24 = currVal_24;
-        }
-        var currVal_25 = import3.inlineInterpolate(1, '', this.context.$implicit[5], '');
-        if (import3.checkBinding(throwOnChange, this._expr_25, currVal_25)) {
-            this.renderer.setText(this._text_18, currVal_25);
-            this._expr_25 = currVal_25;
+        return notFoundResult;
+    };
+    View_ScheduleComponent5.prototype.detectChangesInternal = function (throwOnChange) {
+        var currVal_5_0_0 = this.parentView.context.$implicit.locked;
+        this._NgIf_5_6.check_ngIf(currVal_5_0_0, throwOnChange, false);
+        this._NgIf_5_6.ngDoCheck(this, this._anchor_5, throwOnChange);
+        var currVal_7_0_0 = !this.parentView.context.$implicit.locked;
+        this._NgIf_7_6.check_ngIf(currVal_7_0_0, throwOnChange, false);
+        this._NgIf_7_6.ngDoCheck(this, this._anchor_7, throwOnChange);
+        this._vc_5.detectChangesInNestedViews(throwOnChange);
+        this._vc_7.detectChangesInNestedViews(throwOnChange);
+        var currVal_15 = import3.inlineInterpolate(1, '', ((this.parentView.context.$implicit.activity.name + ' / ') + (this.parentView.parentView.parentView.context.selectedParticipant ? this.parentView.context.$implicit.teacher.name : this.parentView.context.$implicit.slot.participant.name)), '');
+        if (import3.checkBinding(throwOnChange, this._expr_15, currVal_15)) {
+            this.renderer.setText(this._text_3, currVal_15);
+            this._expr_15 = currVal_15;
         }
     };
-    View_ScheduleComponent2.prototype.visitRootNodesInternal = function (cb, ctx) {
+    View_ScheduleComponent5.prototype.destroyInternal = function () {
+        this._vc_5.destroyNestedViews();
+        this._vc_7.destroyNestedViews();
+    };
+    View_ScheduleComponent5.prototype.visitRootNodesInternal = function (cb, ctx) {
         cb(this._el_0, ctx);
     };
-    return View_ScheduleComponent2;
+    View_ScheduleComponent5.prototype.createEmbeddedViewInternal = function (nodeIndex) {
+        if ((nodeIndex == 5)) {
+            return new View_ScheduleComponent6(this.viewUtils, this, 5, this._anchor_5, this._vc_5);
+        }
+        if ((nodeIndex == 7)) {
+            return new View_ScheduleComponent7(this.viewUtils, this, 7, this._anchor_7, this._vc_7);
+        }
+        return null;
+    };
+    return View_ScheduleComponent5;
 }(import1.AppView));
 var View_ScheduleComponent4 = (function (_super) {
     __extends(View_ScheduleComponent4, _super);
     function View_ScheduleComponent4(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
         _super.call(this, View_ScheduleComponent4, renderType_ScheduleComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
+        this._expr_7 = import10.UNINITIALIZED;
+    }
+    View_ScheduleComponent4.prototype.createInternal = function (rootSelector) {
+        this._el_0 = import3.createRenderElement(this.renderer, null, 'td', import3.EMPTY_INLINE_ARRAY, null);
+        this._text_1 = this.renderer.createText(this._el_0, '\n                ', null);
+        this._anchor_2 = this.renderer.createTemplateAnchor(this._el_0, null);
+        this._vc_2 = new import9.ViewContainer(2, 0, this, this._anchor_2);
+        this._TemplateRef_2_5 = new import12.TemplateRef_(this, 2, this._anchor_2);
+        this._NgIf_2_6 = new import11.Wrapper_NgIf(this._vc_2.vcRef, this._TemplateRef_2_5);
+        this._text_3 = this.renderer.createText(this._el_0, '\n              ', null);
+        var disposable_0 = import3.subscribeToRenderElement(this, this._el_0, new import3.InlineArray2(2, 'click', null), this.eventHandler(this.handleEvent_0));
+        this.init(this._el_0, (this.renderer.directRenderer ? null : [
+            this._el_0,
+            this._text_1,
+            this._anchor_2,
+            this._text_3
+        ]), [disposable_0]);
+        return null;
+    };
+    View_ScheduleComponent4.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
+        if (((token === import12.TemplateRef) && (2 === requestNodeIndex))) {
+            return this._TemplateRef_2_5;
+        }
+        if (((token === import13.NgIf) && (2 === requestNodeIndex))) {
+            return this._NgIf_2_6.context;
+        }
+        return notFoundResult;
+    };
+    View_ScheduleComponent4.prototype.detectChangesInternal = function (throwOnChange) {
+        var currVal_2_0_0 = this.context.$implicit;
+        this._NgIf_2_6.check_ngIf(currVal_2_0_0, throwOnChange, false);
+        this._NgIf_2_6.ngDoCheck(this, this._anchor_2, throwOnChange);
+        this._vc_2.detectChangesInNestedViews(throwOnChange);
+        var currVal_7 = this.context.$implicit.locked;
+        if (import3.checkBinding(throwOnChange, this._expr_7, currVal_7)) {
+            this.renderer.setElementClass(this._el_0, 'table-warning', currVal_7);
+            this._expr_7 = currVal_7;
+        }
+    };
+    View_ScheduleComponent4.prototype.destroyInternal = function () {
+        this._vc_2.destroyNestedViews();
+    };
+    View_ScheduleComponent4.prototype.visitRootNodesInternal = function (cb, ctx) {
+        cb(this._el_0, ctx);
+    };
+    View_ScheduleComponent4.prototype.createEmbeddedViewInternal = function (nodeIndex) {
+        if ((nodeIndex == 2)) {
+            return new View_ScheduleComponent5(this.viewUtils, this, 2, this._anchor_2, this._vc_2);
+        }
+        return null;
+    };
+    View_ScheduleComponent4.prototype.handleEvent_0 = function (eventName, $event) {
+        this.markPathToRootAsCheckOnce();
+        var result = true;
+        if ((eventName == 'click')) {
+            var pd_sub_0 = (this.parentView.parentView.context.lock(this.context.$implicit) !== false);
+            result = (pd_sub_0 && result);
+        }
+        return result;
+    };
+    return View_ScheduleComponent4;
+}(import1.AppView));
+var View_ScheduleComponent2 = (function (_super) {
+    __extends(View_ScheduleComponent2, _super);
+    function View_ScheduleComponent2(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
+        _super.call(this, View_ScheduleComponent2, renderType_ScheduleComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
+    }
+    View_ScheduleComponent2.prototype.createInternal = function (rootSelector) {
+        this._el_0 = import3.createRenderElement(this.renderer, null, 'tr', import3.EMPTY_INLINE_ARRAY, null);
+        this._text_1 = this.renderer.createText(this._el_0, '\n              ', null);
+        this._anchor_2 = this.renderer.createTemplateAnchor(this._el_0, null);
+        this._vc_2 = new import9.ViewContainer(2, 0, this, this._anchor_2);
+        this._TemplateRef_2_5 = new import12.TemplateRef_(this, 2, this._anchor_2);
+        this._NgIf_2_6 = new import11.Wrapper_NgIf(this._vc_2.vcRef, this._TemplateRef_2_5);
+        this._text_3 = this.renderer.createText(this._el_0, '\n              ', null);
+        this._anchor_4 = this.renderer.createTemplateAnchor(this._el_0, null);
+        this._vc_4 = new import9.ViewContainer(4, 0, this, this._anchor_4);
+        this._TemplateRef_4_5 = new import12.TemplateRef_(this, 4, this._anchor_4);
+        this._NgFor_4_6 = new import14.Wrapper_NgFor(this._vc_4.vcRef, this._TemplateRef_4_5, this.parentView.parentView.injectorGet(import15.IterableDiffers, this.parentView.parentIndex), this.parentView.ref);
+        this._text_5 = this.renderer.createText(this._el_0, '\n            ', null);
+        this.init(this._el_0, (this.renderer.directRenderer ? null : [
+            this._el_0,
+            this._text_1,
+            this._anchor_2,
+            this._text_3,
+            this._anchor_4,
+            this._text_5
+        ]), null);
+        return null;
+    };
+    View_ScheduleComponent2.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
+        if (((token === import12.TemplateRef) && (2 === requestNodeIndex))) {
+            return this._TemplateRef_2_5;
+        }
+        if (((token === import13.NgIf) && (2 === requestNodeIndex))) {
+            return this._NgIf_2_6.context;
+        }
+        if (((token === import12.TemplateRef) && (4 === requestNodeIndex))) {
+            return this._TemplateRef_4_5;
+        }
+        if (((token === import16.NgFor) && (4 === requestNodeIndex))) {
+            return this._NgFor_4_6.context;
+        }
+        return notFoundResult;
+    };
+    View_ScheduleComponent2.prototype.detectChangesInternal = function (throwOnChange) {
+        var currVal_2_0_0 = this.context.$implicit[0];
+        this._NgIf_2_6.check_ngIf(currVal_2_0_0, throwOnChange, false);
+        this._NgIf_2_6.ngDoCheck(this, this._anchor_2, throwOnChange);
+        var currVal_4_0_0 = this.context.$implicit;
+        this._NgFor_4_6.check_ngForOf(currVal_4_0_0, throwOnChange, false);
+        this._NgFor_4_6.ngDoCheck(this, this._anchor_4, throwOnChange);
+        this._vc_2.detectChangesInNestedViews(throwOnChange);
+        this._vc_4.detectChangesInNestedViews(throwOnChange);
+    };
+    View_ScheduleComponent2.prototype.destroyInternal = function () {
+        this._vc_2.destroyNestedViews();
+        this._vc_4.destroyNestedViews();
+    };
+    View_ScheduleComponent2.prototype.visitRootNodesInternal = function (cb, ctx) {
+        cb(this._el_0, ctx);
+    };
+    View_ScheduleComponent2.prototype.createEmbeddedViewInternal = function (nodeIndex) {
+        if ((nodeIndex == 2)) {
+            return new View_ScheduleComponent3(this.viewUtils, this, 2, this._anchor_2, this._vc_2);
+        }
+        if ((nodeIndex == 4)) {
+            return new View_ScheduleComponent4(this.viewUtils, this, 4, this._anchor_4, this._vc_4);
+        }
+        return null;
+    };
+    return View_ScheduleComponent2;
+}(import1.AppView));
+var View_ScheduleComponent9 = (function (_super) {
+    __extends(View_ScheduleComponent9, _super);
+    function View_ScheduleComponent9(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
+        _super.call(this, View_ScheduleComponent9, renderType_ScheduleComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
         this._expr_8 = import10.UNINITIALIZED;
         this._expr_9 = import10.UNINITIALIZED;
     }
-    View_ScheduleComponent4.prototype.createInternal = function (rootSelector) {
+    View_ScheduleComponent9.prototype.createInternal = function (rootSelector) {
         this._el_0 = import3.createRenderElement(this.renderer, null, 'tr', new import3.InlineArray2(2, 'class', 'table-danger'), null);
         this._text_1 = this.renderer.createText(this._el_0, '\n              ', null);
         this._el_2 = import3.createRenderElement(this.renderer, this._el_0, 'th', new import3.InlineArray2(2, 'scope', 'row'), null);
@@ -266,7 +458,7 @@ var View_ScheduleComponent4 = (function (_super) {
         ]), null);
         return null;
     };
-    View_ScheduleComponent4.prototype.detectChangesInternal = function (throwOnChange) {
+    View_ScheduleComponent9.prototype.detectChangesInternal = function (throwOnChange) {
         var currVal_8 = import3.inlineInterpolate(1, '', this.context.$implicit.activity.name, '');
         if (import3.checkBinding(throwOnChange, this._expr_8, currVal_8)) {
             this.renderer.setText(this._text_3, currVal_8);
@@ -278,17 +470,17 @@ var View_ScheduleComponent4 = (function (_super) {
             this._expr_9 = currVal_9;
         }
     };
-    View_ScheduleComponent4.prototype.visitRootNodesInternal = function (cb, ctx) {
+    View_ScheduleComponent9.prototype.visitRootNodesInternal = function (cb, ctx) {
         cb(this._el_0, ctx);
     };
-    return View_ScheduleComponent4;
+    return View_ScheduleComponent9;
 }(import1.AppView));
-var View_ScheduleComponent3 = (function (_super) {
-    __extends(View_ScheduleComponent3, _super);
-    function View_ScheduleComponent3(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
-        _super.call(this, View_ScheduleComponent3, renderType_ScheduleComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
+var View_ScheduleComponent8 = (function (_super) {
+    __extends(View_ScheduleComponent8, _super);
+    function View_ScheduleComponent8(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
+        _super.call(this, View_ScheduleComponent8, renderType_ScheduleComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
     }
-    View_ScheduleComponent3.prototype.createInternal = function (rootSelector) {
+    View_ScheduleComponent8.prototype.createInternal = function (rootSelector) {
         this._el_0 = import3.createRenderElement(this.renderer, null, 'div', import3.EMPTY_INLINE_ARRAY, null);
         this._text_1 = this.renderer.createText(this._el_0, '\n        ', null);
         this._el_2 = import3.createRenderElement(this.renderer, this._el_0, 'h4', new import3.InlineArray2(2, 'class', 'mt-5'), null);
@@ -313,7 +505,7 @@ var View_ScheduleComponent3 = (function (_super) {
         this._anchor_21 = this.renderer.createTemplateAnchor(this._el_19, null);
         this._vc_21 = new import9.ViewContainer(21, 19, this, this._anchor_21);
         this._TemplateRef_21_5 = new import12.TemplateRef_(this, 21, this._anchor_21);
-        this._NgFor_21_6 = new import11.Wrapper_NgFor(this._vc_21.vcRef, this._TemplateRef_21_5, this.parentView.parentView.injectorGet(import13.IterableDiffers, this.parentView.parentIndex), this.parentView.ref);
+        this._NgFor_21_6 = new import14.Wrapper_NgFor(this._vc_21.vcRef, this._TemplateRef_21_5, this.parentView.parentView.injectorGet(import15.IterableDiffers, this.parentView.parentIndex), this.parentView.ref);
         this._text_22 = this.renderer.createText(this._el_19, '\n          ', null);
         this._text_23 = this.renderer.createText(this._el_5, '\n        ', null);
         this._text_24 = this.renderer.createText(this._el_0, '\n      ', null);
@@ -346,43 +538,43 @@ var View_ScheduleComponent3 = (function (_super) {
         ]), null);
         return null;
     };
-    View_ScheduleComponent3.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
+    View_ScheduleComponent8.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
         if (((token === import12.TemplateRef) && (21 === requestNodeIndex))) {
             return this._TemplateRef_21_5;
         }
-        if (((token === import14.NgFor) && (21 === requestNodeIndex))) {
+        if (((token === import16.NgFor) && (21 === requestNodeIndex))) {
             return this._NgFor_21_6.context;
         }
         return notFoundResult;
     };
-    View_ScheduleComponent3.prototype.detectChangesInternal = function (throwOnChange) {
+    View_ScheduleComponent8.prototype.detectChangesInternal = function (throwOnChange) {
         var currVal_21_0_0 = this.parentView.context.getProblemsForParticipant(this.parentView.context.selectedParticipant);
         this._NgFor_21_6.check_ngForOf(currVal_21_0_0, throwOnChange, false);
         this._NgFor_21_6.ngDoCheck(this, this._anchor_21, throwOnChange);
         this._vc_21.detectChangesInNestedViews(throwOnChange);
     };
-    View_ScheduleComponent3.prototype.destroyInternal = function () {
+    View_ScheduleComponent8.prototype.destroyInternal = function () {
         this._vc_21.destroyNestedViews();
     };
-    View_ScheduleComponent3.prototype.visitRootNodesInternal = function (cb, ctx) {
+    View_ScheduleComponent8.prototype.visitRootNodesInternal = function (cb, ctx) {
         cb(this._el_0, ctx);
     };
-    View_ScheduleComponent3.prototype.createEmbeddedViewInternal = function (nodeIndex) {
+    View_ScheduleComponent8.prototype.createEmbeddedViewInternal = function (nodeIndex) {
         if ((nodeIndex == 21)) {
-            return new View_ScheduleComponent4(this.viewUtils, this, 21, this._anchor_21, this._vc_21);
+            return new View_ScheduleComponent9(this.viewUtils, this, 21, this._anchor_21, this._vc_21);
         }
         return null;
     };
-    return View_ScheduleComponent3;
+    return View_ScheduleComponent8;
 }(import1.AppView));
-var View_ScheduleComponent6 = (function (_super) {
-    __extends(View_ScheduleComponent6, _super);
-    function View_ScheduleComponent6(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
-        _super.call(this, View_ScheduleComponent6, renderType_ScheduleComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
+var View_ScheduleComponent11 = (function (_super) {
+    __extends(View_ScheduleComponent11, _super);
+    function View_ScheduleComponent11(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
+        _super.call(this, View_ScheduleComponent11, renderType_ScheduleComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
         this._expr_8 = import10.UNINITIALIZED;
         this._expr_9 = import10.UNINITIALIZED;
     }
-    View_ScheduleComponent6.prototype.createInternal = function (rootSelector) {
+    View_ScheduleComponent11.prototype.createInternal = function (rootSelector) {
         this._el_0 = import3.createRenderElement(this.renderer, null, 'tr', import3.EMPTY_INLINE_ARRAY, null);
         this._text_1 = this.renderer.createText(this._el_0, '\n              ', null);
         this._el_2 = import3.createRenderElement(this.renderer, this._el_0, 'th', new import3.InlineArray2(2, 'scope', 'row'), null);
@@ -403,7 +595,7 @@ var View_ScheduleComponent6 = (function (_super) {
         ]), null);
         return null;
     };
-    View_ScheduleComponent6.prototype.detectChangesInternal = function (throwOnChange) {
+    View_ScheduleComponent11.prototype.detectChangesInternal = function (throwOnChange) {
         var currVal_8 = import3.inlineInterpolate(1, '', this.context.$implicit.activity.name, '');
         if (import3.checkBinding(throwOnChange, this._expr_8, currVal_8)) {
             this.renderer.setText(this._text_3, currVal_8);
@@ -415,17 +607,17 @@ var View_ScheduleComponent6 = (function (_super) {
             this._expr_9 = currVal_9;
         }
     };
-    View_ScheduleComponent6.prototype.visitRootNodesInternal = function (cb, ctx) {
+    View_ScheduleComponent11.prototype.visitRootNodesInternal = function (cb, ctx) {
         cb(this._el_0, ctx);
     };
-    return View_ScheduleComponent6;
+    return View_ScheduleComponent11;
 }(import1.AppView));
-var View_ScheduleComponent5 = (function (_super) {
-    __extends(View_ScheduleComponent5, _super);
-    function View_ScheduleComponent5(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
-        _super.call(this, View_ScheduleComponent5, renderType_ScheduleComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
+var View_ScheduleComponent10 = (function (_super) {
+    __extends(View_ScheduleComponent10, _super);
+    function View_ScheduleComponent10(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
+        _super.call(this, View_ScheduleComponent10, renderType_ScheduleComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
     }
-    View_ScheduleComponent5.prototype.createInternal = function (rootSelector) {
+    View_ScheduleComponent10.prototype.createInternal = function (rootSelector) {
         this._el_0 = import3.createRenderElement(this.renderer, null, 'div', import3.EMPTY_INLINE_ARRAY, null);
         this._text_1 = this.renderer.createText(this._el_0, '\n        ', null);
         this._el_2 = import3.createRenderElement(this.renderer, this._el_0, 'h4', new import3.InlineArray2(2, 'class', 'mt-5'), null);
@@ -450,7 +642,7 @@ var View_ScheduleComponent5 = (function (_super) {
         this._anchor_21 = this.renderer.createTemplateAnchor(this._el_19, null);
         this._vc_21 = new import9.ViewContainer(21, 19, this, this._anchor_21);
         this._TemplateRef_21_5 = new import12.TemplateRef_(this, 21, this._anchor_21);
-        this._NgFor_21_6 = new import11.Wrapper_NgFor(this._vc_21.vcRef, this._TemplateRef_21_5, this.parentView.parentView.injectorGet(import13.IterableDiffers, this.parentView.parentIndex), this.parentView.ref);
+        this._NgFor_21_6 = new import14.Wrapper_NgFor(this._vc_21.vcRef, this._TemplateRef_21_5, this.parentView.parentView.injectorGet(import15.IterableDiffers, this.parentView.parentIndex), this.parentView.ref);
         this._text_22 = this.renderer.createText(this._el_19, '\n          ', null);
         this._text_23 = this.renderer.createText(this._el_5, '\n        ', null);
         this._text_24 = this.renderer.createText(this._el_0, '\n      ', null);
@@ -483,44 +675,44 @@ var View_ScheduleComponent5 = (function (_super) {
         ]), null);
         return null;
     };
-    View_ScheduleComponent5.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
+    View_ScheduleComponent10.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
         if (((token === import12.TemplateRef) && (21 === requestNodeIndex))) {
             return this._TemplateRef_21_5;
         }
-        if (((token === import14.NgFor) && (21 === requestNodeIndex))) {
+        if (((token === import16.NgFor) && (21 === requestNodeIndex))) {
             return this._NgFor_21_6.context;
         }
         return notFoundResult;
     };
-    View_ScheduleComponent5.prototype.detectChangesInternal = function (throwOnChange) {
+    View_ScheduleComponent10.prototype.detectChangesInternal = function (throwOnChange) {
         var currVal_21_0_0 = this.parentView.context.getProblemsForTeacher(this.parentView.context.selectedTeacher);
         this._NgFor_21_6.check_ngForOf(currVal_21_0_0, throwOnChange, false);
         this._NgFor_21_6.ngDoCheck(this, this._anchor_21, throwOnChange);
         this._vc_21.detectChangesInNestedViews(throwOnChange);
     };
-    View_ScheduleComponent5.prototype.destroyInternal = function () {
+    View_ScheduleComponent10.prototype.destroyInternal = function () {
         this._vc_21.destroyNestedViews();
     };
-    View_ScheduleComponent5.prototype.visitRootNodesInternal = function (cb, ctx) {
+    View_ScheduleComponent10.prototype.visitRootNodesInternal = function (cb, ctx) {
         cb(this._el_0, ctx);
     };
-    View_ScheduleComponent5.prototype.createEmbeddedViewInternal = function (nodeIndex) {
+    View_ScheduleComponent10.prototype.createEmbeddedViewInternal = function (nodeIndex) {
         if ((nodeIndex == 21)) {
-            return new View_ScheduleComponent6(this.viewUtils, this, 21, this._anchor_21, this._vc_21);
+            return new View_ScheduleComponent11(this.viewUtils, this, 21, this._anchor_21, this._vc_21);
         }
         return null;
     };
-    return View_ScheduleComponent5;
+    return View_ScheduleComponent10;
 }(import1.AppView));
-var View_ScheduleComponent7 = (function (_super) {
-    __extends(View_ScheduleComponent7, _super);
-    function View_ScheduleComponent7(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
-        _super.call(this, View_ScheduleComponent7, renderType_ScheduleComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
+var View_ScheduleComponent12 = (function (_super) {
+    __extends(View_ScheduleComponent12, _super);
+    function View_ScheduleComponent12(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
+        _super.call(this, View_ScheduleComponent12, renderType_ScheduleComponent, import5.ViewType.EMBEDDED, viewUtils, parentView, parentIndex, parentElement, import6.ChangeDetectorStatus.CheckAlways, declaredViewContainer);
         this._expr_5 = import10.UNINITIALIZED;
         this._expr_6 = import10.UNINITIALIZED;
         this._expr_7 = import10.UNINITIALIZED;
     }
-    View_ScheduleComponent7.prototype.createInternal = function (rootSelector) {
+    View_ScheduleComponent12.prototype.createInternal = function (rootSelector) {
         this._el_0 = import3.createRenderElement(this.renderer, null, 'tr', import3.EMPTY_INLINE_ARRAY, null);
         this._text_1 = this.renderer.createText(this._el_0, '\n            ', null);
         this._el_2 = import3.createRenderElement(this.renderer, this._el_0, 'td', import3.EMPTY_INLINE_ARRAY, null);
@@ -536,7 +728,7 @@ var View_ScheduleComponent7 = (function (_super) {
         ]), [disposable_0]);
         return null;
     };
-    View_ScheduleComponent7.prototype.detectChangesInternal = function (throwOnChange) {
+    View_ScheduleComponent12.prototype.detectChangesInternal = function (throwOnChange) {
         var currVal_5 = (this.context.$implicit.status === 'ERROR');
         if (import3.checkBinding(throwOnChange, this._expr_5, currVal_5)) {
             this.renderer.setElementClass(this._el_2, 'table-danger', currVal_5);
@@ -553,10 +745,10 @@ var View_ScheduleComponent7 = (function (_super) {
             this._expr_7 = currVal_7;
         }
     };
-    View_ScheduleComponent7.prototype.visitRootNodesInternal = function (cb, ctx) {
+    View_ScheduleComponent12.prototype.visitRootNodesInternal = function (cb, ctx) {
         cb(this._el_0, ctx);
     };
-    View_ScheduleComponent7.prototype.handleEvent_2 = function (eventName, $event) {
+    View_ScheduleComponent12.prototype.handleEvent_2 = function (eventName, $event) {
         this.markPathToRootAsCheckOnce();
         var result = true;
         if ((eventName == 'click')) {
@@ -565,7 +757,7 @@ var View_ScheduleComponent7 = (function (_super) {
         }
         return result;
     };
-    return View_ScheduleComponent7;
+    return View_ScheduleComponent12;
 }(import1.AppView));
 var renderType_ScheduleComponent = import3.createRenderComponentType('', 0, import4.ViewEncapsulation.None, styles_ScheduleComponent, {});
 export var View_ScheduleComponent0 = (function (_super) {
@@ -619,7 +811,7 @@ export var View_ScheduleComponent0 = (function (_super) {
         this._anchor_38 = this.renderer.createTemplateAnchor(this._el_36, null);
         this._vc_38 = new import9.ViewContainer(38, 36, this, this._anchor_38);
         this._TemplateRef_38_5 = new import12.TemplateRef_(this, 38, this._anchor_38);
-        this._NgFor_38_6 = new import11.Wrapper_NgFor(this._vc_38.vcRef, this._TemplateRef_38_5, this.parentView.injectorGet(import13.IterableDiffers, this.parentIndex), this.ref);
+        this._NgFor_38_6 = new import14.Wrapper_NgFor(this._vc_38.vcRef, this._TemplateRef_38_5, this.parentView.injectorGet(import15.IterableDiffers, this.parentIndex), this.ref);
         this._text_39 = this.renderer.createText(this._el_36, '\n        ', null);
         this._text_40 = this.renderer.createText(this._el_25, '\n      ', null);
         this._text_41 = this.renderer.createText(this._el_23, '\n    ', null);
@@ -660,7 +852,7 @@ export var View_ScheduleComponent0 = (function (_super) {
         this._anchor_76 = this.renderer.createTemplateAnchor(this._el_74, null);
         this._vc_76 = new import9.ViewContainer(76, 74, this, this._anchor_76);
         this._TemplateRef_76_5 = new import12.TemplateRef_(this, 76, this._anchor_76);
-        this._NgFor_76_6 = new import11.Wrapper_NgFor(this._vc_76.vcRef, this._TemplateRef_76_5, this.parentView.injectorGet(import13.IterableDiffers, this.parentIndex), this.ref);
+        this._NgFor_76_6 = new import14.Wrapper_NgFor(this._vc_76.vcRef, this._TemplateRef_76_5, this.parentView.injectorGet(import15.IterableDiffers, this.parentIndex), this.ref);
         this._text_77 = this.renderer.createText(this._el_74, '\n          ', null);
         this._text_78 = this.renderer.createText(this._el_47, '\n        ', null);
         this._text_79 = this.renderer.createText(this._el_45, '\n      ', null);
@@ -668,12 +860,12 @@ export var View_ScheduleComponent0 = (function (_super) {
         this._anchor_81 = this.renderer.createTemplateAnchor(this._el_43, null);
         this._vc_81 = new import9.ViewContainer(81, 43, this, this._anchor_81);
         this._TemplateRef_81_5 = new import12.TemplateRef_(this, 81, this._anchor_81);
-        this._NgIf_81_6 = new import15.Wrapper_NgIf(this._vc_81.vcRef, this._TemplateRef_81_5);
+        this._NgIf_81_6 = new import11.Wrapper_NgIf(this._vc_81.vcRef, this._TemplateRef_81_5);
         this._text_82 = this.renderer.createText(this._el_43, '\n      ', null);
         this._anchor_83 = this.renderer.createTemplateAnchor(this._el_43, null);
         this._vc_83 = new import9.ViewContainer(83, 43, this, this._anchor_83);
         this._TemplateRef_83_5 = new import12.TemplateRef_(this, 83, this._anchor_83);
-        this._NgIf_83_6 = new import15.Wrapper_NgIf(this._vc_83.vcRef, this._TemplateRef_83_5);
+        this._NgIf_83_6 = new import11.Wrapper_NgIf(this._vc_83.vcRef, this._TemplateRef_83_5);
         this._text_84 = this.renderer.createText(this._el_43, '\n    ', null);
         this._text_85 = this.renderer.createText(this._el_21, '\n    ', null);
         this._el_86 = import3.createRenderElement(this.renderer, this._el_21, 'div', new import3.InlineArray2(2, 'class', 'col-sm-2'), null);
@@ -694,7 +886,7 @@ export var View_ScheduleComponent0 = (function (_super) {
         this._anchor_101 = this.renderer.createTemplateAnchor(this._el_99, null);
         this._vc_101 = new import9.ViewContainer(101, 99, this, this._anchor_101);
         this._TemplateRef_101_5 = new import12.TemplateRef_(this, 101, this._anchor_101);
-        this._NgFor_101_6 = new import11.Wrapper_NgFor(this._vc_101.vcRef, this._TemplateRef_101_5, this.parentView.injectorGet(import13.IterableDiffers, this.parentIndex), this.ref);
+        this._NgFor_101_6 = new import14.Wrapper_NgFor(this._vc_101.vcRef, this._TemplateRef_101_5, this.parentView.injectorGet(import15.IterableDiffers, this.parentIndex), this.ref);
         this._text_102 = this.renderer.createText(this._el_99, '\n        ', null);
         this._text_103 = this.renderer.createText(this._el_88, '\n      ', null);
         this._text_104 = this.renderer.createText(this._el_86, '\n    ', null);
@@ -818,31 +1010,31 @@ export var View_ScheduleComponent0 = (function (_super) {
         if (((token === import12.TemplateRef) && (38 === requestNodeIndex))) {
             return this._TemplateRef_38_5;
         }
-        if (((token === import14.NgFor) && (38 === requestNodeIndex))) {
+        if (((token === import16.NgFor) && (38 === requestNodeIndex))) {
             return this._NgFor_38_6.context;
         }
         if (((token === import12.TemplateRef) && (76 === requestNodeIndex))) {
             return this._TemplateRef_76_5;
         }
-        if (((token === import14.NgFor) && (76 === requestNodeIndex))) {
+        if (((token === import16.NgFor) && (76 === requestNodeIndex))) {
             return this._NgFor_76_6.context;
         }
         if (((token === import12.TemplateRef) && (81 === requestNodeIndex))) {
             return this._TemplateRef_81_5;
         }
-        if (((token === import16.NgIf) && (81 === requestNodeIndex))) {
+        if (((token === import13.NgIf) && (81 === requestNodeIndex))) {
             return this._NgIf_81_6.context;
         }
         if (((token === import12.TemplateRef) && (83 === requestNodeIndex))) {
             return this._TemplateRef_83_5;
         }
-        if (((token === import16.NgIf) && (83 === requestNodeIndex))) {
+        if (((token === import13.NgIf) && (83 === requestNodeIndex))) {
             return this._NgIf_83_6.context;
         }
         if (((token === import12.TemplateRef) && (101 === requestNodeIndex))) {
             return this._TemplateRef_101_5;
         }
-        if (((token === import14.NgFor) && (101 === requestNodeIndex))) {
+        if (((token === import16.NgFor) && (101 === requestNodeIndex))) {
             return this._NgFor_101_6.context;
         }
         return notFoundResult;
@@ -899,13 +1091,13 @@ export var View_ScheduleComponent0 = (function (_super) {
             return new View_ScheduleComponent2(this.viewUtils, this, 76, this._anchor_76, this._vc_76);
         }
         if ((nodeIndex == 81)) {
-            return new View_ScheduleComponent3(this.viewUtils, this, 81, this._anchor_81, this._vc_81);
+            return new View_ScheduleComponent8(this.viewUtils, this, 81, this._anchor_81, this._vc_81);
         }
         if ((nodeIndex == 83)) {
-            return new View_ScheduleComponent5(this.viewUtils, this, 83, this._anchor_83, this._vc_83);
+            return new View_ScheduleComponent10(this.viewUtils, this, 83, this._anchor_83, this._vc_83);
         }
         if ((nodeIndex == 101)) {
-            return new View_ScheduleComponent7(this.viewUtils, this, 101, this._anchor_101, this._vc_101);
+            return new View_ScheduleComponent12(this.viewUtils, this, 101, this._anchor_101, this._vc_101);
         }
         return null;
     };

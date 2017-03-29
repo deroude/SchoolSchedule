@@ -21,9 +21,9 @@ export class ScheduleComponent implements OnInit {
   selectedTeacher: Teacher;
   selectedParticipant: Participant;
 
-  displaySchedule: string[][] = [];
+  displaySchedule: ScheduleItem[][] = [];
 
-  progress:Progress=new Progress();
+  progress: Progress = new Progress();
 
   constructor(private scheduleService: ScheduleService) {
 
@@ -73,13 +73,14 @@ export class ScheduleComponent implements OnInit {
     if (!this.selectedParticipant && !this.selectedTeacher) return;
     this.displaySchedule = [];
     this.hourSlots().forEach(hst => {
-      var row: string[] = [hst.name];
+      var row: ScheduleItem[] = [];
       DAYS.forEach(d => {
         var it: ScheduleItem = this.source.schedule.find(s => (!this.selectedTeacher || s.teacher.uuid === this.selectedTeacher.uuid)
           && (!this.selectedParticipant || s.slot.participant.uuid === this.selectedParticipant.uuid)
           && s.slot.hourSlot.day === d && s.slot.hourSlot.name === hst.name);
         if (it)
-          row.push(it.activity.name + " / " + (this.selectedParticipant ? it.teacher.name : it.slot.participant.name) + "[" + it.room.name + "]");
+          row.push(it);
+        // row.push(it.activity.name + " / " + (this.selectedParticipant ? it.teacher.name : it.slot.participant.name) + "[" + it.room.name + "]");
       });
       this.displaySchedule.push(row);
     });
@@ -90,6 +91,10 @@ export class ScheduleComponent implements OnInit {
   }
   getProblemsForTeacher(p: Teacher): CurriculumItem[] {
     return this.source.noSolutionFor.filter(c => c.teacher.uuid === p.uuid);
+  }
+
+  lock(s:ScheduleItem):void{
+    s.locked=!s.locked;
   }
 
 }

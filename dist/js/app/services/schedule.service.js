@@ -20,7 +20,9 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 var GENERATIONS = 10;
 var GENERATION_SIZE = 20;
-var INHERITANCE_PERCENT = 20;
+var INHERITANCE_PERCENT = 30;
+var SURVIVORS = 5;
+var PATRIARCHS = 1;
 export var ScheduleService = (function () {
     function ScheduleService() {
         var _this = this;
@@ -115,7 +117,8 @@ export var ScheduleService = (function () {
     };
     ScheduleService.prototype._generateSchedule = function (constraints, progress) {
         var _this = this;
-        var gen = [];
+        var oldgen = [];
+        var newgen = [];
         var busy = false;
         var g = 0;
         var processor = setInterval(function () {
@@ -123,43 +126,46 @@ export var ScheduleService = (function () {
             progress.increment();
             for (var n = 0; n < GENERATION_SIZE; n++) {
                 var gc = new ScheduleCandidate();
-                if (gen.length > 0) {
-                    var mom = gen[Math.floor(Math.random() * gen.length)];
-                    var dad = gen[Math.floor(Math.random() * gen.length)];
-                    var momShuffle = _this.shuffleSeed(mom.schedule.length);
-                    var dadShuffle = _this.shuffleSeed(dad.schedule.length);
-                    for (var adn = 0; adn < INHERITANCE_PERCENT * Math.min(mom.schedule.length, dad.schedule.length) / 100; adn++) {
-                        _this.tryAddGene(gc, constraints, mom.schedule[momShuffle[adn]]);
-                        _this.tryAddGene(gc, constraints, dad.schedule[dadShuffle[adn]]);
-                    }
+                if (oldgen.length > 0) {
+                    var mom = oldgen[Math.floor(Math.random() * oldgen.length)];
                 }
                 _this.config.curriculum.forEach(function (ci) {
                     for (var i = 0; i < ci.weeklyCount; i++) {
-                        _this.tryAdd(gc, constraints, ci, _this.config.scheduleTemplate);
+                        if (mom && Math.random() < INHERITANCE_PERCENT / 100) {
+                            var momsGene = mom.schedule.find(function (m) { return m.activity.uuid === ci.activity.uuid
+                                && m.teacher.uuid === ci.teacher.uuid && m.slot.participant.uuid === ci.participant.uuid; });
+                            if (!momsGene || !_this.tryAddGene(gc, constraints, momsGene)) {
+                                _this.tryAdd(gc, constraints, ci, _this.config.scheduleTemplate);
+                            }
+                        }
+                        else {
+                            _this.tryAdd(gc, constraints, ci, _this.config.scheduleTemplate);
+                        }
                     }
                 });
                 if (gc.unschedulable.length === 0) {
-                    gen = [gc];
+                    newgen = [gc];
                     break;
                 }
                 else {
-                    gen.push(gc);
+                    newgen.push(gc);
                 }
             }
-            gen.sort(function (a, b) { return a.unschedulable.length - b.unschedulable.length; });
-            console.log("Best citizen: " + gen[0].unschedulable.length);
-            if (gen[0].unschedulable.length === 0) {
+            newgen.sort(function (a, b) { return a.unschedulable.length - b.unschedulable.length; });
+            console.log("Best citizen: " + newgen[0].unschedulable.length);
+            if (newgen[0].unschedulable.length === 0) {
                 clearInterval(processor);
-                _this.setSchedule(gen[0].schedule, gen[0].unschedulable);
+                _this.setSchedule(newgen[0].schedule, newgen[0].unschedulable);
+                progress.current = 0;
+            }
+            else if (++g === GENERATIONS) {
+                clearInterval(processor);
+                _this.setSchedule(newgen[0].schedule, newgen[0].unschedulable);
                 progress.current = 0;
             }
             else {
-                gen = gen.slice(0, 5);
-            }
-            if (++g === GENERATIONS) {
-                clearInterval(processor);
-                _this.setSchedule(gen[0].schedule, gen[0].unschedulable);
-                progress.current = 0;
+                oldgen = newgen.slice(0, SURVIVORS);
+                newgen = newgen.slice(0, PATRIARCHS);
             }
         }, 200);
     };

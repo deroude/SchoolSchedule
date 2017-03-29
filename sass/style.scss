@@ -15,6 +15,16 @@
     overflow: auto;
   }
   
+  .table td {
+    position: relative;
+  }
+  
+  .tag {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+  }
+  
   .scroll-area {
     max-height: 22rem;
     margin-right: -1rem;

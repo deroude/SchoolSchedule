@@ -5,8 +5,8 @@
     <span class="text-info ml-4 mt-2">There are {{source.noSolutionFor.length}} impossible allocations.</span>
   </div>
   <div class="progress mt-2 mb-2">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [style.width]="(progress.current/10)*100 + '%'" [attr.aria-valuenow]="progress.current"
-      aria-valuemin="0" aria-valuemax="10"></div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [style.width]="(progress.current/10)*100 + '%'"
+      [attr.aria-valuenow]="progress.current" aria-valuemin="0" aria-valuemax="10"></div>
   </div>
   <div class="row">
     <div class="col-sm-2">
@@ -38,12 +38,14 @@
           </thead>
           <tbody>
             <tr *ngFor="let ditem of displaySchedule">
-              <th scope="row">{{ditem[0]}}</th>
-              <td>{{ditem[1]}}</td>
-              <td>{{ditem[2]}}</td>
-              <td>{{ditem[3]}}</td>
-              <td>{{ditem[4]}}</td>
-              <td>{{ditem[5]}}</td>
+              <th *ngIf="ditem[0]" scope="row">{{ditem[0].slot.hourSlot.name}}</th>
+              <td *ngFor="let d of ditem" (click)="lock(d)" [class.table-warning]="d.locked">
+                <div *ngIf="d">
+                  <span>{{d.activity.name+' / '+(selectedParticipant?d.teacher.name:d.slot.participant.name)}}</span>
+                  <span *ngIf="d.locked" class="tag"><i class="fa fa-lock"></i></span>
+                  <span *ngIf="!d.locked" class="tag"><i class="fa fa-unlock"></i></span>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
