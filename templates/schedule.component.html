@@ -5,8 +5,8 @@
     <span class="text-info ml-4 mt-2">There are {{source.noSolutionFor.length}} impossible allocations.</span>
   </div>
   <div class="progress mt-2 mb-2">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [style.width]="(progress.current/10)*100 + '%'"
-      [attr.aria-valuenow]="progress.current" aria-valuemin="0" aria-valuemax="10"></div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [style.width]="progress.current + '%'"
+      [attr.aria-valuenow]="progress.current" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
   <div class="row">
     <div class="col-sm-2">

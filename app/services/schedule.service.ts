@@ -17,7 +17,7 @@ import { Configuration } from './../domain/configuration';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
-const GENERATIONS: number = 10;
+const GENERATIONS: number = 100;
 const GENERATION_SIZE: number = 20;
 const INHERITANCE_PERCENT: number = 30;
 const SURVIVORS: number = 5;
@@ -89,15 +89,22 @@ export class ScheduleService {
                     ss.participant = px;
                     this.config.scheduleTemplate.push(ss);
                 });
+                var top: number = 0;
                 this.config.activities.forEach(a => {
                     var ts: Teacher[] = this.config.teachers.filter(t => typeof t.assignableFor.find(ax => ax.uuid === a.uuid) !== 'undefined');
-                    this.config.curriculum.push({
-                        uuid: Util.id(),
-                        participant: px,
-                        activity: a,
-                        weeklyCount: Math.floor(Math.random() * 2 + 1),
-                        teacher: ts[Math.floor(Math.random() * ts.length)]
-                    });
+                    var t: Teacher = ts[Math.floor(Math.random() * ts.length)];
+                    var nt: number = this.config.curriculum.filter(c => c.teacher.uuid === t.uuid).reduce((a, c) => a += c.weeklyCount, 0);
+                    var n: number = Math.floor(Math.random() * 2 + 1);
+                    top += n;
+                    if (top < 25 && nt+n < 25) {
+                        this.config.curriculum.push({
+                            uuid: Util.id(),
+                            participant: px,
+                            activity: a,
+                            weeklyCount: n,
+                            teacher: t
+                        });
+                    }
                 });
             }
         }
@@ -170,7 +177,7 @@ export class ScheduleService {
             }
             else {
                 oldgen = newgen.slice(0, SURVIVORS);
-                newgen = newgen.slice(0,PATRIARCHS);
+                newgen = newgen.slice(0, PATRIARCHS);
             }
         }, 200);
     }
@@ -212,7 +219,7 @@ export class ScheduleService {
         var re: number[] = [];
         for (var i: number = 0; i < length; i++) re.push(i);
         for (var i: number = length - 1; i > 0; i--) {
-            var ix: number = Math.floor(Math.random() * length);
+            var ix: number = Math.floor(Math.random() * i);
             var t: number = re[ix];
             re[ix] = re[i];
             re[i] = t;

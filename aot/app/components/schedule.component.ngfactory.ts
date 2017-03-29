@@ -986,7 +986,7 @@ export class View_ScheduleComponent0 extends import1.AppView<import0.ScheduleCom
     this._text_15 = this.renderer.createText(this._el_0,'\n  ',(null as any));
     this._el_16 = import3.createRenderElement(this.renderer,this._el_0,'div',new import3.InlineArray2(2,'class','progress mt-2 mb-2'),(null as any));
     this._text_17 = this.renderer.createText(this._el_16,'\n    ',(null as any));
-    this._el_18 = import3.createRenderElement(this.renderer,this._el_16,'div',new import3.InlineArray8(8,'aria-valuemax','10','aria-valuemin','0','class','progress-bar progress-bar-striped progress-bar-animated','role','progressbar'),(null as any));
+    this._el_18 = import3.createRenderElement(this.renderer,this._el_16,'div',new import3.InlineArray8(8,'aria-valuemax','100','aria-valuemin','0','class','progress-bar progress-bar-striped progress-bar-animated','role','progressbar'),(null as any));
     this._text_19 = this.renderer.createText(this._el_16,'\n  ',(null as any));
     this._text_20 = this.renderer.createText(this._el_0,'\n  ',(null as any));
     this._el_21 = import3.createRenderElement(this.renderer,this._el_0,'div',new import3.InlineArray2(2,'class','row'),(null as any));
@@ -1245,7 +1245,7 @@ export class View_ScheduleComponent0 extends import1.AppView<import0.ScheduleCom
       this.renderer.setText(this._text_13,currVal_121);
       this._expr_121 = currVal_121;
     }
-    const currVal_122:any = (((this.context.progress.current / 10) * 100) + '%');
+    const currVal_122:any = (this.context.progress.current + '%');
     if (import3.checkBinding(throwOnChange,this._expr_122,currVal_122)) {
       this.renderer.setElementStyle(this._el_18,'width',((this.viewUtils.sanitizer.sanitize(import17.SecurityContext.STYLE,currVal_122) == null)? (null as any): this.viewUtils.sanitizer.sanitize(import17.SecurityContext.STYLE,currVal_122).toString()));
       this._expr_122 = currVal_122;

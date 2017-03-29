@@ -18,7 +18,7 @@ import { DAYS, HourSlotFactory } from './../domain/hour_slot';
 import { Configuration } from './../domain/configuration';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-var GENERATIONS = 10;
+var GENERATIONS = 100;
 var GENERATION_SIZE = 20;
 var INHERITANCE_PERCENT = 30;
 var SURVIVORS = 5;
@@ -83,15 +83,22 @@ export var ScheduleService = (function () {
                     ss.participant = px;
                     _this.config.scheduleTemplate.push(ss);
                 });
+                var top = 0;
                 this.config.activities.forEach(function (a) {
                     var ts = _this.config.teachers.filter(function (t) { return typeof t.assignableFor.find(function (ax) { return ax.uuid === a.uuid; }) !== 'undefined'; });
-                    _this.config.curriculum.push({
-                        uuid: Util.id(),
-                        participant: px,
-                        activity: a,
-                        weeklyCount: Math.floor(Math.random() * 2 + 1),
-                        teacher: ts[Math.floor(Math.random() * ts.length)]
-                    });
+                    var t = ts[Math.floor(Math.random() * ts.length)];
+                    var nt = _this.config.curriculum.filter(function (c) { return c.teacher.uuid === t.uuid; }).reduce(function (a, c) { return a += c.weeklyCount; }, 0);
+                    var n = Math.floor(Math.random() * 2 + 1);
+                    top += n;
+                    if (top < 25 && nt + n < 25) {
+                        _this.config.curriculum.push({
+                            uuid: Util.id(),
+                            participant: px,
+                            activity: a,
+                            weeklyCount: n,
+                            teacher: t
+                        });
+                    }
                 });
             }
         }
@@ -205,7 +212,7 @@ export var ScheduleService = (function () {
         for (var i = 0; i < length; i++)
             re.push(i);
         for (var i = length - 1; i > 0; i--) {
-            var ix = Math.floor(Math.random() * length);
+            var ix = Math.floor(Math.random() * i);
             var t = re[ix];
             re[ix] = re[i];
             re[i] = t;
