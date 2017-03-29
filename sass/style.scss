@@ -11,6 +11,10 @@
     border-bottom: 2px solid darkgray;
   }
   
+  .table-wrapper-scrollable {
+    overflow: auto;
+  }
+  
   .scroll-area {
     max-height: 22rem;
     margin-right: -1rem;

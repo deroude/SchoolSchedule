@@ -5,4 +5,5 @@ export class Participant implements IdName{
     uuid:string=Util.id();
     name:string;
     homeRoom:Room;
+    status?:string;
 }

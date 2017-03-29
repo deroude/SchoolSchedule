@@ -191,7 +191,7 @@ export class View_AppComponent0 extends import1.AppView<import0.AppComponent> {
   }
   createInternal(rootSelector:string):import7.ComponentRef<any> {
     const parentRenderNode:any = this.renderer.createViewRoot(this.parentElement);
-    this._el_0 = import3.createRenderElement(this.renderer,parentRenderNode,'nav',new import3.InlineArray2(2,'class','navbar navbar-toggleable-md fixed-top navbar-light bg-faded'),(null as any));
+    this._el_0 = import3.createRenderElement(this.renderer,parentRenderNode,'nav',new import3.InlineArray2(2,'class','navbar navbar-toggleable-md fixed-top navbar-light bg-primary'),(null as any));
     this._text_1 = this.renderer.createText(this._el_0,'\n    ',(null as any));
     this._el_2 = import3.createRenderElement(this.renderer,this._el_0,'div',new import3.InlineArray2(2,'class','container'),(null as any));
     this._text_3 = this.renderer.createText(this._el_2,'\n        ',(null as any));

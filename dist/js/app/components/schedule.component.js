@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+import { Progress } from './../domain/progress';
 import { ScheduleService } from './../services/schedule.service';
 import { DAYS } from './../domain/hour_slot';
 import { Component } from '@angular/core';
@@ -14,6 +15,7 @@ export var ScheduleComponent = (function () {
     function ScheduleComponent(scheduleService) {
         this.scheduleService = scheduleService;
         this.displaySchedule = [];
+        this.progress = new Progress();
     }
     ScheduleComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -21,7 +23,7 @@ export var ScheduleComponent = (function () {
         this.scheduleService.trigger.subscribe(function () { return _this.source = _this.scheduleService.config; });
     };
     ScheduleComponent.prototype.generateSchedule = function () {
-        this.scheduleService.generateSchedule();
+        this.scheduleService.generateSchedule(this.progress);
         this._display();
     };
     ScheduleComponent.prototype.clearSchedule = function () {
@@ -66,6 +68,12 @@ export var ScheduleComponent = (function () {
             });
             _this.displaySchedule.push(row);
         });
+    };
+    ScheduleComponent.prototype.getProblemsForParticipant = function (p) {
+        return this.source.noSolutionFor.filter(function (c) { return c.participant.uuid === p.uuid; });
+    };
+    ScheduleComponent.prototype.getProblemsForTeacher = function (p) {
+        return this.source.noSolutionFor.filter(function (c) { return c.teacher.uuid === p.uuid; });
     };
     ScheduleComponent = __decorate([
         Component({

@@ -1,3 +1,5 @@
+import { Progress } from './../domain/progress';
+import { CurriculumItem } from './../domain/curriculum_item';
 import { ScheduleItem } from './../domain/schedule_item';
 import { Participant } from './../domain/participant';
 import { Teacher } from './../domain/teacher';
@@ -21,6 +23,8 @@ export class ScheduleComponent implements OnInit {
 
   displaySchedule: string[][] = [];
 
+  progress:Progress=new Progress();
+
   constructor(private scheduleService: ScheduleService) {
 
   }
@@ -31,7 +35,7 @@ export class ScheduleComponent implements OnInit {
   }
 
   public generateSchedule() {
-    this.scheduleService.generateSchedule();
+    this.scheduleService.generateSchedule(this.progress);
     this._display();
   }
 
@@ -79,6 +83,13 @@ export class ScheduleComponent implements OnInit {
       });
       this.displaySchedule.push(row);
     });
+  }
+
+  getProblemsForParticipant(p: Participant): CurriculumItem[] {
+    return this.source.noSolutionFor.filter(c => c.participant.uuid === p.uuid);
+  }
+  getProblemsForTeacher(p: Teacher): CurriculumItem[] {
+    return this.source.noSolutionFor.filter(c => c.teacher.uuid === p.uuid);
   }
 
 }

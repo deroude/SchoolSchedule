@@ -110,7 +110,7 @@ export var View_AppComponent0 = (function (_super) {
     }
     View_AppComponent0.prototype.createInternal = function (rootSelector) {
         var parentRenderNode = this.renderer.createViewRoot(this.parentElement);
-        this._el_0 = import3.createRenderElement(this.renderer, parentRenderNode, 'nav', new import3.InlineArray2(2, 'class', 'navbar navbar-toggleable-md fixed-top navbar-light bg-faded'), null);
+        this._el_0 = import3.createRenderElement(this.renderer, parentRenderNode, 'nav', new import3.InlineArray2(2, 'class', 'navbar navbar-toggleable-md fixed-top navbar-light bg-primary'), null);
         this._text_1 = this.renderer.createText(this._el_0, '\n    ', null);
         this._el_2 = import3.createRenderElement(this.renderer, this._el_0, 'div', new import3.InlineArray2(2, 'class', 'container'), null);
         this._text_3 = this.renderer.createText(this._el_2, '\n        ', null);

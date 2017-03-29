@@ -15,4 +15,5 @@ export class Configuration{
     participants:Participant[]=[];
     curriculum:CurriculumItem[]=[];
     activities:Activity[]=[];
+    noSolutionFor:CurriculumItem[]=[];
 }

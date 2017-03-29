@@ -8,6 +8,7 @@ export var Configuration = (function () {
         this.participants = [];
         this.curriculum = [];
         this.activities = [];
+        this.noSolutionFor = [];
     }
     return Configuration;
 }());

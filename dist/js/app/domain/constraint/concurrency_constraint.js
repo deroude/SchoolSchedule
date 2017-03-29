@@ -1,9 +1,8 @@
 export var ConcurrencyConstraint = (function () {
-    function ConcurrencyConstraint(config) {
-        this.config = config;
+    function ConcurrencyConstraint() {
     }
-    ConcurrencyConstraint.prototype.check = function (item) {
-        return !this.config.schedule.some(function (s) { return s.slot.hourSlot.day === item.slot.hourSlot.day
+    ConcurrencyConstraint.prototype.check = function (item, others) {
+        return !others.some(function (s) { return s.slot.hourSlot.day === item.slot.hourSlot.day
             && s.slot.hourSlot.start < item.slot.hourSlot.end
             && s.slot.hourSlot.end > item.slot.hourSlot.start
             && (s.slot.participant.uuid === item.slot.participant.uuid

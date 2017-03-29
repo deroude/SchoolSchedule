@@ -9,4 +9,5 @@ export class ScheduleItem{
     activity:Activity;
     teacher:Teacher;
     room:Room;
+    locked?:boolean=false;
 }

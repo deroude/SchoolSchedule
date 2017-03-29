@@ -1,57 +1,98 @@
 <div class="container">
-  <div class="row mb-2">
+  <div class="row mb-2 ml-2">
     <button type="button" class="btn btn-outline-info" (click)="generateSchedule()"><i class="fa fa-calendar"></i> Generate schedule</button>
     <button type="button" class="btn btn-outline-info ml-2" (click)="clearSchedule()"><i class="fa fa-calendar-o"></i> Clear schedule</button>
+    <span class="text-info ml-4 mt-2">There are {{source.noSolutionFor.length}} impossible allocations.</span>
+  </div>
+  <div class="progress mt-2 mb-2">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [style.width]="(progress.current/10)*100 + '%'" [attr.aria-valuenow]="progress.current"
+      aria-valuemin="0" aria-valuemax="10"></div>
   </div>
   <div class="row">
-    <div class="col-sm-1">
-      <table class="table table-responsive">
-        <thead>
+    <div class="col-sm-2">
+      <table class="table">
+        <thead class="table-inverse">
           <tr>
             <th>Student group</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let p of source.participants">
-            <td (click)="display(p.uuid,'participant')" [class.table-info]="selectedParticipant && p.uuid===selectedParticipant.uuid">{{p.name}}</td>
+            <td (click)="display(p.uuid,'participant')" [class.table-danger]="p.status==='ERROR'" [class.table-info]="selectedParticipant && p.uuid===selectedParticipant.uuid">{{p.name}}</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="col-sm-9">
-      <table class="table table-responsive">
-        <thead>
-          <tr>
-            <th><em>Time</em></th>
-            <th>Monday</th>
-            <th>Tuesday</th>
-            <th>Wednesday</th>
-            <th>Thursday</th>
-            <th>Friday</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let ditem of displaySchedule">
-            <th scope="row">{{ditem[0]}}</th>
-            <td>{{ditem[1]}}</td>
-            <td>{{ditem[2]}}</td>
-            <td>{{ditem[3]}}</td>
-            <td>{{ditem[4]}}</td>
-            <td>{{ditem[5]}}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="col-sm-8">
+      <div class="table-wrapper-scrollable">
+        <table class="table">
+          <thead class="table-inverse">
+            <tr>
+              <th><em>Time</em></th>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+              <th>Friday</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ditem of displaySchedule">
+              <th scope="row">{{ditem[0]}}</th>
+              <td>{{ditem[1]}}</td>
+              <td>{{ditem[2]}}</td>
+              <td>{{ditem[3]}}</td>
+              <td>{{ditem[4]}}</td>
+              <td>{{ditem[5]}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="selectedParticipant && selectedParticipant.status==='ERROR'">
+        <h4 class="mt-5">No solution for:</h4>
+        <table class="table">
+          <thead class="thead-inverse">
+            <tr>
+              <th>Activity</th>
+              <th>Teacher</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-danger" *ngFor="let ditem of getProblemsForParticipant(selectedParticipant)">
+              <th scope="row">{{ditem.activity.name}}</th>
+              <td>{{ditem.teacher.name}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="selectedTeacher && selectedTeacher.status==='ERROR'">
+        <h4 class="mt-5">No solution for:</h4>
+        <table class="table table-danger">
+          <thead class="table-inverse">
+            <tr>
+              <th>Activity</th>
+              <th>Participant</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ditem of getProblemsForTeacher(selectedTeacher)">
+              <th scope="row">{{ditem.activity.name}}</th>
+              <td>{{ditem.participant.name}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="col-sm-2">
-      <table class="table table-responsive">
-        <thead>
+      <table class="table">
+        <thead class="table-inverse">
           <tr>
             <th>Teachers</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let t of source.teachers">
-            <td (click)="display(t.uuid,'teacher')" [class.table-info]="selectedTeacher && t.uuid===selectedTeacher.uuid">{{t.name}}</td>
+            <td (click)="display(t.uuid,'teacher')" [class.table-danger]="t.status==='ERROR'" [class.table-info]="selectedTeacher && t.uuid===selectedTeacher.uuid">{{t.name}}</td>
           </tr>
         </tbody>
       </table>

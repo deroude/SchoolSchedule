@@ -1,3 +1,6 @@
+import { Progress } from './../domain/progress';
+import { CurriculumItem } from './../domain/curriculum_item';
+import { ScheduleCandidate } from './../domain/schedule_candidate';
 import { ScheduleItem } from './../domain/schedule_item';
 import { CompatibilityConstraint } from './../domain/constraint/compatibility_constraint';
 import { CurriculumConstraint } from './../domain/constraint/curriculum_constraint';
@@ -14,6 +17,10 @@ import { Configuration } from './../domain/configuration';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
+const GENERATIONS: number = 10;
+const GENERATION_SIZE: number = 20;
+const INHERITANCE_PERCENT: number = 20;
+
 @Injectable()
 export class ScheduleService {
 
@@ -21,116 +28,201 @@ export class ScheduleService {
     trigger: Subject<void> = new Subject<void>();
 
     constructor() {
-        // var fnames: string[] = ["Andrei", "Georgiana", "Matei", "Ioana", "Gabriel", "Diana", "Florin", "Mihaela", "Damian", "Adela"];
-        // var lnames: string[] = ["Popescu", "Ionescu", "Georgescu", "Constantinescu", "Taranu", "Coteanu", "Dobrovolski", "Valeanu", "Iankovici"];
-        // var grps: string = "ABCDEFGH";
+        var fnames: string[] = ["Andrei", "Georgiana", "Matei", "Ioana", "Gabriel", "Diana", "Florin", "Mihaela", "Damian", "Adela"];
+        var lnames: string[] = ["Popescu", "Ionescu", "Georgescu", "Constantinescu", "Taranu", "Coteanu", "Dobrovolski", "Valeanu", "Iankovici"];
+        var grps: string = "ABCDEFGH";
 
-        // this.config.activities = [
-        //     { name: "Matematica", uuid: Util.id() },
-        //     { name: "Romana", uuid: Util.id() },
-        //     { name: "Fizica", uuid: Util.id() },
-        //     { name: "Engleza", uuid: Util.id() },
-        //     { name: "Chimie", uuid: Util.id() },
-        //     { name: "Franceza", uuid: Util.id() },
-        //     { name: "Biologie", uuid: Util.id() },
-        //     { name: "Geografie", uuid: Util.id() },
-        //     { name: "Istorie", uuid: Util.id() },
-        //     { name: "Desen", uuid: Util.id() },
-        //     { name: "Muzica", uuid: Util.id() },
-        //     { name: "Sport", uuid: Util.id() },
-        //     { name: "Lucru manual", uuid: Util.id() },
-        //     { name: "Religie", uuid: Util.id() },
-        //     { name: "Economie", uuid: Util.id() },
-        //     { name: "Informatica", uuid: Util.id() },
-        // ];
+        this.config.activities = [
+            { name: "Matematica", uuid: Util.id() },
+            { name: "Romana", uuid: Util.id() },
+            { name: "Fizica", uuid: Util.id() },
+            { name: "Engleza", uuid: Util.id() },
+            { name: "Chimie", uuid: Util.id() },
+            { name: "Franceza", uuid: Util.id() },
+            { name: "Biologie", uuid: Util.id() },
+            { name: "Geografie", uuid: Util.id() },
+            { name: "Istorie", uuid: Util.id() },
+            { name: "Desen", uuid: Util.id() },
+            { name: "Muzica", uuid: Util.id() },
+            { name: "Sport", uuid: Util.id() },
+            { name: "Lucru manual", uuid: Util.id() },
+            { name: "Religie", uuid: Util.id() },
+            { name: "Economie", uuid: Util.id() },
+            { name: "Informatica", uuid: Util.id() },
+        ];
 
-        // this.config.activities.forEach(a => this.config.teachers.push({
-        //     name: fnames[Math.floor(Math.random() * fnames.length)] + " " + lnames[Math.floor(Math.random() * lnames.length)],
-        //     uuid: Util.id(),
-        //     assignableFor: [a]
-        // }));
+        this.config.activities.forEach(a => {
+            for (var i: number = 0; i < 3; i++)
+                this.config.teachers.push({
+                    name: fnames[Math.floor(Math.random() * fnames.length)] + " " + lnames[Math.floor(Math.random() * lnames.length)],
+                    uuid: Util.id(),
+                    assignableFor: [a]
+                });
+        });
 
-        // for (var j: number = 0; j < DAYS.length; j++) {
-        //     for (var i: number = 8; i < 13; i++) {
-        //         var h: HourSlot = HourSlotFactory.make("" + i + ":00", "" + (i + 1) + ":00", DAYS[j]);
-        //         this.config.hourSlots.push(h);
-        //     }
-        // }
+        for (var j: number = 0; j < DAYS.length; j++) {
+            for (var i: number = 8; i < 13; i++) {
+                var h: HourSlot = HourSlotFactory.make("" + i + ":00", "" + (i + 1) + ":00", DAYS[j]);
+                this.config.hourSlots.push(h);
+            }
+        }
 
-        // for (var i: number = 1; i < 5; i++) {
-        //     for (var j: number = 0; j < grps.length; j++) {
-        //         var r: Room = {
-        //             uuid: Util.id(),
-        //             name: "" + (i * 100 + j + 1),
-        //             restrictedTo: []
-        //         };
-        //         this.config.rooms.push(r);
-        //         var px: Participant = {
-        //             uuid: Util.id(),
-        //             name: "" + i + grps.substring(j, j + 1),
-        //             homeRoom: r
-        //         };
-        //         this.config.participants.push(px);
-        //         this.config.hourSlots.forEach(h => {
-        //             var ss: ScheduleSlot = new ScheduleSlot();
-        //             ss.hourSlot = h;
-        //             ss.participant = px;
-        //             this.config.scheduleTemplate.push(ss);
-        //         });
-        //         this.config.activities.forEach(a =>
-        //             this.config.curriculum.push({
-        //                 uuid: Util.id(),
-        //                 participant: px,
-        //                 activity: a,
-        //                 weeklyCount: Math.floor(Math.random() * 2 + 1),
-        //                 teacher: this.config.teachers.find(t => typeof t.assignableFor.find(ax => ax.uuid === a.uuid) !== 'undefined')
-        //             }));
-        //     }
-        // }
-        // var constraints: Constraint[] = [
-        //     new ConcurrencyConstraint(this.config),
-        //     new CurriculumConstraint(this.config),
-        //     new CompatibilityConstraint(this.config)
-        // ]
-        // this.generateSchedule(constraints);
-        // console.log(this.config);
+        for (var i: number = 1; i < 5; i++) {
+            for (var j: number = 0; j < grps.length; j++) {
+                var r: Room = {
+                    uuid: Util.id(),
+                    name: "" + (i * 100 + j + 1),
+                    restrictedTo: []
+                };
+                this.config.rooms.push(r);
+                var px: Participant = {
+                    uuid: Util.id(),
+                    name: "" + i + grps.substring(j, j + 1),
+                    homeRoom: r
+                };
+                this.config.participants.push(px);
+                this.config.hourSlots.forEach(h => {
+                    var ss: ScheduleSlot = new ScheduleSlot();
+                    ss.hourSlot = h;
+                    ss.participant = px;
+                    this.config.scheduleTemplate.push(ss);
+                });
+                this.config.activities.forEach(a => {
+                    var ts: Teacher[] = this.config.teachers.filter(t => typeof t.assignableFor.find(ax => ax.uuid === a.uuid) !== 'undefined');
+                    this.config.curriculum.push({
+                        uuid: Util.id(),
+                        participant: px,
+                        activity: a,
+                        weeklyCount: Math.floor(Math.random() * 2 + 1),
+                        teacher: ts[Math.floor(Math.random() * ts.length)]
+                    });
+                });
+            }
+        }
+        // this.generateSchedule();
+        console.log(this.config);
     }
 
-    public generateSchedule(): void {
+    public generateSchedule(progress: Progress): void {
         var constraints: Constraint[] = [
-            new ConcurrencyConstraint(this.config),
-            new CurriculumConstraint(this.config),
-            new CompatibilityConstraint(this.config)
+            new ConcurrencyConstraint(),
+            new CurriculumConstraint(this.config.curriculum),
+            new CompatibilityConstraint()
         ];
-        this.config.schedule = [];
-        this._generateSchedule(constraints);
+        this.clearSchedule();
+        this._generateSchedule(constraints, progress);
         this.trigger.next();
     }
 
     public clearSchedule(): void {
+        this.config.participants.forEach(p => p.status = '');
+        this.config.teachers.forEach(t => t.status = '');
         this.config.schedule = [];
+        this.config.noSolutionFor = [];
         this.trigger.next();
     }
 
-    private _generateSchedule(constraints: Constraint[]): void {
-        this.config.curriculum.forEach(ci => {
-            for (var i: number = 0; i < ci.weeklyCount; i++) {
-                // console.log("Attempting to find a spot for " + ci.activity.name + " / " + ci.participant.name);
-                var ss: ScheduleSlot[] = this.config.scheduleTemplate.filter(ss => ss.participant.uuid === ci.participant.uuid)
-                for (var j: number = 0; j < ss.length; j++) {
-                    var candidate: ScheduleItem = new ScheduleItem();
-                    candidate.activity = ci.activity;
-                    candidate.room = ci.participant.homeRoom;
-                    candidate.slot = ss[j];
-                    candidate.teacher = ci.teacher;
-                    // console.log("Trying " + candidate.slot.hourSlot.day + " " + candidate.slot.hourSlot.name);
-                    if (constraints.reduce((acc, val) => acc = acc && val.check(candidate), true)) {
-                        this.config.schedule.push(candidate);
-                        // console.log("found");
-                        break;
+    private _generateSchedule(constraints: Constraint[], progress: Progress): void {
+        var gen: ScheduleCandidate[] = [];
+        var busy = false;
+        var g: number = 0;
+        var processor: NodeJS.Timer = setInterval(() => {
+            console.log("Generation " + g);
+            progress.increment();
+            for (var n: number = 0; n < GENERATION_SIZE; n++) {
+                var gc: ScheduleCandidate = new ScheduleCandidate();
+                if (gen.length > 0) {
+                    var mom = gen[Math.floor(Math.random() * gen.length)];
+                    var dad = gen[Math.floor(Math.random() * gen.length)];
+                    var momShuffle = this.shuffleSeed(mom.schedule.length);
+                    var dadShuffle = this.shuffleSeed(dad.schedule.length);
+                    for (var adn: number = 0; adn < INHERITANCE_PERCENT * Math.min(mom.schedule.length, dad.schedule.length) / 100; adn++) {
+                        this.tryAddGene(gc, constraints, mom.schedule[momShuffle[adn]]);
+                        this.tryAddGene(gc, constraints, dad.schedule[dadShuffle[adn]]);
                     }
                 }
+                this.config.curriculum.forEach(ci => {
+                    for (var i: number = 0; i < ci.weeklyCount; i++) {
+                        this.tryAdd(gc, constraints, ci, this.config.scheduleTemplate);
+                    }
+                });
+                if (gc.unschedulable.length === 0) {
+                    gen = [gc];
+                    break;
+                } else {
+                    gen.push(gc);
+                }
             }
+            gen.sort((a, b) => a.unschedulable.length - b.unschedulable.length);
+            console.log("Best citizen: " + gen[0].unschedulable.length);
+            if (gen[0].unschedulable.length === 0) {
+                clearInterval(processor);
+                this.setSchedule(gen[0].schedule, gen[0].unschedulable);
+                progress.current=0;
+            }
+            else {
+                gen = gen.slice(0, 5);
+            }
+            if (++g === GENERATIONS) {
+                clearInterval(processor);
+                this.setSchedule(gen[0].schedule, gen[0].unschedulable);
+                progress.current=0;
+            }
+        }, 200);
+    }
+
+    private tryAddGene(gc: ScheduleCandidate, constraints: Constraint[], gene: ScheduleItem): boolean {
+        if (constraints.reduce((acc, val) => acc = acc && val.check(gene, gc.schedule), true)) {
+            gc.schedule.push(gene);
+            return true;
+        }
+        return false;
+    }
+
+    private tryAdd(gc: ScheduleCandidate, constraints: Constraint[], ci: CurriculumItem, slots: ScheduleSlot[]): boolean {
+        // console.log("Attempting to find a spot for " + ci.activity.name + " / " + ci.participant.name);
+        var ss: ScheduleSlot[] = this.config.scheduleTemplate.filter(ss => ss.participant.uuid === ci.participant.uuid)
+        var shuffle: number[] = this.shuffleSeed(ss.length);
+        var found: boolean = false;
+        for (var j: number = 0; j < ss.length; j++) {
+            var candidate: ScheduleItem = new ScheduleItem();
+            candidate.activity = ci.activity;
+            candidate.room = ci.participant.homeRoom;
+            candidate.slot = ss[shuffle[j]];
+            candidate.teacher = ci.teacher;
+            // console.log("Trying " + candidate.slot.hourSlot.day + " " + candidate.slot.hourSlot.name);
+            if (constraints.reduce((acc, val) => acc = acc && val.check(candidate, gc.schedule), true)) {
+                gc.schedule.push(candidate);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            gc.unschedulable.push(ci);
+            return false;
+        }
+        return true;
+    }
+
+    private shuffleSeed(length: number): number[] {
+        var re: number[] = [];
+        for (var i: number = 0; i < length; i++) re.push(i);
+        for (var i: number = length - 1; i > 0; i--) {
+            var ix: number = Math.floor(Math.random() * length);
+            var t: number = re[ix];
+            re[ix] = re[i];
+            re[i] = t;
+        }
+        return re;
+    }
+
+    private setSchedule(sch: ScheduleItem[], nosch: CurriculumItem[]) {
+        this.clearSchedule();
+        this.config.schedule = sch;
+        this.config.noSolutionFor = nosch;
+        nosch.forEach(n => {
+            this.config.participants.filter(p => p.uuid === n.participant.uuid).forEach(p => p.status = 'ERROR');
+            this.config.teachers.filter(p => p.uuid === n.teacher.uuid).forEach(p => p.status = 'ERROR');
         });
     }
 }
