@@ -123,7 +123,8 @@ export class ScheduleService {
     }
 
     private _generateSchedule(constraints: Constraint[], progress: Progress): void {
-        var gen: ScheduleCandidate[] = [];
+        var oldgen: ScheduleCandidate[] = [];
+        var newgen: ScheduleCandidate[] = [];
         var busy = false;
         var g: number = 0;
         var processor: NodeJS.Timer = setInterval(() => {
@@ -131,9 +132,9 @@ export class ScheduleService {
             progress.increment();
             for (var n: number = 0; n < GENERATION_SIZE; n++) {
                 var gc: ScheduleCandidate = new ScheduleCandidate();
-                if (gen.length > 0) {
-                    var mom = gen[Math.floor(Math.random() * gen.length)];
-                    var dad = gen[Math.floor(Math.random() * gen.length)];
+                if (oldgen.length > 0) {
+                    var mom = oldgen[Math.floor(Math.random() * oldgen.length)];
+                    var dad = oldgen[Math.floor(Math.random() * oldgen.length)];
                     var momShuffle = this.shuffleSeed(mom.schedule.length);
                     var dadShuffle = this.shuffleSeed(dad.schedule.length);
                     for (var adn: number = 0; adn < INHERITANCE_PERCENT * Math.min(mom.schedule.length, dad.schedule.length) / 100; adn++) {
@@ -147,26 +148,26 @@ export class ScheduleService {
                     }
                 });
                 if (gc.unschedulable.length === 0) {
-                    gen = [gc];
+                    newgen = [gc];
                     break;
                 } else {
-                    gen.push(gc);
+                    newgen.push(gc);
                 }
             }
-            gen.sort((a, b) => a.unschedulable.length - b.unschedulable.length);
-            console.log("Best citizen: " + gen[0].unschedulable.length);
-            if (gen[0].unschedulable.length === 0) {
+            newgen.sort((a, b) => a.unschedulable.length - b.unschedulable.length);
+            console.log("Best citizen: " + newgen[0].unschedulable.length);
+            if (newgen[0].unschedulable.length === 0) {
                 clearInterval(processor);
-                this.setSchedule(gen[0].schedule, gen[0].unschedulable);
-                progress.current=0;
+                this.setSchedule(newgen[0].schedule, newgen[0].unschedulable);
+                progress.current = 0;
+            } else if (++g === GENERATIONS) {
+                clearInterval(processor);
+                this.setSchedule(newgen[0].schedule, newgen[0].unschedulable);
+                progress.current = 0;
             }
             else {
-                gen = gen.slice(0, 5);
-            }
-            if (++g === GENERATIONS) {
-                clearInterval(processor);
-                this.setSchedule(gen[0].schedule, gen[0].unschedulable);
-                progress.current=0;
+                oldgen = newgen.slice(0, 5);
+                newgen = [];
             }
         }, 200);
     }
