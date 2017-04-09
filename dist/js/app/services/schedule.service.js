@@ -19,10 +19,10 @@ import { Configuration } from './../domain/configuration';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 var GENERATIONS = 100;
-var GENERATION_SIZE = 20;
+var GENERATION_SIZE = 30;
 var INHERITANCE_PERCENT = 30;
-var SURVIVORS = 5;
-var PATRIARCHS = 1;
+var SURVIVORS = 10;
+var THRESHOLD = 1000;
 export var ScheduleService = (function () {
     function ScheduleService() {
         var _this = this;
@@ -103,7 +103,7 @@ export var ScheduleService = (function () {
             }
         }
         // this.generateSchedule();
-        console.log(this.config);
+        // console.log(this.config);
     }
     ScheduleService.prototype.generateSchedule = function (progress) {
         var constraints = [
@@ -133,14 +133,14 @@ export var ScheduleService = (function () {
             progress.increment();
             for (var n = 0; n < GENERATION_SIZE; n++) {
                 var gc = new ScheduleCandidate();
-                if (oldgen.length > 0) {
-                    var mom = oldgen[Math.floor(Math.random() * oldgen.length)];
-                }
                 _this.config.curriculum.forEach(function (ci) {
                     for (var i = 0; i < ci.weeklyCount; i++) {
+                        if (oldgen.length > 0) {
+                            var mom = oldgen[Math.floor(Math.random() * oldgen.length)];
+                        }
                         if (mom && Math.random() < INHERITANCE_PERCENT / 100) {
                             var momsGene = mom.schedule.find(function (m) { return m.activity.uuid === ci.activity.uuid
-                                && m.teacher.uuid === ci.teacher.uuid && m.slot.participant.uuid === ci.participant.uuid; });
+                                && m.teacher.uuid === ci.teacher.uuid && m.slot.participant.uuid === ci.participant.uuid && !m.bad; });
                             if (!momsGene || !_this.tryAddGene(gc, constraints, momsGene)) {
                                 _this.tryAdd(gc, constraints, ci, _this.config.scheduleTemplate);
                             }
@@ -150,7 +150,7 @@ export var ScheduleService = (function () {
                         }
                     }
                 });
-                if (gc.unschedulable.length === 0) {
+                if (gc.getScore() === 0) {
                     newgen = [gc];
                     break;
                 }
@@ -158,9 +158,8 @@ export var ScheduleService = (function () {
                     newgen.push(gc);
                 }
             }
-            newgen.sort(function (a, b) { return a.unschedulable.length - b.unschedulable.length; });
-            console.log("Best citizen: " + newgen[0].unschedulable.length);
-            if (newgen[0].unschedulable.length === 0) {
+            newgen.sort(function (a, b) { return a.getScore() - b.getScore(); });
+            if (newgen[0].getScore() === 0) {
                 clearInterval(processor);
                 _this.setSchedule(newgen[0].schedule, newgen[0].unschedulable);
                 progress.current = 0;
@@ -172,8 +171,9 @@ export var ScheduleService = (function () {
             }
             else {
                 oldgen = newgen.slice(0, SURVIVORS);
-                newgen = newgen.slice(0, PATRIARCHS);
+                newgen = newgen.slice(0, SURVIVORS);
             }
+            console.log("Best citizen: " + newgen[0].getScore() + "; Spread: " + (oldgen[oldgen.length - 1].getScore() - oldgen[0].getScore()));
         }, 200);
     };
     ScheduleService.prototype.tryAddGene = function (gc, constraints, gene) {

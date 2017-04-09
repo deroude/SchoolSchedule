@@ -10,4 +10,5 @@ export class ScheduleItem{
     teacher:Teacher;
     room:Room;
     locked?:boolean=false;
+    bad?:boolean=false;
 }

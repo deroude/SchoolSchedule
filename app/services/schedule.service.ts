@@ -18,10 +18,10 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
 const GENERATIONS: number = 100;
-const GENERATION_SIZE: number = 20;
+const GENERATION_SIZE: number = 30;
 const INHERITANCE_PERCENT: number = 30;
-const SURVIVORS: number = 5;
-const PATRIARCHS: number = 1;
+const SURVIVORS: number = 10;
+const THRESHOLD: number = 1000;
 
 @Injectable()
 export class ScheduleService {
@@ -96,7 +96,7 @@ export class ScheduleService {
                     var nt: number = this.config.curriculum.filter(c => c.teacher.uuid === t.uuid).reduce((a, c) => a += c.weeklyCount, 0);
                     var n: number = Math.floor(Math.random() * 2 + 1);
                     top += n;
-                    if (top < 25 && nt+n < 25) {
+                    if (top < 25 && nt + n < 25) {
                         this.config.curriculum.push({
                             uuid: Util.id(),
                             participant: px,
@@ -109,7 +109,7 @@ export class ScheduleService {
             }
         }
         // this.generateSchedule();
-        console.log(this.config);
+        // console.log(this.config);
     }
 
     public generateSchedule(progress: Progress): void {
@@ -141,14 +141,14 @@ export class ScheduleService {
             progress.increment();
             for (var n: number = 0; n < GENERATION_SIZE; n++) {
                 var gc: ScheduleCandidate = new ScheduleCandidate();
-                if (oldgen.length > 0) {
-                    var mom = oldgen[Math.floor(Math.random() * oldgen.length)];
-                }
                 this.config.curriculum.forEach(ci => {
                     for (var i: number = 0; i < ci.weeklyCount; i++) {
+                        if (oldgen.length > 0) {
+                            var mom = oldgen[Math.floor(Math.random() * oldgen.length)];
+                        }
                         if (mom && Math.random() < INHERITANCE_PERCENT / 100) {
                             var momsGene: ScheduleItem = mom.schedule.find(m => m.activity.uuid === ci.activity.uuid
-                                && m.teacher.uuid === ci.teacher.uuid && m.slot.participant.uuid === ci.participant.uuid);
+                                && m.teacher.uuid === ci.teacher.uuid && m.slot.participant.uuid === ci.participant.uuid && !m.bad);
                             if (!momsGene || !this.tryAddGene(gc, constraints, momsGene)) {
                                 this.tryAdd(gc, constraints, ci, this.config.scheduleTemplate);
                             }
@@ -157,16 +157,15 @@ export class ScheduleService {
                         }
                     }
                 });
-                if (gc.unschedulable.length === 0) {
+                if (gc.getScore() === 0) {
                     newgen = [gc];
                     break;
                 } else {
                     newgen.push(gc);
                 }
             }
-            newgen.sort((a, b) => a.unschedulable.length - b.unschedulable.length);
-            console.log("Best citizen: " + newgen[0].unschedulable.length);
-            if (newgen[0].unschedulable.length === 0) {
+            newgen.sort((a, b) => a.getScore() - b.getScore());
+            if (newgen[0].getScore() === 0) {
                 clearInterval(processor);
                 this.setSchedule(newgen[0].schedule, newgen[0].unschedulable);
                 progress.current = 0;
@@ -176,9 +175,10 @@ export class ScheduleService {
                 progress.current = 0;
             }
             else {
-                oldgen = newgen.slice(0, SURVIVORS);
-                newgen = newgen.slice(0, PATRIARCHS);
+                oldgen = newgen.slice(0, SURVIVORS);                
+                newgen = newgen.slice(0, SURVIVORS);
             }
+            console.log("Best citizen: " + newgen[0].getScore() + "; Spread: " + (oldgen[oldgen.length - 1].getScore() - oldgen[0].getScore()));
         }, 200);
     }
 
