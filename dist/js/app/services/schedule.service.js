@@ -20,7 +20,8 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 var GENERATIONS = 100;
 var GENERATION_SIZE = 30;
-var INHERITANCE_PERCENT = 30;
+var INHERITANCE_PERCENT = 70;
+var PRIMA_NOCTIS = 50;
 var SURVIVORS = 10;
 var THRESHOLD = 1000;
 export var ScheduleService = (function () {
@@ -111,7 +112,7 @@ export var ScheduleService = (function () {
             new CurriculumConstraint(this.config.curriculum),
             new CompatibilityConstraint()
         ];
-        this.clearSchedule();
+        // this.clearSchedule();
         this._generateSchedule(constraints, progress);
         this.trigger.next();
     };
@@ -125,7 +126,15 @@ export var ScheduleService = (function () {
     ScheduleService.prototype._generateSchedule = function (constraints, progress) {
         var _this = this;
         var oldgen = [];
-        var newgen = [];
+        if (this.config.schedule && this.config.schedule.length > 0) {
+            var base = new ScheduleCandidate();
+            base.schedule = this.config.schedule;
+            base.unschedulable = this.config.noSolutionFor;
+            var newgen = [base];
+        }
+        else {
+            var newgen = [];
+        }
         var busy = false;
         var g = 0;
         var processor = setInterval(function () {
@@ -136,7 +145,12 @@ export var ScheduleService = (function () {
                 _this.config.curriculum.forEach(function (ci) {
                     for (var i = 0; i < ci.weeklyCount; i++) {
                         if (oldgen.length > 0) {
-                            var mom = oldgen[Math.floor(Math.random() * oldgen.length)];
+                            if (Math.random() < PRIMA_NOCTIS / 100) {
+                                var mom = oldgen[0];
+                            }
+                            else {
+                                var mom = oldgen[Math.floor(Math.random() * oldgen.length)];
+                            }
                         }
                         if (mom && Math.random() < INHERITANCE_PERCENT / 100) {
                             var momsGene = mom.schedule.find(function (m) { return m.activity.uuid === ci.activity.uuid
@@ -173,7 +187,7 @@ export var ScheduleService = (function () {
                 oldgen = newgen.slice(0, SURVIVORS);
                 newgen = newgen.slice(0, SURVIVORS);
             }
-            console.log("Best citizen: " + newgen[0].getScore() + "; Spread: " + (oldgen[oldgen.length - 1].getScore() - oldgen[0].getScore()));
+            console.log("Best citizen: " + newgen[0].getScore() + "; Worst survivor: " + newgen[SURVIVORS - 1].getScore());
         }, 200);
     };
     ScheduleService.prototype.tryAddGene = function (gc, constraints, gene) {
@@ -186,13 +200,13 @@ export var ScheduleService = (function () {
     ScheduleService.prototype.tryAdd = function (gc, constraints, ci, slots) {
         // console.log("Attempting to find a spot for " + ci.activity.name + " / " + ci.participant.name);
         var ss = this.config.scheduleTemplate.filter(function (ss) { return ss.participant.uuid === ci.participant.uuid; });
-        var shuffle = this.shuffleSeed(ss.length);
+        this.shuffle(ss);
         var found = false;
         for (var j = 0; j < ss.length; j++) {
             var candidate = new ScheduleItem();
             candidate.activity = ci.activity;
             candidate.room = ci.participant.homeRoom;
-            candidate.slot = ss[shuffle[j]];
+            candidate.slot = ss[j];
             candidate.teacher = ci.teacher;
             // console.log("Trying " + candidate.slot.hourSlot.day + " " + candidate.slot.hourSlot.name);
             if (constraints.reduce(function (acc, val) { return acc = acc && val.check(candidate, gc.schedule); }, true)) {
@@ -207,18 +221,26 @@ export var ScheduleService = (function () {
         }
         return true;
     };
-    ScheduleService.prototype.shuffleSeed = function (length) {
-        var re = [];
-        for (var i = 0; i < length; i++)
-            re.push(i);
-        for (var i = length - 1; i > 0; i--) {
-            var ix = Math.floor(Math.random() * i);
-            var t = re[ix];
-            re[ix] = re[i];
-            re[i] = t;
+    ScheduleService.prototype.shuffle = function (arg) {
+        var i = 0, j = 0, temp = null;
+        for (i = arg.length - 1; i > 0; i -= 1) {
+            j = Math.floor(Math.random() * (i + 1));
+            temp = arg[i];
+            arg[i] = arg[j];
+            arg[j] = temp;
         }
-        return re;
     };
+    // private shuffleSeed(length: number): number[] {
+    //     var re: number[] = [];
+    //     for (var i: number = 0; i < length; i++) re.push(i);
+    //     for (var i: number = length - 1; i > 0; i--) {
+    //         var ix: number = Math.floor(Math.random() * i);
+    //         var t: number = re[ix];
+    //         re[ix] = re[i];
+    //         re[i] = t;
+    //     }
+    //     return re;
+    // }
     ScheduleService.prototype.setSchedule = function (sch, nosch) {
         var _this = this;
         this.clearSchedule();

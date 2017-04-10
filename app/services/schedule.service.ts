@@ -19,7 +19,8 @@ import { Subject } from 'rxjs/Subject';
 
 const GENERATIONS: number = 100;
 const GENERATION_SIZE: number = 30;
-const INHERITANCE_PERCENT: number = 30;
+const INHERITANCE_PERCENT: number = 70;
+const PRIMA_NOCTIS: number = 50;
 const SURVIVORS: number = 10;
 const THRESHOLD: number = 1000;
 
@@ -118,7 +119,7 @@ export class ScheduleService {
             new CurriculumConstraint(this.config.curriculum),
             new CompatibilityConstraint()
         ];
-        this.clearSchedule();
+        // this.clearSchedule();
         this._generateSchedule(constraints, progress);
         this.trigger.next();
     }
@@ -133,7 +134,14 @@ export class ScheduleService {
 
     private _generateSchedule(constraints: Constraint[], progress: Progress): void {
         var oldgen: ScheduleCandidate[] = [];
-        var newgen: ScheduleCandidate[] = [];
+        if (this.config.schedule && this.config.schedule.length > 0) {
+            var base = new ScheduleCandidate();
+            base.schedule = this.config.schedule;
+            base.unschedulable = this.config.noSolutionFor;
+            var newgen: ScheduleCandidate[] = [base];
+        } else {
+            var newgen: ScheduleCandidate[] = [];
+        }
         var busy = false;
         var g: number = 0;
         var processor: NodeJS.Timer = setInterval(() => {
@@ -144,7 +152,11 @@ export class ScheduleService {
                 this.config.curriculum.forEach(ci => {
                     for (var i: number = 0; i < ci.weeklyCount; i++) {
                         if (oldgen.length > 0) {
-                            var mom = oldgen[Math.floor(Math.random() * oldgen.length)];
+                            if (Math.random() < PRIMA_NOCTIS / 100) {
+                                var mom = oldgen[0];
+                            } else {
+                                var mom = oldgen[Math.floor(Math.random() * oldgen.length)];
+                            }
                         }
                         if (mom && Math.random() < INHERITANCE_PERCENT / 100) {
                             var momsGene: ScheduleItem = mom.schedule.find(m => m.activity.uuid === ci.activity.uuid
@@ -175,10 +187,10 @@ export class ScheduleService {
                 progress.current = 0;
             }
             else {
-                oldgen = newgen.slice(0, SURVIVORS);                
+                oldgen = newgen.slice(0, SURVIVORS);
                 newgen = newgen.slice(0, SURVIVORS);
             }
-            console.log("Best citizen: " + newgen[0].getScore() + "; Spread: " + (oldgen[oldgen.length - 1].getScore() - oldgen[0].getScore()));
+            console.log("Best citizen: " + newgen[0].getScore() + "; Worst survivor: " + newgen[SURVIVORS - 1].getScore());
         }, 200);
     }
 
@@ -193,13 +205,13 @@ export class ScheduleService {
     private tryAdd(gc: ScheduleCandidate, constraints: Constraint[], ci: CurriculumItem, slots: ScheduleSlot[]): boolean {
         // console.log("Attempting to find a spot for " + ci.activity.name + " / " + ci.participant.name);
         var ss: ScheduleSlot[] = this.config.scheduleTemplate.filter(ss => ss.participant.uuid === ci.participant.uuid)
-        var shuffle: number[] = this.shuffleSeed(ss.length);
+        this.shuffle(ss);
         var found: boolean = false;
         for (var j: number = 0; j < ss.length; j++) {
             var candidate: ScheduleItem = new ScheduleItem();
             candidate.activity = ci.activity;
             candidate.room = ci.participant.homeRoom;
-            candidate.slot = ss[shuffle[j]];
+            candidate.slot = ss[j];
             candidate.teacher = ci.teacher;
             // console.log("Trying " + candidate.slot.hourSlot.day + " " + candidate.slot.hourSlot.name);
             if (constraints.reduce((acc, val) => acc = acc && val.check(candidate, gc.schedule), true)) {
@@ -215,17 +227,31 @@ export class ScheduleService {
         return true;
     }
 
-    private shuffleSeed(length: number): number[] {
-        var re: number[] = [];
-        for (var i: number = 0; i < length; i++) re.push(i);
-        for (var i: number = length - 1; i > 0; i--) {
-            var ix: number = Math.floor(Math.random() * i);
-            var t: number = re[ix];
-            re[ix] = re[i];
-            re[i] = t;
+    private shuffle<T>(arg: T[]): void {
+        var i = 0
+            , j = 0
+            , temp = null;
+
+        for (i = arg.length - 1; i > 0; i -= 1) {
+            j = Math.floor(Math.random() * (i + 1));
+            temp = arg[i];
+            arg[i] = arg[j];
+            arg[j] = temp;
         }
-        return re;
     }
+
+
+    // private shuffleSeed(length: number): number[] {
+    //     var re: number[] = [];
+    //     for (var i: number = 0; i < length; i++) re.push(i);
+    //     for (var i: number = length - 1; i > 0; i--) {
+    //         var ix: number = Math.floor(Math.random() * i);
+    //         var t: number = re[ix];
+    //         re[ix] = re[i];
+    //         re[i] = t;
+    //     }
+    //     return re;
+    // }
 
     private setSchedule(sch: ScheduleItem[], nosch: CurriculumItem[]) {
         this.clearSchedule();
