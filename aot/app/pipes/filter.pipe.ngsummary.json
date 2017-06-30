@@ -1,1 +1,0 @@
-{"summaries":[{"symbol":{"__symbol":0},"metadata":{"__symbolic":"class"},"type":{"summaryKind":0,"type":{"reference":{"__symbol":0},"diDeps":[],"lifecycleHooks":[]},"name":"filter","pure":true}}],"symbols":[{"__symbol":0,"name":"FilterPipe","filePath":"C:/Projects/SchoolSchedule/app/pipes/filter.pipe.d.ts"}]}

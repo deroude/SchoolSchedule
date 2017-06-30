@@ -19,10 +19,9 @@ import { Subject } from 'rxjs/Subject';
 
 const GENERATIONS: number = 100;
 const GENERATION_SIZE: number = 30;
-const INHERITANCE_PERCENT: number = 70;
-const PRIMA_NOCTIS: number = 50;
+const MUTANTION_PERCENT: number = 10;
 const SURVIVORS: number = 10;
-const THRESHOLD: number = 1000;
+const CHAMPIONS: number = 1;
 
 @Injectable()
 export class ScheduleService {
@@ -120,8 +119,12 @@ export class ScheduleService {
             new CompatibilityConstraint()
         ];
         // this.clearSchedule();
-        this._generateSchedule(constraints, progress);
-        this.trigger.next();
+        if (this._validate()) {
+            setTimeout(()=>this._generateSchedule(constraints, progress),10);
+            this.trigger.next();
+        } else {
+            console.log("Impossible allocation");
+        }
     }
 
     public clearSchedule(): void {
@@ -130,6 +133,26 @@ export class ScheduleService {
         this.config.schedule = [];
         this.config.noSolutionFor = [];
         this.trigger.next();
+    }
+
+    private _validate(): boolean {
+        for (var i: number = 0; i < this.config.teachers.length; i++) {
+            var total: number = 0;
+            this.config.curriculum.filter(c => c.teacher.uuid === this.config.teachers[i].uuid)
+                .forEach(c => total += c.weeklyCount);
+            if (total > this.config.hourSlots.length) {
+                return false;
+            }
+        }
+        for (var i: number = 0; i < this.config.participants.length; i++) {
+            var total: number = 0;
+            this.config.curriculum.filter(c => c.participant.uuid === this.config.participants[i].uuid)
+                .forEach(c => total += c.weeklyCount);
+            if (total > this.config.hourSlots.length) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private _generateSchedule(constraints: Constraint[], progress: Progress): void {
@@ -142,29 +165,48 @@ export class ScheduleService {
         } else {
             var newgen: ScheduleCandidate[] = [];
         }
-        var busy = false;
+
         var g: number = 0;
         var processor: NodeJS.Timer = setInterval(() => {
             console.log("Generation " + g);
             progress.increment();
             for (var n: number = 0; n < GENERATION_SIZE; n++) {
+                if (oldgen.length > 0) {
+                    this.shuffle(oldgen);
+                    var mom = oldgen[0];
+                    var dad = oldgen[1];
+                }
                 var gc: ScheduleCandidate = new ScheduleCandidate();
-                this.config.curriculum.forEach(ci => {
-                    for (var i: number = 0; i < ci.weeklyCount; i++) {
-                        if (oldgen.length > 0) {
-                            if (Math.random() < PRIMA_NOCTIS / 100) {
-                                var mom = oldgen[0];
-                            } else {
-                                var mom = oldgen[Math.floor(Math.random() * oldgen.length)];
+
+                if (mom && dad) {
+                    this.shuffle(mom.schedule);
+                    this.shuffle(dad.schedule);
+                    var takeFromMom: boolean = true;
+                    var momIndex: number = mom.schedule.length - 1;
+                    var dadIndex: number = dad.schedule.length - 1;
+                    while (momIndex > 0 || dadIndex > 0) {
+                        if (takeFromMom) {
+                            if (momIndex > 0) {
+                                this.tryAddGene(gc, constraints, mom.schedule[momIndex--]);
                             }
-                        }
-                        if (mom && Math.random() < INHERITANCE_PERCENT / 100) {
-                            var momsGene: ScheduleItem = mom.schedule.find(m => m.activity.uuid === ci.activity.uuid
-                                && m.teacher.uuid === ci.teacher.uuid && m.slot.participant.uuid === ci.participant.uuid && !m.bad);
-                            if (!momsGene || !this.tryAddGene(gc, constraints, momsGene)) {
-                                this.tryAdd(gc, constraints, ci, this.config.scheduleTemplate);
-                            }
+                            takeFromMom = false;
                         } else {
+                            if (dadIndex > 0) {
+                                this.tryAddGene(gc, constraints, dad.schedule[dadIndex--]);
+                            }
+                            takeFromMom = true;
+                        }
+                    }
+                    // console.log("genetic saturation: " + gc.schedule.length+" / "+this.config.scheduleTemplate.length);
+                }
+                if(gc.schedule.length>this.config.scheduleTemplate.length*(100-MUTANTION_PERCENT)/100){
+                    this.shuffle(gc.schedule);
+                    gc.schedule=gc.schedule.splice(0,this.config.scheduleTemplate.length*(100-MUTANTION_PERCENT)/100);
+                }
+                this.config.curriculum.forEach(ci => {
+                    var existing: ScheduleItem[] = gc.schedule.filter(sx => sx.activity.uuid === ci.activity.uuid && sx.slot.participant.uuid === ci.participant.uuid);
+                    if (existing.length < ci.weeklyCount) {
+                        for (var ix: number = existing.length; ix < ci.weeklyCount; ix++) {
                             this.tryAdd(gc, constraints, ci, this.config.scheduleTemplate);
                         }
                     }
@@ -188,9 +230,9 @@ export class ScheduleService {
             }
             else {
                 oldgen = newgen.slice(0, SURVIVORS);
-                newgen = newgen.slice(0, SURVIVORS);
+                newgen = newgen.slice(0, CHAMPIONS);
             }
-            console.log("Best citizen: " + newgen[0].getScore() + "; Worst survivor: " + newgen[SURVIVORS - 1].getScore());
+            console.log("Best citizen: " + newgen[0].getScore() + "; Worst survivor: " + oldgen[SURVIVORS - 1].getScore());
         }, 200);
     }
 
