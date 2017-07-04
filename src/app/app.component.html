@@ -25,7 +25,10 @@
             </ul>
             <div class="navbar-nav ml-auto">
                 <label class="btn btn-outline-primary btn-file ml-2 mt-2">
-                    <i class="fa fa-upload"></i> Upload config <input type="file" id="file" hidden (change)="fileChanged($event)">
+                    <i class="fa fa-upload"></i> Upload config <input type="file" id="file" hidden (change)="fileChanged($event)">                    
+                </label>
+                <label class="btn btn-outline-primary btn-file ml-2 mt-2">
+                <i class="fa fa-file-excel-o"></i> Upload xls <input type="file" id="xls" hidden (change)="xlsChanged($event)">
                 </label>
                 <button class="btn btn-outline-primary ml-2 mt-2 mb-2" (click)="downloadConfig()"><i class="fa fa-download"></i> Save current config</button>
             </div>
