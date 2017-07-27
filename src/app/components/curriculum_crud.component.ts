@@ -91,3 +91,4 @@ export class CurriculumCrudComponent implements OnInit, StandardCrud<CurriculumI
         this.selected = null;
     }
 }
+
