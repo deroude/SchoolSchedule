@@ -2,6 +2,7 @@ import { ScheduleService } from './services/schedule.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, HostListener } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'sch-app',
@@ -32,8 +33,24 @@ export class AppComponent {
     fileReader.readAsText(file);
     //try to read file, this part does not work at all, need a solution
     fileReader.onloadend = (e) => {
-      this.scheduleService.config=(JSON.parse(fileReader.result));
+       this.scheduleService.config=(JSON.parse(fileReader.result));
       this.scheduleService.trigger.next();
+    };
+  }
+
+  xlsChanged($event): void {
+    //get file
+    //need to cast html tag
+    //reference： http://stackoverflow.com/questions/12989741/the-property-value-does-not-exist-on-value-of-type-htmlelement
+    var file = (<HTMLInputElement>document.getElementById("xls")).files[0];
+
+    //new fileReader
+    let fileReader = new FileReader();
+    fileReader.readAsBinaryString(file);
+    //try to read file, this part does not work at all, need a solution
+    fileReader.onloadend = (e:any) => {     
+      const wb = XLSX.read(e.target.result, {type:'binary'});
+      console.log(wb);
     };
   }
 
